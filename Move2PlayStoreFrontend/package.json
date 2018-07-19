@@ -1,14 +1,14 @@
 {
-  "name": "cemig-saude-autorizador-frontend",
+  "name": "move2-play-store-frontend",
   "version": "0.0.1",
-  "description": "cemig-saude-autorizador-frontend project with Redux, React and Babel support",
+  "description": "move2-play-store-frontend project with Redux, React and Babel support",
   "main": "index.js",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch"
   },
-  "author": "Bernardo Meneghini",
+  "author": "Bernardo Meneghini Muschioni",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.2.1",

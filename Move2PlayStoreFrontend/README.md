@@ -1,4 +1,4 @@
-# CemigSaudeAutorizadorFrontend
+# Move2PlayStoreFrontend
 
 ### Getting Started
 
