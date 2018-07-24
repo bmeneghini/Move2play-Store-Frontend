@@ -10,8 +10,7 @@ import SearchBar from './search_bar'
 const styles = {
   root: {
     flexGrow: 1,
-    color: "#00885f",
-    backgroundColor: "#fff",
+    backgroundColor: "#2196F3",
     boxShadow: "0 4px 2px -2px #AAA",
     position: "relative",
   },
@@ -22,7 +21,7 @@ const styles = {
     fontWeight: 700,
     marginLeft: 30,
     marginRight: 30,
-    color: "#00885f !important",
+    color: "white",
     textDecoration: "none !important",
   },
   logo: {
@@ -31,8 +30,8 @@ const styles = {
     marginRight: 50,
   },
   customButtom: {
+    color: "white",
     height: 18,
-    color: "#9b9b9b",
     fontFamily: "Work Sans",
     fontSize: 16,
     fontWeight: 400,
