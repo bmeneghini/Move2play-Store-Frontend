@@ -1,11 +1,12 @@
 {
-  "name": "cemig-saude-autorizador-frontend",
+  "name": "move-2-play-store",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.4.1",
     "@material-ui/icons": "^2.0.0",
     "axios": "^0.18.0",
+    "faker": "^4.1.0",
     "lodash": "^4.17.10",
     "react": "^16.4.1",
     "react-bootstrap": "^0.32.1",
@@ -13,7 +14,9 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
     "redux-form": "^7.4.2",
-    "redux-promise": "^0.6.0"
+    "redux-promise": "^0.6.0",
+    "semantic-ui-css": "^2.3.3",
+    "semantic-ui-react": "^0.82.1"
   },
   "scripts": {
     "start": "react-scripts start",
