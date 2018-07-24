@@ -1,6 +1,7 @@
 .app_search_bar{
-    margin-left: 10%;
-    margin-right: 10%;
+    display: block;
+    margin-left: auto;
+    margin-right: 30%;
 }
 
 .app_search_bar .ui{

@@ -19,25 +19,34 @@ const styles = {
     fontFamily: "Work Sans",
     fontSize: 20,
     fontWeight: 700,
-    marginLeft: 30,
-    marginRight: 30,
-    color: "white",
+    color: "white !important",
     textDecoration: "none !important",
+    margin: 10,
   },
   logo: {
     margin: 10,
     marginLeft: 50,
     marginRight: 50,
   },
-  customButtom: {
+  loginBtn: {
     color: "white",
     height: 18,
     fontFamily: "Work Sans",
     fontSize: 16,
     fontWeight: 400,
     textTransform: "uppercase",
-    position: "relative",
-    right: -300,
+    position: "absolute",
+    right: 135,
+  },
+  registerBtn: {
+    color: "white",
+    height: 18,
+    fontFamily: "Work Sans",
+    fontSize: 16,
+    fontWeight: 400,
+    textTransform: "uppercase",
+    position: "absolute",
+    right: 10,
   },
 };
 
@@ -60,9 +69,11 @@ function ButtonAppBar(props) {
             </Link>
           <SearchBar
             className="app_search_bar"
+            fluid={true}
+            size={"small"}
           />
-          <Button color="inherit" className={classes.customButtom}>Login</Button>
-          <Button color="inherit" className={classes.customButtom}>Registrar</Button>
+          <Button color="inherit" className={classes.loginBtn}>Login</Button>
+          <Button color="inherit" className={classes.registerBtn}>Registrar</Button>
         </Toolbar>
       </AppBar>
     </div>
