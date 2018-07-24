@@ -1,0 +1,8 @@
+.app_search_bar{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.app_search_bar .ui{
+    width: 500px;
+}

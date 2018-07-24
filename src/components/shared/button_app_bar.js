@@ -3,47 +3,48 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
-
-import './button_app_bar'
+import Button from '@material-ui/core/Button';
+import SearchBar from './search_bar'
 
 const styles = {
   root: {
     flexGrow: 1,
-    color: "#00885f",
-    backgroundColor: "#fff",
-    boxShadow: "0 4px 2px -2px #AAA"
+    backgroundColor: "#2196F3",
+    boxShadow: "0 4px 2px -2px #AAA",
+    position: "relative",
   },
-  autorizador: {
-    flexGrow: 1,
-    width: 117,
+  move2play: {
     height: 23,
     fontFamily: "Work Sans",
     fontSize: 20,
     fontWeight: 700,
     marginLeft: 30,
-    color: "#00885f !important",
+    marginRight: 30,
+    color: "white",
     textDecoration: "none !important",
   },
   logo: {
     margin: 10,
     marginLeft: 50,
+    marginRight: 50,
   },
-  login: {
+  customButtom: {
+    color: "white",
     height: 18,
-    color: "#9b9b9b",
     fontFamily: "Work Sans",
     fontSize: 16,
     fontWeight: 400,
     textTransform: "uppercase",
-  }
+    position: "relative",
+    right: -300,
+  },
 };
 
 function ButtonAppBar(props) {
   const { classes } = props;
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="static" className={classes.root}>
         <Toolbar>
           <img
@@ -53,11 +54,15 @@ function ButtonAppBar(props) {
           />
           <Link
             variant="title"
-            className={classes.autorizador}
+            className={classes.move2play}
             to="/">
-            Autorizador
-          </Link>
-          <Button color="inherit" className={classes.login}>Login</Button>
+            Move2Play Store
+            </Link>
+          <SearchBar
+            className="app_search_bar"
+          />
+          <Button color="inherit" className={classes.customButtom}>Login</Button>
+          <Button color="inherit" className={classes.customButtom}>Registrar</Button>
         </Toolbar>
       </AppBar>
     </div>
