@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,10 +10,11 @@ import SearchBar from './search_bar'
 const styles = {
   root: {
     flexGrow: 1,
-    backgroundColor: "#2196F3",
+    /*backgroundColor: "#2196F3",*/
     boxShadow: "0 4px 2px -2px #AAA",
     position: "relative",
   },
+  /*
   move2play: {
     height: 23,
     fontFamily: "Work Sans",
@@ -23,6 +24,7 @@ const styles = {
     textDecoration: "none !important",
     margin: 10,
   },
+  */
   logo: {
     margin: 10,
     marginLeft: 50,
@@ -50,34 +52,37 @@ const styles = {
   },
 };
 
-function ButtonAppBar(props) {
-  const { classes } = props;
-  return (
-    <div>
-      <AppBar position="static" className={classes.root}>
-        <Toolbar>
-          <img
-            src="../images/logoCemigSaude.png"
-            alt="logo cemig saude"
-            className={classes.logo}
-          />
-          <Link
-            variant="title"
-            className={classes.move2play}
-            to="/">
-            Move2Play Store
+
+class ButtonAppBar extends Component {
+
+  render() {
+    const { classes } = this.props
+    return (
+      <div>
+        <AppBar position="static" className={classes.root}>
+          <Toolbar>
+            <Link to="/">
+              <img
+                src="../images/move2play-logo-tennis.png"
+                alt="logo move2play"
+                className={classes.logo}
+                height="60"
+              />
             </Link>
-          <SearchBar
-            className="app_search_bar"
-            fluid={true}
-            size={"small"}
-          />
-          <Button color="inherit" className={classes.loginBtn}>Login</Button>
-          <Button color="inherit" className={classes.registerBtn}>Registrar</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+            <div>
+              <SearchBar
+                className="app_search_bar"
+                fluid={true}
+                size={"small"}
+              />
+            </div>
+            <Button color="inherit" className={classes.loginBtn}>Login</Button>
+            <Button color="inherit" className={classes.registerBtn}>Registrar</Button>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  }
 }
 
 ButtonAppBar.propTypes = {

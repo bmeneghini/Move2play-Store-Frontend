@@ -7,7 +7,6 @@ export default class Layout extends Component {
     return (
       <div>
         <ButtonAppBar />
-        <CustomJumbotron />
       </div>
     )
   }

@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = {
     jumbotron_style: {
         height: 250,
-        backgroundColor: "#d4e9e2",
+        backgroundColor: "#2196F3",
         padding: 10,
         marginTop: 3,
     },
