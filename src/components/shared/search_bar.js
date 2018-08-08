@@ -39,14 +39,20 @@ export default class SearchBar extends Component {
     const { isLoading, value, results } = this.state
 
     return (
-          <Search
-            loading={isLoading}
-            onResultSelect={this.handleResultSelect}
-            onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-            results={results}
-            value={value}
-            {...this.props}
-          />
+      <div className={"divContainerInterno"}>
+        <div className={"divExterior"}>
+          <div className={"divInterior search-bar"}>
+            <Search
+              loading={isLoading}
+              onResultSelect={this.handleResultSelect}
+              onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+              results={results}
+              value={value}
+              {...this.props}
+            />
+          </div>
+        </div>
+      </div>
     )
   }
 }

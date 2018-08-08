@@ -1,0 +1,29 @@
+.divContainer {
+    flex-grow: 1;
+    box-shadow: 0 4px 2px -2px #AAA;
+    position: "relative",
+}
+
+.logo {
+    margin: 10px;
+    margin-left: 50px;
+}
+
+.app_search_bar{
+    display: block;
+    margin-left: auto;
+    margin-right: 30%;
+  }
+  
+.app_search_bar .ui{
+    width: 500px;
+}
+
+.btnLogin {
+    color: white !important;
+    height: 18px !important;
+    font-family: "Work Sans" !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+  }
