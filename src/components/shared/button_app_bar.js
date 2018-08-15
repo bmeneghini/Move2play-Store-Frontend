@@ -19,7 +19,6 @@ class ButtonAppBar extends Component {
   }
 
   render() {
-    const { classes } = this.props
     return (
       <div>
         <AppBar position="static" className={"divContainer"}>

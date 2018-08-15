@@ -26,4 +26,10 @@
     font-size: 16px !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
-  }
+}
+
+.shopping_cart{
+    width: 41px;
+    height: 41px;
+    color: white;
+}
