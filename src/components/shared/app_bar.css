@@ -33,3 +33,7 @@
     height: 41px;
     color: white;
 }
+
+.MuiAppBar-colorPrimary-7 {
+    background-color: #191919 !important;
+}

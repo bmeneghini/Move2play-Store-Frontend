@@ -4,5 +4,6 @@
 
 .game-gender-filter-form {
     position: absolute;
-    left: 2%;
+    left: 4%;
+    margin-top: -22px;
 }

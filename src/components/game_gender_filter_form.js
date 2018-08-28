@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
-import CustomLabel from './shared/custom_label'
-import { Button, Checkbox, Form, Icon } from 'semantic-ui-react'
+import Button from '@material-ui/core/Button';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import FilterList from '@material-ui/icons/FilterList';
 import './game_gender_filter_form.css'
 
 export default class GameGenderFilterForm extends Component {
@@ -23,92 +28,82 @@ export default class GameGenderFilterForm extends Component {
     handleSubmit(event) {
     }
 
-    handleCBAcaoChange = () => {
-        this.setState({ acao: !this.state.acao })
-    }
-    handleCBAventuraChange = () => {
-        this.setState({ aventura: !this.state.aventura })
-    }
-    handleCBEstrategiaChange = () => {
-        this.setState({ estrategia: !this.state.estrategia })
-    }
-    handleCBCasualChange = () => {
-        this.setState({ casual: !this.state.casual })
-    }
-    handleCBEsportesChange = () => {
-        this.setState({ esportes: !this.state.esportes })
-    }
-    handleCBIndieChange = () => {
-        this.setState({ indie: !this.state.indie })
-    }
+    handleChange = name => event => {
+        this.setState({ [name]: event.target.checked });
+    };
 
     render() {
+        const { acao, aventura, estrategia, casual, esportes, indie } = this.state;
         return (
             <div className={"game-gender-filter-form"}>
                 <hr />
-                <Form widths='equal' onSubmit={this.handleSubmit}>
-                    <Form.Field style={{ padding: 10, paddingTop: 5 }}>
-                        <CustomLabel content={"NAVEGAR POR GÊNERO"} font_size={14} text_align={"left"} height={20} />
-                    </Form.Field>
-                    <Form.Field>
-                        <Checkbox
-                            name="acao"
-                            label='Ação'
-                            type="checkbox"
-                            checked={this.state.acao}
-                            onChange={this.handleCBAcaoChange}
+                <FormControl>
+                    <FormLabel>Navegar por Gênero</FormLabel>
+                    <FormGroup>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={acao}
+                                    onChange={this.handleChange('acao')}
+                                    value="acao"
+                                />
+                            }
+                            label="Ação"
                         />
-                    </Form.Field>
-                    <Form.Field>
-                        <Checkbox
-                            name="aventura"
-                            label='Aventura'
-                            type="checkbox"
-                            checked={this.state.aventura}
-                            onChange={this.handleCBAventuraChange}
+                        <FormControlLabel
+                            control={
+                                <Checkbox checked={aventura}
+                                    onChange={this.handleChange('aventura')}
+                                    value="aventura"
+                                />
+                            }
+                            label="Aventura"
                         />
-                    </Form.Field>
-                    <Form.Field>
-                        <Checkbox
-                            name="estrategia"
-                            label='Estratégia'
-                            type="checkbox"
-                            checked={this.state.estrategia}
-                            onChange={this.handleCBEstrategiaChange}
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={estrategia}
+                                    onChange={this.handleChange('estrategia')}
+                                    value="estrategia"
+                                />
+                            }
+                            label="Estratégia"
                         />
-                    </Form.Field>
-                    <Form.Field>
-                        <Checkbox
-                            name="casual"
-                            label='Casual'
-                            type="checkbox"
-                            checked={this.state.casual}
-                            onChange={this.handleCBCasualChange}
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={casual}
+                                    onChange={this.handleChange('casual')}
+                                    value="casual"
+                                />
+                            }
+                            label="Casual"
                         />
-                    </Form.Field>
-                    <Form.Field>
-                        <Checkbox
-                            name="esports"
-                            label='Esportes'
-                            type="checkbox"
-                            checked={this.state.esports}
-                            onChange={this.handleCBEsportesChange}
+                        <FormControlLabel
+                            control={
+                                <Checkbox checked={esportes}
+                                    onChange={this.handleChange('esportes')}
+                                    value="esportes"
+                                />
+                            }
+                            label="Esportes"
                         />
-                    </Form.Field>
-                    <Form.Field>
-                        <Checkbox
-                            name="indie"
-                            label='Indie'
-                            type="checkbox"
-                            checked={this.state.indie}
-                            onChange={this.handleCBIndieChange}
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={indie}
+                                    onChange={this.handleChange('indie')}
+                                    value="indie"
+                                />
+                            }
+                            label="Indie"
                         />
-                    </Form.Field>
-                    <Button type='submit'>
-                        <Icon name='filter' />
-                        FILTRAR (ENTER)
-                    </Button>
-                </Form>
+                        <Button type='submit' variant="contained" color="secondary">
+                            <FilterList style={{ marginRight: 10 }} />
+                            Filtrar
+                        </Button>
+                    </FormGroup>
+                </FormControl>
                 <hr />
             </div>
         )

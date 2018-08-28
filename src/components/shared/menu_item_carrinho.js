@@ -7,6 +7,7 @@ const styles = {
         width: 41,
         height: 41,
         color: "white",
+        cursor: "pointer"
     },
     label: {
         height: 16,

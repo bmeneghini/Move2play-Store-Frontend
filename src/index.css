@@ -15,3 +15,12 @@
   text-align: left;
   vertical-align: middle;
 }
+
+.primary-button{
+  background-color: rgb(255, 0, 71) !important;
+  color: white !important;
+}
+
+.primary-button:hover{
+ /* background-color: rgb(233, 16, 76) !important;; */
+}
