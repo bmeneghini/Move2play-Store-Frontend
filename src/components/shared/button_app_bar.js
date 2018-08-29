@@ -13,10 +13,6 @@ class ButtonAppBar extends Component {
   login = () => {
     this.props.auth.login();
   }
-  // calls the logout method in authentication service
-  logout = () => {
-    this.props.auth.logout();
-  }
 
   render() {
     return (

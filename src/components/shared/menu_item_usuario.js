@@ -7,6 +7,8 @@ import ExitToApp from '@material-ui/icons/ExitToApp';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
+import history from '../config/history'
+
 import './app_bar.css'
 
 const styles = {
@@ -56,6 +58,7 @@ class MenuItemUsuario extends Component {
     handleLogout = (event) => {
         event.preventDefault();
         this.props.auth.logout();
+        history.push("/")
     }
 
     render() {

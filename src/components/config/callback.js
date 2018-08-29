@@ -1,8 +1,9 @@
 import React from 'react';
+import AjaxLoader from './../shared/ajax_loader';
 
 const Callback = () => (
   <div className="container">
-    <h4>Carregando...</h4>
+    <AjaxLoader />
   </div>
 );
 
