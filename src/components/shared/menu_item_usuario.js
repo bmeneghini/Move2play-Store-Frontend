@@ -55,6 +55,10 @@ class MenuItemUsuario extends Component {
         this.setState({ anchorEl: null });
     };
 
+    handleProfileClick = (event) => {
+        history.push("/user/profile")
+    }
+
     handleLogout = (event) => {
         event.preventDefault();
         this.props.auth.logout();
@@ -114,7 +118,7 @@ class MenuItemUsuario extends Component {
                                 onClose={this.handleClose}
                             >
                                 <MenuItem
-                                    onClick={this.handleClose}>
+                                    onClick={this.handleProfileClick}>
                                     <Settings className={classes.profileMenuIcon} />
                                     Perfil
                                             </MenuItem>
