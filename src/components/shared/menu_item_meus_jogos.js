@@ -23,8 +23,8 @@ const styles = {
         height: 24,
     },
     videogameAsset: {
-        width: 41,
-        height: 41,
+        width: 30,
+        height: 30,
         color: "white",
         marginRight: 5,
     },
@@ -67,7 +67,7 @@ class MenuItemMeusJogos extends Component {
         const open = Boolean(anchorEl);
 
         return (
-            <div className={"divContainerInterno"} style={{ position: "absolute", right: "9%" }}>
+            <div className={"divContainerInterno"} style={{ /*position: "absolute", right: "9%"*/ }}>
                 <div className={"divExterior"}>
                     <div className={"divInterior"}>
                         <div style={{ height: 50 }}>

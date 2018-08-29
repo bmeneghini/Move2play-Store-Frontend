@@ -4,8 +4,8 @@ import ShoppingCart from '@material-ui/icons/ShoppingCart';
 
 const styles = {
     carrinho: {
-        width: 41,
-        height: 41,
+        width: 30,
+        height: 30,
         color: "white",
         cursor: "pointer"
     },
@@ -27,7 +27,7 @@ class MenuItemCarrinho extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <div className={"divContainerInterno"} style={{ position: "absolute", right: "19%" }}>
+            <div className={"divContainerInterno"} style={{ /*position: "absolute", right: "19%"*/ marginRight: 15 }}>
                 <div className={"divExterior"}>
                     <div className={"divInterior"}>
                         <div style={{ height: 50 }}>

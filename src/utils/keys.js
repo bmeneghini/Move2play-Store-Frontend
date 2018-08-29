@@ -5,7 +5,10 @@ const Keys = {
         REDIRECT_URI: "https://github.com/bmeneghini/bmeneghini.github.io/callback",
         AUDIENCE: "bmeneghini.auth0.com/userinfo",
         RESPONSE_TYPE: "token id_token",
-        SCOPE: "openid profile",
+        SCOPE: "openid profile email",
+    },
+    API: {
+        ROOT_URL: "https://localhost:44340"
     }
 }
 

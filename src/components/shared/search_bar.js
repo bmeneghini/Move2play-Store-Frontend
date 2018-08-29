@@ -39,9 +39,9 @@ export default class SearchBar extends Component {
     const { isLoading, value, results } = this.state
 
     return (
-      <div className={"divContainerInterno"}>
-        <div className={"divExterior"}>
-          <div className={"divInterior search-bar"}>
+      <div className={"divContainerInterno"} style={{ margin: "auto", width: "25%", marginLeft: "inherit" }}>
+        <div className={"divExterior"} style={{width: "100%" }}>
+          <div className={"divInterior search-bar"} style={{width: "100%" }}>
             <Search
               loading={isLoading}
               onResultSelect={this.handleResultSelect}

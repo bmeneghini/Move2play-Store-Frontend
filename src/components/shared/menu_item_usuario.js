@@ -23,8 +23,8 @@ const styles = {
         height: 24,
     },
     userIcon: {
-        width: 41,
-        height: 41,
+        width: 30,
+        height: 30,
         color: "white",
     },
     alignRight: {
@@ -64,7 +64,7 @@ class MenuItemUsuario extends Component {
         const open = Boolean(anchorEl);
 
         return (
-            <div className={"divContainerInterno"} style={{ position: "absolute", right: "2%" }}>
+            <div className={"divContainerInterno"} style={{ /*position: "absolute", right: "2%"*/ }}>
                 <div className={"divExterior"}>
                     <div className={"divInterior"}>
                         <div style={{ height: 50 }}>

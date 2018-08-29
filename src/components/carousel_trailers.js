@@ -3,7 +3,7 @@ import Carousel from 'nuka-carousel';
 import { Embed } from 'semantic-ui-react'
 
 const CarouselTrailers = (props) => (
-    <div style={{ marginLeft: "30%", height: 500, width: 750 }}>
+    <div style={{ margin: "auto", height: 500, width: 750 }}>
         <Carousel
             renderTopCenterControls={({ currentSlide }) => (
                 <div>Trailer: {currentSlide}</div>

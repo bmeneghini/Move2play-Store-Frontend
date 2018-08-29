@@ -8,15 +8,9 @@
     margin: 10px;
     margin-left: 50px;
 }
-
-.app_search_bar{
-    display: block;
-    margin-left: auto;
-    margin-right: 30%;
-  }
   
 .app_search_bar .ui{
-    width: 500px;
+    width: 100%;
 }
 
 .btnLogin {
@@ -28,12 +22,10 @@
     text-transform: uppercase !important;
 }
 
-.shopping_cart{
-    width: 41px;
-    height: 41px;
-    color: white;
-}
-
 .MuiAppBar-colorPrimary-7 {
     background-color: #191919 !important;
+}
+
+.ui.icon.input{
+    width: 100%;
 }
