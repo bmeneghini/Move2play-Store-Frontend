@@ -6,7 +6,7 @@ import Callback from './callback';
 import Auth from './auth';
 import history from './history';
 import store from './store';
-import UserProfile from './../../containers/user_profile'
+import UserProfile from './../../containers/UserProfile/user_profile'
 
 const auth = new Auth();
 
