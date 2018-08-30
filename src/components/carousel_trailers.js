@@ -20,7 +20,6 @@ const CarouselTrailers = (props) => (
             <Embed id='hJ_GPcnQosc' placeholder='/images/GOW-OG-image.jpg' source='youtube' />
         </Carousel>
     </div>
-    /*<Embed id={props.id} placeholder={props.placeholder}  source={props.source}  />*/
 )
 
 export default CarouselTrailers

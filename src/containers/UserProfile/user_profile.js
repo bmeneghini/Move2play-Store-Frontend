@@ -5,6 +5,7 @@ import CustomLabel from './../../components/shared/custom_label'
 import { connect } from "react-redux";
 import { setUserCredentials } from './../../actions'
 import UserProfileForm from './../../components/UserProfile/user_profile_form'
+import history from '../../components/config/history'
 import "./user_profile.css"
 
 class UserProfile extends Component {
@@ -14,7 +15,7 @@ class UserProfile extends Component {
     this.isFetchingProfile = false;
   }
 
-  componentWillUpdate(){
+  componentWillUpdate() {
     const { getProfile, getAccessToken } = this.props.auth;
     const token = getAccessToken();
     if (!this.isFetchingProfile && token) {
@@ -28,6 +29,9 @@ class UserProfile extends Component {
   componentWillMount() {
     const { getProfile, getAccessToken } = this.props.auth;
     const token = getAccessToken();
+
+    token ? "" : history.push("/")
+
     if (!this.isFetchingProfile && token) {
       this.isFetchingProfile = true;
       getProfile((err, profile) => {
@@ -43,7 +47,7 @@ class UserProfile extends Component {
         {isAuthenticated() ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
         <CustomLabel content={`Perfil de ${user.name}`} font_size={25} text_align={"center"} height={100} />
         <div className="user-profile-form">
-          <UserProfileForm user={user}/>
+          <UserProfileForm user={user} />
         </div>
       </div>
     )

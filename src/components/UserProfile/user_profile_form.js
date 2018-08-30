@@ -8,20 +8,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import UserAvatarField from './user_avatar_field'
 
 export default class UserProfileForm extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            given_name: props.user.given_name,
-            family_name: props.user.family_name,
-            email: props.user.email,
-            email_verified: props.user.email_verified,
-        };
-    }
-
     render() {
-        const { given_name, family_name, email, email_verified } = this.state;
+        const { given_name, family_name, email, email_verified, sub } = this.props.user;
         return (
             <div>
                 <UserAvatarField picture={this.props.user.picture} />
@@ -42,6 +30,12 @@ export default class UserProfileForm extends Component {
                         <FormControl className={"form-control-field"}>
                             <InputLabel>Email</InputLabel>
                             <Input id="email-user" value={email} />
+                        </FormControl>
+                    </FormGroup>
+                    <FormGroup>
+                        <FormControl className={"form-control-field"}>
+                            <InputLabel>Autenticação</InputLabel>
+                            <Input id="profile-sub" value={sub} />
                         </FormControl>
                     </FormGroup>
                     <FormGroup>
