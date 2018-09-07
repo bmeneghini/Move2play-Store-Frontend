@@ -1,0 +1,18 @@
+.enviar-jogo-form{
+    width:  70%;
+    height: flex;
+    margin: auto;
+    position: relative;
+    padding: 50px;
+}
+
+.form-control-fields{
+    position: absolute;
+    right: 29%;
+    top: 10%;
+}
+
+.form-control-field{
+    margin: 10px !important;
+    width: 150%;
+}

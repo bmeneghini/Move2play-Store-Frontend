@@ -28,7 +28,7 @@ class ButtonAppBar extends Component {
             <div className={"divContainerInterno"} style={{ position: "absolute", right: "2%" }}>
               <div className={"divExterior"}>
                 <div className={"divInterior"}>
-                  <Button color="inherit" onClick={this.login} className={"btnLogin"}>Login</Button>
+                  <Button variant="outlined" color="inherit" onClick={this.login} className={"btnLogin"}>Login</Button>
                 </div>
               </div>
             </div>

@@ -4,8 +4,9 @@ import MenuAppBar from './../../components/shared/menu_app_bar'
 import CustomLabel from './../../components/shared/custom_label'
 import { connect } from "react-redux";
 import { setUserCredentials } from './../../actions'
-import UserProfileForm from './../../components/UserProfile/user_profile_form'
+import UserProfileForm from './../../components/userprofile/user_profile_form'
 import history from '../../components/config/history'
+import Card from '@material-ui/core/Card';
 import "./user_profile.css"
 
 class UserProfile extends Component {
@@ -30,7 +31,7 @@ class UserProfile extends Component {
     const { getProfile, getAccessToken } = this.props.auth;
     const token = getAccessToken();
 
-    token ? "" : history.push("/")
+    if(!token) history.push("/")
 
     if (!this.isFetchingProfile && token) {
       this.isFetchingProfile = true;
@@ -46,9 +47,9 @@ class UserProfile extends Component {
       <div>
         {isAuthenticated() ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
         <CustomLabel content={`Perfil de ${user.name}`} font_size={25} text_align={"center"} height={100} />
-        <div className="user-profile-form">
+        <Card className="user-profile-form">
           <UserProfileForm user={user} />
-        </div>
+        </Card >
       </div>
     )
   }

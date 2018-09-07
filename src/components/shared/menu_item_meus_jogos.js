@@ -7,6 +7,8 @@ import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
+import history from '../config/history'
+
 import './app_bar.css'
 
 const styles = {
@@ -45,7 +47,7 @@ const styles = {
         color: "black",
         marginRight: 10
     },
-    
+
 };
 
 class MenuItemMeusJogos extends Component {
@@ -60,6 +62,16 @@ class MenuItemMeusJogos extends Component {
     handleClose = () => {
         this.setState({ anchorEl: null });
     };
+
+    handleEnviarJogoClick = () => {
+        history.push("/meus-jogos/enviar-jogo");
+        this.setState({ anchorEl: null });
+    }
+
+    handleBibliotecaClick = () => {
+        history.push("/meus-jogos/biblioteca");
+        this.setState({ anchorEl: null });
+    }
 
     render() {
         const { classes } = this.props;
@@ -114,12 +126,12 @@ class MenuItemMeusJogos extends Component {
                                 onClose={this.handleClose}
                             >
                                 <MenuItem
-                                    onClick={this.handleClose}>
+                                    onClick={this.handleBibliotecaClick}>
                                     <LibraryBooks className={classes.library} />
                                     Biblioteca
                                             </MenuItem>
                                 <MenuItem
-                                    onClick={this.handleLogout}>
+                                    onClick={this.handleEnviarJogoClick}>
                                     <Send className={classes.send} />
                                     Enviar Jogo
                                             </MenuItem>

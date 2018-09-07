@@ -6,7 +6,9 @@ import Callback from './callback';
 import Auth from './auth';
 import history from './history';
 import store from './store';
-import UserProfile from './../../containers/UserProfile/user_profile'
+import UserProfile from './../../containers/userprofile/user_profile'
+import EnviarJogo from './../../containers/meus_jogos/enviar_jogo'
+import Biblioteca from './../../containers/meus_jogos/biblioteca'
 
 const auth = new Auth();
 
@@ -21,6 +23,8 @@ const Routes = () => (
         <Router history={history} component={Home}>
             <div>
                 <Switch>
+                    <Route path="/meus-jogos/biblioteca" render={(props) => <Biblioteca auth={auth} {...props} />} />} />
+                    <Route path="/meus-jogos/enviar-jogo" render={(props) => <EnviarJogo auth={auth} {...props} />} />} />
                     <Route path="/user/profile" render={(props) => <UserProfile auth={auth} {...props} />} />} />
                     <Route path="/callback" render={(props) => {
                         handleAuthentication(props);
