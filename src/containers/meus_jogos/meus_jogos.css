@@ -4,15 +4,19 @@
     margin: auto;
     position: relative;
     padding: 50px;
+    margin-top: -10px;
+    margin-bottom: 15px;
 }
 
-.form-control-fields{
-    position: absolute;
-    right: 29%;
-    top: 10%;
+.form-div > div{
+    width: 46%;
 }
 
-.form-control-field{
-    margin: 10px !important;
-    width: 150%;
+.form-div > div:first-of-type{
+    margin-right: 20px;
+}
+
+.card-upload{
+    padding: 10px;
+    margin: 20px;
 }
