@@ -1,22 +1,12 @@
 import axios from 'axios'
 import Keys from './../utils/keys'
+import _ from 'lodash'
 
 export const SET_USER_CREDENTIALS = "set_user_credentials"
 export const RESET_USER_CREDENTIALS = "reset_user_credentials"
+export const POST_LOGO_IMAGE = "post_logo_image"
 
 const ROOT_URL = Keys.API.ROOT_URL
-
-/*export function getBeneficiario(params, callback, errorHandler) {
-    //const id = params.numeroCarteiraBeneficiario
-    const  id = 1 // só funciona se mandar 1 por algum motivo
-    const request = axios.post(`${ROOT_URL}/Beneficiarios/${id}/autorizar`, params)
-        .then((result) => { callback(result) })
-        .catch((error) => { errorHandler(error) })
-    return {
-        type: FETCH_BENEFICIARIO,
-        payload: request
-    }
-}*/
 
 export function setUserCredentials(params) {
     return {
@@ -28,6 +18,35 @@ export function setUserCredentials(params) {
 export function resetUserCredentials() {
     return {
         type: RESET_USER_CREDENTIALS,
-        payload: { }
+        payload: {}
+    }
+}
+
+export function uploadLogoImage(image, imageName) {
+
+    const formFile = {
+        ContentType: image.type,
+        Length: image.size,
+        Name: image.name,
+        FileName: image.name
+    }
+
+    axios(`${ROOT_URL}/api/Uploads/Image`, {
+        method: 'POST',
+        data: formFile,
+        headers: {
+            'Content-Type': image.type
+        }
+    })
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error.response)
+        });
+
+    return {
+        type: POST_LOGO_IMAGE,
+        payload: {}
     }
 }

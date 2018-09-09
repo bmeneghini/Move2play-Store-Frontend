@@ -32,7 +32,7 @@ class Home extends Component {
         {isAuthenticated() ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
         <CustomLabel content={"DESTAQUES E RECOMENDADOS"} font_size={25} text_align={"center"} height={100} />
         <GameGenderFilterForm />
-        <CarouselTrailers />
+        
       </div>
     );
   }

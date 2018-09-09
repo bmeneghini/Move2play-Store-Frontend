@@ -10,10 +10,10 @@ import Movie from '@material-ui/icons/Movie';
 import CustomLabel from '../../shared/custom_label';
 import FolderIcon from '@material-ui/icons/Folder';
 import Card from '@material-ui/core/Card';
-import pink from '@material-ui/core/colors/pink';
-import Avatar from '@material-ui/core/Avatar';
+import { connect } from "react-redux";
+import { uploadLogoImage } from '../../../actions/index'
 
-export default class EnviarJogoForm extends Component {
+class EnviarJogoForm extends Component {
 
     constructor(props) {
         super(props);
@@ -44,6 +44,11 @@ export default class EnviarJogoForm extends Component {
     gameChangedHandler = (event) => {
         this.setState({ selectedGame: event.target.files[0] })
         if (event.target.files[0] != null) this.setState({ selectedGameName: event.target.files[0].name })
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.props.uploadLogoImage(this.state.selectedLogo, this.state.selectedLogoName);
     }
 
     render() {
@@ -78,73 +83,75 @@ export default class EnviarJogoForm extends Component {
         return (
             <div className={""}>
                 <CustomLabel content={`Preencha os campos com as devidas informações`} font_size={15} text_align={"left"} height={10} />
-                <form autoComplete="off">
-                    <FormGroup>
-                        <FormControl>
-                            <div className={"form-div"}>
+                <form autoComplete="off" onSubmit={this.handleSubmit}>
+                    <Card className={"card-fields"}>
+                        <FormGroup>
+                            <FormControl>
+                                <div className={"form-div"}>
+                                    <TextField
+                                        id="name"
+                                        label="Nome"
+                                        required
+                                        value={this.state.nome}
+                                        onChange={this.handleChange('nome')}
+                                        margin="normal"
+                                    />
+                                    <TextField
+                                        id="desenvolvedor"
+                                        label="Desenvolvedor"
+                                        required
+                                        value={this.state.desenvolvedor}
+                                        onChange={this.handleChange('desenvolvedor')}
+                                        margin="normal"
+                                    />
+                                </div>
+                            </FormControl>
+                        </FormGroup>
+                        <FormGroup style={{ height: 75 }}>
+                            <FormControl>
+                                <div className={"form-div"}>
+                                    <TextField
+                                        id="preco"
+                                        label="Preço"
+                                        required
+                                        type="number"
+                                        value={this.state.preco}
+                                        onChange={this.handleChange('preco')}
+                                        margin="normal"
+                                    />
+                                    <TextField
+                                        id="genero"
+                                        select
+                                        label="Genero"
+                                        required
+                                        value={this.state.genero}
+                                        onChange={this.handleChange('genero')}
+                                        helperText="Selecione um"
+                                        margin="normal"
+                                    >
+                                        {generos.map(option => (
+                                            <MenuItem key={option.value} value={option.value}>
+                                                {option.label}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
+                                </div>
+                            </FormControl>
+                        </FormGroup>
+                        <FormGroup>
+                            <FormControl>
                                 <TextField
-                                    id="name"
-                                    label="Nome"
+                                    id="descricao"
+                                    label="Descrição"
                                     required
-                                    value={this.state.nome}
-                                    onChange={this.handleChange('nome')}
+                                    value={this.state.descricao}
+                                    onChange={this.handleChange('descricao')}
+                                    multiline
                                     margin="normal"
                                 />
-                                <TextField
-                                    id="desenvolvedor"
-                                    label="Desenvolvedor"
-                                    required
-                                    value={this.state.desenvolvedor}
-                                    onChange={this.handleChange('desenvolvedor')}
-                                    margin="normal"
-                                />
-                            </div>
-                        </FormControl>
-                    </FormGroup>
-                    <FormGroup style={{ height: 75 }}>
-                        <FormControl>
-                            <div className={"form-div"}>
-                                <TextField
-                                    id="preco"
-                                    label="Preço"
-                                    required
-                                    type="number"
-                                    value={this.state.preco}
-                                    onChange={this.handleChange('preco')}
-                                    margin="normal"
-                                />
-                                <TextField
-                                    id="genero"
-                                    select
-                                    label="Genero"
-                                    required
-                                    value={this.state.genero}
-                                    onChange={this.handleChange('genero')}
-                                    helperText="Selecione um"
-                                    margin="normal"
-                                >
-                                    {generos.map(option => (
-                                        <MenuItem key={option.value} value={option.value}>
-                                            {option.label}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
-                            </div>
-                        </FormControl>
-                    </FormGroup>
-                    <FormGroup>
-                        <FormControl>
-                            <TextField
-                                id="descricao"
-                                label="Descrição"
-                                required
-                                value={this.state.descricao}
-                                onChange={this.handleChange('descricao')}
-                                multiline
-                                margin="normal"
-                            />
-                        </FormControl>
-                    </FormGroup>
+                            </FormControl>
+                        </FormGroup>
+                    </Card >
                     <FormGroup style={{ height: 305 }}>
                         <FormControl>
                             <Card className={"card-upload"}>
@@ -205,7 +212,7 @@ export default class EnviarJogoForm extends Component {
                                 <div>
                                     <input
                                         accept="*"
-                                        disabled 
+                                        disabled
                                         id="contained-button-trailer"
                                         multiple
                                         type="file"
@@ -243,7 +250,9 @@ export default class EnviarJogoForm extends Component {
                         Submeter
                     </Button>
                 </form>
-            </div>
+            </div >
         )
     }
 }
+
+export default connect(null, { uploadLogoImage })(EnviarJogoForm);
