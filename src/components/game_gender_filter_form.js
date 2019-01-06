@@ -6,7 +6,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FilterList from '@material-ui/icons/FilterList';
-import './game_gender_filter_form.css'
+import './../styles/game_gender_filter_form.css'
 
 export default class GameGenderFilterForm extends Component {
 

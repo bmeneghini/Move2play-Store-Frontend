@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import ButtonAppBar from './shared/button_app_bar'
-import MenuAppBar from './shared/menu_app_bar'
-import CarouselTrailers from './carousel_trailers'
+import ButtonAppBar from './app_bar/button_app_bar'
+import MenuAppBar from './app_bar/menu_app_bar'
 import GameGenderFilterForm from './game_gender_filter_form'
 import CustomLabel from './shared/custom_label'
 import { setUserCredentials } from './../actions' 

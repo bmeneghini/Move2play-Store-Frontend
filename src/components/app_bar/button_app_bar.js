@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import SearchBar from './search_bar'
 import Logo from './logo'
 
-import './app_bar.css'
+import './../../styles/app_bar.css'
 
 class ButtonAppBar extends Component {
 

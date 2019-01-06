@@ -1,56 +1,48 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import VideogameAsset from '@material-ui/icons/VideogameAsset';
+import PermIdentity from '@material-ui/icons/PermIdentity';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
-import Send from '@material-ui/icons/Send';
-import LibraryBooks from '@material-ui/icons/LibraryBooks';
+import Settings from '@material-ui/icons/SettingsOutlined';
+import ExitToApp from '@material-ui/icons/ExitToApp';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
 import history from '../config/history'
 
-import './app_bar.css'
+import './../../styles/app_bar.css'
 
 const styles = {
-    label: {
+    userLabel: {
         height: 16,
         color: "white",
         fontFamily: "Work Sans",
         fontSize: 14,
         fontWeight: 400,
     },
-    arrow: {
+    userArrow: {
         color: "white",
         width: 24,
         height: 24,
     },
-    videogameAsset: {
+    userIcon: {
         width: 30,
         height: 30,
         color: "white",
-        marginRight: 5,
     },
     alignRight: {
         position: "absolute",
         float: "right",
         right: 0,
     },
-    send: {
+    profileMenuIcon: {
         width: 25,
         height: 25,
         color: "black",
         marginRight: 10
     },
-    library: {
-        width: 25,
-        height: 25,
-        color: "black",
-        marginRight: 10
-    },
-
 };
 
-class MenuItemMeusJogos extends Component {
+class MenuItemUsuario extends Component {
     state = {
         anchorEl: null,
     };
@@ -63,14 +55,14 @@ class MenuItemMeusJogos extends Component {
         this.setState({ anchorEl: null });
     };
 
-    handleEnviarJogoClick = () => {
-        history.push("/meus-jogos/enviar-jogo");
-        this.setState({ anchorEl: null });
+    handleProfileClick = (event) => {
+        history.push("/user/profile")
     }
 
-    handleBibliotecaClick = () => {
-        history.push("/meus-jogos/biblioteca");
-        this.setState({ anchorEl: null });
+    handleLogout = (event) => {
+        event.preventDefault();
+        this.props.auth.logout();
+        history.push("/")
     }
 
     render() {
@@ -79,14 +71,14 @@ class MenuItemMeusJogos extends Component {
         const open = Boolean(anchorEl);
 
         return (
-            <div className={"divContainerInterno"} style={{ /*position: "absolute", right: "9%"*/ }}>
+            <div className={"divContainerInterno"} style={{ /*position: "absolute", right: "2%"*/ }}>
                 <div className={"divExterior"}>
                     <div className={"divInterior"}>
                         <div style={{ height: 50 }}>
                             <div className={"divContainerInterno"}>
                                 <div className={"divExterior"}>
                                     <div className={"divInterior"}>
-                                        <VideogameAsset className={classes.videogameAsset} onClick={this.handleMenu} />
+                                        <PermIdentity className={classes.userIcon} onClick={this.handleMenu} />
                                     </div>
                                 </div>
                             </div>
@@ -97,9 +89,9 @@ class MenuItemMeusJogos extends Component {
                                             aria-owns={open ? 'menu-appbar' : null}
                                             aria-haspopup="true"
                                             onClick={this.handleMenu}
-                                            className={classes.label}
+                                            className={classes.userLabel}
                                         >
-                                            Meus Jogos
+                                            Usuário
                                         </label>
                                     </div>
                                 </div>
@@ -107,7 +99,7 @@ class MenuItemMeusJogos extends Component {
                             <div className={"divContainerInterno"}>
                                 <div className={"divExterior"}>
                                     <div className={"divInterior"}>
-                                        <KeyboardArrowDown className={classes.arrow} onClick={this.handleMenu} style={{ height: 50 }} />
+                                        <KeyboardArrowDown className={classes.userArrow} onClick={this.handleMenu} style={{ height: 50 }} />
                                     </div>
                                 </div>
                             </div>
@@ -126,14 +118,14 @@ class MenuItemMeusJogos extends Component {
                                 onClose={this.handleClose}
                             >
                                 <MenuItem
-                                    onClick={this.handleBibliotecaClick}>
-                                    <LibraryBooks className={classes.library} />
-                                    Biblioteca
+                                    onClick={this.handleProfileClick}>
+                                    <Settings className={classes.profileMenuIcon} />
+                                    Perfil
                                             </MenuItem>
                                 <MenuItem
-                                    onClick={this.handleEnviarJogoClick}>
-                                    <Send className={classes.send} />
-                                    Enviar Jogo
+                                    onClick={this.handleLogout}>
+                                    <ExitToApp className={classes.profileMenuIcon} />
+                                    Logout
                                             </MenuItem>
                             </Menu>
                         </div>
@@ -144,4 +136,4 @@ class MenuItemMeusJogos extends Component {
     }
 }
 
-export default withStyles(styles)(MenuItemMeusJogos);
+export default withStyles(styles)(MenuItemUsuario);

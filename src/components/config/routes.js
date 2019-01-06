@@ -6,7 +6,7 @@ import Callback from './callback';
 import Auth from './auth';
 import history from './history';
 import store from './store';
-import UserProfile from './../../containers/userprofile/user_profile'
+import UserProfile from './../../containers/user_profile/user_profile'
 import EnviarJogo from './../../containers/meus_jogos/enviar_jogo'
 import Biblioteca from './../../containers/meus_jogos/biblioteca'
 

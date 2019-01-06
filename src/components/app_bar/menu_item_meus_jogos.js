@@ -1,48 +1,56 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import PermIdentity from '@material-ui/icons/PermIdentity';
+import VideogameAsset from '@material-ui/icons/VideogameAsset';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
-import Settings from '@material-ui/icons/SettingsOutlined';
-import ExitToApp from '@material-ui/icons/ExitToApp';
+import Send from '@material-ui/icons/Send';
+import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
 import history from '../config/history'
 
-import './app_bar.css'
+import './../../styles/app_bar.css'
 
 const styles = {
-    userLabel: {
+    label: {
         height: 16,
         color: "white",
         fontFamily: "Work Sans",
         fontSize: 14,
         fontWeight: 400,
     },
-    userArrow: {
+    arrow: {
         color: "white",
         width: 24,
         height: 24,
     },
-    userIcon: {
+    videogameAsset: {
         width: 30,
         height: 30,
         color: "white",
+        marginRight: 5,
     },
     alignRight: {
         position: "absolute",
         float: "right",
         right: 0,
     },
-    profileMenuIcon: {
+    send: {
         width: 25,
         height: 25,
         color: "black",
         marginRight: 10
     },
+    library: {
+        width: 25,
+        height: 25,
+        color: "black",
+        marginRight: 10
+    },
+
 };
 
-class MenuItemUsuario extends Component {
+class MenuItemMeusJogos extends Component {
     state = {
         anchorEl: null,
     };
@@ -55,14 +63,14 @@ class MenuItemUsuario extends Component {
         this.setState({ anchorEl: null });
     };
 
-    handleProfileClick = (event) => {
-        history.push("/user/profile")
+    handleEnviarJogoClick = () => {
+        history.push("/meus-jogos/enviar-jogo");
+        this.setState({ anchorEl: null });
     }
 
-    handleLogout = (event) => {
-        event.preventDefault();
-        this.props.auth.logout();
-        history.push("/")
+    handleBibliotecaClick = () => {
+        history.push("/meus-jogos/biblioteca");
+        this.setState({ anchorEl: null });
     }
 
     render() {
@@ -71,14 +79,14 @@ class MenuItemUsuario extends Component {
         const open = Boolean(anchorEl);
 
         return (
-            <div className={"divContainerInterno"} style={{ /*position: "absolute", right: "2%"*/ }}>
+            <div className={"divContainerInterno"} style={{ /*position: "absolute", right: "9%"*/ }}>
                 <div className={"divExterior"}>
                     <div className={"divInterior"}>
                         <div style={{ height: 50 }}>
                             <div className={"divContainerInterno"}>
                                 <div className={"divExterior"}>
                                     <div className={"divInterior"}>
-                                        <PermIdentity className={classes.userIcon} onClick={this.handleMenu} />
+                                        <VideogameAsset className={classes.videogameAsset} onClick={this.handleMenu} />
                                     </div>
                                 </div>
                             </div>
@@ -89,9 +97,9 @@ class MenuItemUsuario extends Component {
                                             aria-owns={open ? 'menu-appbar' : null}
                                             aria-haspopup="true"
                                             onClick={this.handleMenu}
-                                            className={classes.userLabel}
+                                            className={classes.label}
                                         >
-                                            Usuário
+                                            Meus Jogos
                                         </label>
                                     </div>
                                 </div>
@@ -99,7 +107,7 @@ class MenuItemUsuario extends Component {
                             <div className={"divContainerInterno"}>
                                 <div className={"divExterior"}>
                                     <div className={"divInterior"}>
-                                        <KeyboardArrowDown className={classes.userArrow} onClick={this.handleMenu} style={{ height: 50 }} />
+                                        <KeyboardArrowDown className={classes.arrow} onClick={this.handleMenu} style={{ height: 50 }} />
                                     </div>
                                 </div>
                             </div>
@@ -118,14 +126,14 @@ class MenuItemUsuario extends Component {
                                 onClose={this.handleClose}
                             >
                                 <MenuItem
-                                    onClick={this.handleProfileClick}>
-                                    <Settings className={classes.profileMenuIcon} />
-                                    Perfil
+                                    onClick={this.handleBibliotecaClick}>
+                                    <LibraryBooks className={classes.library} />
+                                    Biblioteca
                                             </MenuItem>
                                 <MenuItem
-                                    onClick={this.handleLogout}>
-                                    <ExitToApp className={classes.profileMenuIcon} />
-                                    Logout
+                                    onClick={this.handleEnviarJogoClick}>
+                                    <Send className={classes.send} />
+                                    Enviar Jogo
                                             </MenuItem>
                             </Menu>
                         </div>
@@ -136,4 +144,4 @@ class MenuItemUsuario extends Component {
     }
 }
 
-export default withStyles(styles)(MenuItemUsuario);
+export default withStyles(styles)(MenuItemMeusJogos);

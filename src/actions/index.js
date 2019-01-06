@@ -1,6 +1,5 @@
 import axios from 'axios'
 import Keys from './../utils/keys'
-import _ from 'lodash'
 
 export const SET_USER_CREDENTIALS = "set_user_credentials"
 export const RESET_USER_CREDENTIALS = "reset_user_credentials"

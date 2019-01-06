@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import ButtonAppBar from './../../components/shared/button_app_bar'
-import MenuAppBar from './../../components/shared/menu_app_bar'
+import ButtonAppBar from '../../components/app_bar/button_app_bar'
+import MenuAppBar from '../../components/app_bar/menu_app_bar'
 import CustomLabel from './../../components/shared/custom_label'
 import { connect } from "react-redux";
 import { setUserCredentials } from './../../actions'
-import UserProfileForm from './../../components/userprofile/user_profile_form'
+import UserProfileForm from './../../components/user_profile/user_profile_form'
 import history from '../../components/config/history'
 import Card from '@material-ui/core/Card';
-import "./user_profile.css"
+import "./../../styles/user_profile.css"
 
 class UserProfile extends Component {
 
@@ -31,7 +31,7 @@ class UserProfile extends Component {
     const { getProfile, getAccessToken } = this.props.auth;
     const token = getAccessToken();
 
-    if(!token) history.push("/")
+    if (!token) history.push("/")
 
     if (!this.isFetchingProfile && token) {
       this.isFetchingProfile = true;

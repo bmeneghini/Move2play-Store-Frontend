@@ -8,7 +8,11 @@
     margin: 10px;
     margin-left: 50px;
 }
-  
+
+.app_search_bar {
+    transform: translate(20%,0%);
+}
+
 .app_search_bar .ui{
     width: 100%;
 }

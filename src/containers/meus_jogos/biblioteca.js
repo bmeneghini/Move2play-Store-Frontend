@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import ButtonAppBar from './../../components/shared/button_app_bar'
-import MenuAppBar from './../../components/shared/menu_app_bar'
+import ButtonAppBar from './../../components/app_bar/button_app_bar'
+import MenuAppBar from './../../components/app_bar/menu_app_bar'
 import CustomLabel from './../../components/shared/custom_label'
 import { connect } from "react-redux";
 import { setUserCredentials } from './../../actions'
