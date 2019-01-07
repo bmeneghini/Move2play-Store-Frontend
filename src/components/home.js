@@ -4,6 +4,8 @@ import ButtonAppBar from './app_bar/button_app_bar'
 import MenuAppBar from './app_bar/menu_app_bar'
 import GameGenderFilterForm from './game_gender_filter_form'
 import CustomLabel from './shared/custom_label'
+import CustomCoverflow from './custom_coverflow'
+
 import { setUserCredentials } from './../actions' 
 
 class Home extends Component {
@@ -31,7 +33,7 @@ class Home extends Component {
         {isAuthenticated() ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
         <CustomLabel content={"DESTAQUES E RECOMENDADOS"} font_size={25} text_align={"center"} height={100} />
         <GameGenderFilterForm />
-        
+        <CustomCoverflow />
       </div>
     );
   }
