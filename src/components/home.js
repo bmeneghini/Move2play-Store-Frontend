@@ -6,13 +6,14 @@ import GameGenderFilterForm from './game_gender_filter_form'
 import CustomLabel from './shared/custom_label'
 import CustomCoverflow from './custom_coverflow'
 
-import { setUserCredentials } from './../actions' 
+import { setUserCredentials, sendUserInformation } from './../actions'
 
 class Home extends Component {
 
   constructor(props) {
     super(props)
     this.isFetchingProfile = false;
+    this.hasSynchronized = false;
   }
 
   componentDidUpdate() {
@@ -26,11 +27,35 @@ class Home extends Component {
     }
   }
 
+  buildUserDto = (profile) => {
+    let userDto = {
+      "id":profile.sub,
+      "name":profile.name,
+      "email":profile.email
+    }
+    return userDto;
+  }
+
+  synchroniseUserInformation = () => {
+    const { getProfile } = this.props.auth;
+    getProfile((err, profile) => {
+      let user = this.buildUserDto(profile);
+      this.props.sendUserInformation(user);
+    });
+  }
+
   render() {
     const { isAuthenticated } = this.props.auth;
+    let alreadyAuthenticated = isAuthenticated();
+
+    if (alreadyAuthenticated && !this.hasSynchronized) {
+      this.hasSynchronized = true;
+      this.synchroniseUserInformation();
+    }
+
     return (
       <div>
-        {isAuthenticated() ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
+        {alreadyAuthenticated ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
         <CustomLabel content={"DESTAQUES E RECOMENDADOS"} font_size={25} text_align={"center"} height={100} />
         <GameGenderFilterForm />
         <CustomCoverflow />
@@ -40,4 +65,4 @@ class Home extends Component {
 }
 
 
-export default connect(null, {setUserCredentials})(Home);
+export default connect(null, { setUserCredentials, sendUserInformation })(Home);

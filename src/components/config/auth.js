@@ -1,15 +1,13 @@
 import auth0 from 'auth0-js';
-import Keys from './../../utils/keys'
 import history from './history';
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
-    domain: Keys.AUTH0.DOMAIN,
-    clientID: Keys.AUTH0.CLIENT_ID,
-    redirectUri: process.env.NODE_ENV === 'development' ? 'http://localhost:3000/callback' : Keys.AUTH0.REDIRECT_URI,
-    /*audience: Keys.AUTH0.AUDIENCE,*/
-    responseType: Keys.AUTH0.RESPONSE_TYPE,
-    scope: Keys.AUTH0.SCOPE,
+    domain: process.env.REACT_APP_AUTH0_DOMAIN,
+    clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+    redirectUri: process.env.NODE_ENV === 'development' ? 'http://localhost:3000/callback' : process.env.REACT_APP_AUTH0_REDIRECT_URI,
+    responseType: process.env.REACT_APP_AUTH0_RESPONSE_TYPE,
+    scope: process.env.REACT_APP_AUTH0_SCOPE,
   });
 
   userProfile;

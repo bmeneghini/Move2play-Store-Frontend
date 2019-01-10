@@ -1,11 +1,11 @@
-import axios from 'axios'
-import Keys from './../utils/keys'
+import axios from 'axios';
 
-export const SET_USER_CREDENTIALS = "set_user_credentials"
-export const RESET_USER_CREDENTIALS = "reset_user_credentials"
-export const POST_LOGO_IMAGE = "post_logo_image"
+export const SET_USER_CREDENTIALS = "set_user_credentials";
+export const RESET_USER_CREDENTIALS = "reset_user_credentials";
+export const POST_LOGO_IMAGE = "post_logo_image";
+export const SEND_USER_INFORMATION = "send_user_information";
 
-const ROOT_URL = Keys.API.ROOT_URL
+const ROOT_URL = process.env.REACT_APP_API_ROOT_URL
 
 export function setUserCredentials(params) {
     return {
@@ -21,6 +21,15 @@ export function resetUserCredentials() {
     }
 }
 
+export function sendUserInformation(user) {
+    let request = `${ROOT_URL}/api/Users`
+    axios.post(request, user);
+    return {
+        type: SEND_USER_INFORMATION,
+        payload: {}
+    }
+}
+
 export function uploadLogoImage(image, imageName) {
 
     const formFile = {
@@ -29,7 +38,6 @@ export function uploadLogoImage(image, imageName) {
         Name: image.name,
         FileName: image.name
     }
-
     axios(`${ROOT_URL}/api/Uploads/Image`, {
         method: 'POST',
         data: formFile,
