@@ -8,10 +8,13 @@ import Send from '@material-ui/icons/Send';
 import Image from '@material-ui/icons/Image';
 import Movie from '@material-ui/icons/Movie';
 import CustomLabel from '../../shared/custom_label';
+import ProgressBar from '../../shared/progress_bar';
+import CustomSnackbar from '../../shared/custom_snackbar';
 import FolderIcon from '@material-ui/icons/Folder';
 import Card from '@material-ui/core/Card';
 import { connect } from "react-redux";
-import { uploadLogoImage } from '../../../actions/index'
+import { uploadFileToServer, uploadGameToServer } from '../../../actions/index';
+import _ from 'lodash';
 
 class EnviarJogoForm extends Component {
 
@@ -23,13 +26,30 @@ class EnviarJogoForm extends Component {
             preco: "",
             genero: "",
             trailer: "",
+            descricao: "",
             selectedLogo: null,
             selectedLogoName: "",
             selectedGame: null,
             selectedGameName: "",
+            progressFile: 0,
+            variant: 'success',
+            content: '',
+            duration: 4000,
         }
     }
 
+    buildGameUploadDto = () => {
+        let gameUploadDto = {
+            developerId: this.props.user.sub,
+            name: this.state.nome,
+            price: this.state.preco,
+            description: this.state.descricao,
+            genero: this.state.genero,
+            trailerUrl: this.state.trailer,
+        }
+        return gameUploadDto;
+    }
+    
     handleChange = name => event => {
         this.setState({
             [name]: event.target.value,
@@ -46,13 +66,38 @@ class EnviarJogoForm extends Component {
         if (event.target.files[0] != null) this.setState({ selectedGameName: event.target.files[0].name })
     }
 
+    uploadProgressFileHandler = (progressEvent) => {
+        let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        this.setState({ progressFile: percentCompleted });
+        if (percentCompleted === 100) {
+            this.setState({ content: 'Jogo cadastrado com sucesso!', variant: 'success' }, () => this.showSnackbar());
+        }
+    }
+
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.uploadLogoImage(this.state.selectedLogo);
+        this.props.uploadGameToServer(this.buildGameUploadDto(), this.handleUploadGameToServerSucccess, this.handleError);
+    }
+
+    handleUploadGameToServerSucccess = (result) => {
+        this.props.uploadFileToServer(result.data, this.state.selectedLogo, () => {});
+        this.props.uploadFileToServer(result.data, this.state.selectedGame, this.uploadProgressFileHandler);
+    }
+
+    handleError = (error) => {
+        if (!_.isUndefined(error) && !_.isNull(error) && !_.isUndefined(error.response) && !_.isNull(error.response) && !_.isUndefined(error.response.data) && !_.isNull(error.response.data)) {
+            var errorMessage = '';
+            if (_.isArray(error.response.data)) {
+                errorMessage = 'networkError';
+            }
+            else {
+                errorMessage = `${error.response.data}`;
+            }
+        }
+        this.setState({ content: errorMessage, variant: 'error' }, () => this.showSnackbar());
     }
 
     render() {
-
         const generos = [
             {
                 value: 'acao',
@@ -86,7 +131,7 @@ class EnviarJogoForm extends Component {
                 <form autoComplete="off" onSubmit={this.handleSubmit}>
                     <Card className={"card-fields"}>
                         <FormGroup>
-                            <FormControl>
+                            <FormControl style={{height: 50}}>
                                 <div className={"form-div"}>
                                     <TextField
                                         id="name"
@@ -96,35 +141,31 @@ class EnviarJogoForm extends Component {
                                         onChange={this.handleChange('nome')}
                                         margin="normal"
                                     />
-                                    <TextField
+                                    {/* <TextField
                                         id="desenvolvedor"
                                         label="Desenvolvedor"
                                         required
                                         value={this.state.desenvolvedor}
                                         onChange={this.handleChange('desenvolvedor')}
                                         margin="normal"
-                                    />
-                                </div>
-                            </FormControl>
-                        </FormGroup>
-                        <FormGroup style={{ height: 75 }}>
-                            <FormControl>
-                                <div className={"form-div"}>
+                                    /> */}
                                     <TextField
                                         id="preco"
                                         label="Preço"
                                         required
                                         type="number"
                                         value={this.state.preco}
+                                        style={{ width: "23%", marginRight: "20px" }}
                                         onChange={this.handleChange('preco')}
                                         margin="normal"
                                     />
                                     <TextField
                                         id="genero"
                                         select
-                                        label="Genero"
+                                        label="Gênero"
                                         required
                                         value={this.state.genero}
+                                        style={{ width: "26%"}}
                                         onChange={this.handleChange('genero')}
                                         helperText="Selecione um"
                                         margin="normal"
@@ -152,9 +193,37 @@ class EnviarJogoForm extends Component {
                             </FormControl>
                         </FormGroup>
                     </Card >
-                    <FormGroup style={{ height: 305 }}>
+                    <FormGroup style={{ height: 290 }}>
                         <FormControl>
-                            <Card className={"card-upload"} style={{marginTop:10}}>
+                            <Card className={"card-upload"} style={{ marginTop: 5, marginBottom: 0 }}>
+                                <div>
+                                    <input
+                                        accept="*"
+                                        disabled
+                                        id="contained-button-trailer"
+                                        multiple
+                                        type="file"
+                                        style={{ display: 'none', }}
+                                    />
+                                    <label htmlFor="contained-button-trailer" style={{ padding: 15 }}>
+                                        <Button
+                                            style={{ width: 45, height: 45 }}
+                                            variant="fab"
+                                            color="secondary"
+                                            component="span">
+                                            <Movie />
+                                        </Button>
+                                    </label>
+                                    <TextField
+                                        id="trailer"
+                                        value={this.state.trailer}
+                                        required
+                                        margin="normal"
+                                        onChange={this.handleChange('trailer')}
+                                        placeholder="Insira a URL do trailer"
+                                        style={{ width: "70%", marginLeft: 10 }}
+                                    />
+                                </div>
                                 <div>
                                     <input
                                         accept="image/*"
@@ -178,7 +247,7 @@ class EnviarJogoForm extends Component {
                                         value={this.state.selectedLogoName}
                                         required
                                         margin="normal"
-                                        placeholder="Selecione um logo"
+                                        placeholder="Selecione uma logo"
                                         style={{ width: "70%", marginLeft: 10 }}
                                     />
                                 </div>
@@ -208,34 +277,7 @@ class EnviarJogoForm extends Component {
                                         placeholder="Selecione o arquivo compactado do jogo"
                                         style={{ width: "70%", marginLeft: 10 }}
                                     />
-                                </div>
-                                <div>
-                                    <input
-                                        accept="*"
-                                        disabled
-                                        id="contained-button-trailer"
-                                        multiple
-                                        type="file"
-                                        style={{ display: 'none', }}
-                                    />
-                                    <label htmlFor="contained-button-trailer" style={{ padding: 15 }}>
-                                        <Button
-                                            style={{ width: 45, height: 45 }}
-                                            variant="fab"
-                                            color="secondary"
-                                            component="span">
-                                            <Movie />
-                                        </Button>
-                                    </label>
-                                    <TextField
-                                        id="trailer"
-                                        value={this.state.trailer}
-                                        required
-                                        margin="normal"
-                                        onChange={this.handleChange('trailer')}
-                                        placeholder="Insira a URL do trailer"
-                                        style={{ width: "70%", marginLeft: 10 }}
-                                    />
+                                    <ProgressBar progress={this.state.progressFile} />
                                 </div>
                             </Card >
                         </FormControl>
@@ -245,14 +287,20 @@ class EnviarJogoForm extends Component {
                             width: 25,
                             height: 25,
                             color: "white",
-                            marginRight: 10
+                            marginRight: 10,
                         }} />
                         Submeter
                     </Button>
                 </form>
+                <CustomSnackbar
+                    setClick={e => this.showSnackbar = e}
+                    duration={this.state.duration}
+                    variant={this.state.variant}
+                    content={this.state.content}
+                />
             </div >
         )
     }
 }
 
-export default connect(null, { uploadLogoImage })(EnviarJogoForm);
+export default connect(null, { uploadFileToServer, uploadGameToServer })(EnviarJogoForm);

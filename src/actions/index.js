@@ -2,7 +2,8 @@ import axios from 'axios';
 
 export const SET_USER_CREDENTIALS = "set_user_credentials";
 export const RESET_USER_CREDENTIALS = "reset_user_credentials";
-export const POST_LOGO_IMAGE = "post_logo_image";
+export const UPLOAD_FILE_TO_SERVER = "UPLOAD_FILE_TO_SERVER";
+export const UPLOAD_GAME_TO_SERVER = "upload_game_to_server";
 export const SEND_USER_INFORMATION = "send_user_information";
 
 const ROOT_URL = process.env.REACT_APP_API_ROOT_URL
@@ -30,33 +31,30 @@ export function postUserInformation(user) {
     }
 }
 
-export function uploadLogoImage(image) {
+export function uploadGameToServer(gameUploadDto, successHandler, errorHandler) {
+    let request = `${ROOT_URL}/api/Games`;
+    axios.post(request, gameUploadDto)
+        .then(result => successHandler(result))
+        .catch(error => errorHandler(error));
+    return {
+        type: UPLOAD_GAME_TO_SERVER,
+        payload: {}
+    }
+}
 
-    var formData = new FormData();
-    formData.append('file', image);
-
-    // const formFile = {
-    //     ContentType: image.type,
-    //     Length: image.size,
-    //     Name: image.name,
-    //     FileName: image.name
-    // };
-
-    axios(`${ROOT_URL}/api/File`, {
+export function uploadFileToServer(gameId, file, uploadProgressHandler) {
+    let formData = new FormData();
+    formData.append('file', file);
+    axios(`${ROOT_URL}/api/File/${gameId}`, {
         method: 'POST',
         data: formData,
-        headers: {
-            'Content-Type': image.type
-        }})
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            console.log(error.response)
-        });
+        onUploadProgress: (progressEvent) => {
+            uploadProgressHandler(progressEvent);
+        }
+    });
 
     return {
-        type: POST_LOGO_IMAGE,
+        type: UPLOAD_FILE_TO_SERVER,
         payload: {}
     }
 }
