@@ -48,7 +48,7 @@ class EnviarJogoForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.uploadLogoImage(this.state.selectedLogo, this.state.selectedLogoName);
+        this.props.uploadLogoImage(this.state.selectedLogo);
     }
 
     render() {
@@ -154,7 +154,7 @@ class EnviarJogoForm extends Component {
                     </Card >
                     <FormGroup style={{ height: 305 }}>
                         <FormControl>
-                            <Card className={"card-upload"}>
+                            <Card className={"card-upload"} style={{marginTop:10}}>
                                 <div>
                                     <input
                                         accept="image/*"
@@ -178,7 +178,7 @@ class EnviarJogoForm extends Component {
                                         value={this.state.selectedLogoName}
                                         required
                                         margin="normal"
-                                        placeholder="Selecione um logo clicando no botão ao lado"
+                                        placeholder="Selecione um logo"
                                         style={{ width: "70%", marginLeft: 10 }}
                                     />
                                 </div>
@@ -205,7 +205,7 @@ class EnviarJogoForm extends Component {
                                         value={this.state.selectedGameName}
                                         required
                                         margin="normal"
-                                        placeholder="Selecione o arquivo compactado do jogo clicando no botão ao lado"
+                                        placeholder="Selecione o arquivo compactado do jogo"
                                         style={{ width: "70%", marginLeft: 10 }}
                                     />
                                 </div>

@@ -30,18 +30,21 @@ export function postUserInformation(user) {
     }
 }
 
-export function uploadLogoImage(image, imageName) {
+export function uploadLogoImage(image) {
 
-    const formFile = {
-        ContentType: image.type,
-        Length: image.size,
-        Name: image.name,
-        FileName: image.name
-    };
+    var formData = new FormData();
+    formData.append('file', image);
 
-    axios(`${ROOT_URL}/api/Uploads/Image`, {
+    // const formFile = {
+    //     ContentType: image.type,
+    //     Length: image.size,
+    //     Name: image.name,
+    //     FileName: image.name
+    // };
+
+    axios(`${ROOT_URL}/api/File`, {
         method: 'POST',
-        data: formFile,
+        data: formData,
         headers: {
             'Content-Type': image.type
         }})
