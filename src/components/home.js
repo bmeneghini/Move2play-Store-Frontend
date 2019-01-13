@@ -5,8 +5,9 @@ import MenuAppBar from './app_bar/menu_app_bar'
 import GameGenderFilterForm from './game_gender_filter_form'
 import CustomLabel from './shared/custom_label'
 import CustomCoverflow from './custom_coverflow'
+import _ from 'lodash';
 
-import { setUserCredentials, sendUserInformation } from './../actions'
+import { setUserCredentials, postUserInformation } from './../actions'
 
 class Home extends Component {
 
@@ -22,16 +23,18 @@ class Home extends Component {
     if (!this.isFetchingProfile && token) {
       this.isFetchingProfile = true;
       getProfile((err, profile) => {
-        this.props.setUserCredentials(profile);
+        if (!_.isEmpty(profile)) {
+          this.props.setUserCredentials(profile);
+        }
       });
     }
   }
 
   buildUserDto = (profile) => {
     let userDto = {
-      "id":profile.sub,
-      "name":profile.name,
-      "email":profile.email
+      "id": profile.sub,
+      "name": profile.name,
+      "email": profile.email
     }
     return userDto;
   }
@@ -39,8 +42,10 @@ class Home extends Component {
   synchroniseUserInformation = () => {
     const { getProfile } = this.props.auth;
     getProfile((err, profile) => {
-      let user = this.buildUserDto(profile);
-      this.props.sendUserInformation(user);
+      if(!_.isEmpty(profile)){
+        let user = this.buildUserDto(profile);
+        this.props.postUserInformation(user);
+      }
     });
   }
 
@@ -65,4 +70,4 @@ class Home extends Component {
 }
 
 
-export default connect(null, { setUserCredentials, sendUserInformation })(Home);
+export default connect(null, { setUserCredentials, postUserInformation })(Home);

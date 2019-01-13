@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { setUserCredentials } from './../../actions'
 import history from '../../components/config/history'
 import Card from '@material-ui/core/Card';
+import _ from 'lodash';
 
 class Biblioteca extends Component {
 
@@ -17,24 +18,23 @@ class Biblioteca extends Component {
     componentWillUpdate() {
         const { getProfile, getAccessToken } = this.props.auth;
         const token = getAccessToken();
-        if (!this.isFetchingProfile && token) {
-            this.isFetchingProfile = true;
-            getProfile((err, profile) => {
-                this.props.setUserCredentials(profile);
-            });
-        }
+        this.fetchUserProfile(getProfile, token);
     }
 
     componentWillMount() {
         const { getProfile, getAccessToken } = this.props.auth;
         const token = getAccessToken();
+        if (!token) history.push("/")
+        this.fetchUserProfile(getProfile, token);
+    }
 
-        if(!token) history.push("/")
-
+    fetchUserProfile = (getProfile, token) => {
         if (!this.isFetchingProfile && token) {
             this.isFetchingProfile = true;
             getProfile((err, profile) => {
-                this.props.setUserCredentials(profile);
+                if (!_.isEmpty(profile)) {
+                    this.props.setUserCredentials(profile);
+                }
             });
         }
     }

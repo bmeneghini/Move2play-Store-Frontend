@@ -21,7 +21,7 @@ export function resetUserCredentials() {
     }
 }
 
-export function sendUserInformation(user) {
+export function postUserInformation(user) {
     let request = `${ROOT_URL}/api/Users`
     axios.post(request, user);
     return {
@@ -37,14 +37,14 @@ export function uploadLogoImage(image, imageName) {
         Length: image.size,
         Name: image.name,
         FileName: image.name
-    }
+    };
+
     axios(`${ROOT_URL}/api/Uploads/Image`, {
         method: 'POST',
         data: formFile,
         headers: {
             'Content-Type': image.type
-        }
-    })
+        }})
         .then(response => {
             console.log(response)
         })

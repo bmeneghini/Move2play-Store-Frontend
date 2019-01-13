@@ -7,7 +7,8 @@ import { setUserCredentials } from './../../actions'
 import UserProfileForm from './../../components/user_profile/user_profile_form'
 import history from '../../components/config/history'
 import Card from '@material-ui/core/Card';
-import "./../../styles/user_profile.css"
+import "./../../styles/user_profile.css";
+import _ from 'lodash';
 
 class UserProfile extends Component {
 
@@ -19,24 +20,23 @@ class UserProfile extends Component {
   componentWillUpdate() {
     const { getProfile, getAccessToken } = this.props.auth;
     const token = getAccessToken();
-    if (!this.isFetchingProfile && token) {
-      this.isFetchingProfile = true;
-      getProfile((err, profile) => {
-        this.props.setUserCredentials(profile);
-      });
-    }
+    this.fetchUserProfile(getProfile, token);
   }
 
   componentWillMount() {
     const { getProfile, getAccessToken } = this.props.auth;
     const token = getAccessToken();
-
     if (!token) history.push("/")
+    this.fetchUserProfile(getProfile, token);
+  }
 
+  fetchUserProfile = (getProfile, token) => {
     if (!this.isFetchingProfile && token) {
       this.isFetchingProfile = true;
       getProfile((err, profile) => {
-        this.props.setUserCredentials(profile);
+        if (!_.isEmpty(profile)) {
+          this.props.setUserCredentials(profile);
+        }
       });
     }
   }
