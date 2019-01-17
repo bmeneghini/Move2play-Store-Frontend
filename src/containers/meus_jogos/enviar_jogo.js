@@ -46,7 +46,7 @@ class EnviarJogo extends Component {
         return (
             <div>
                 {isAuthenticated() ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
-                {/* <CustomLabel content={`Upload de Jogos`} font_size={25} text_align={"center"} height={100} /> */}
+                <CustomLabel content={`Upload de Jogos`} font_size={25} text_align={"center"} height={75} />
                 <Card className="enviar-jogo-form">
                     <EnviarJogoForm user={this.props.user} />
                 </Card >

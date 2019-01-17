@@ -78,7 +78,7 @@ class MenuItemUsuario extends Component {
                             <div className={"divContainerInterno"}>
                                 <div className={"divExterior"}>
                                     <div className={"divInterior"}>
-                                        <PermIdentity className={classes.userIcon} onClick={this.handleMenu} />
+                                        <PermIdentity className={classes.userIcon} onClick={this.handleMenu} style={{cursor: 'pointer'}}/>
                                     </div>
                                 </div>
                             </div>
@@ -90,6 +90,7 @@ class MenuItemUsuario extends Component {
                                             aria-haspopup="true"
                                             onClick={this.handleMenu}
                                             className={classes.userLabel}
+                                            style={{cursor: 'pointer'}}
                                         >
                                             Usuário
                                         </label>

@@ -86,7 +86,7 @@ class MenuItemMeusJogos extends Component {
                             <div className={"divContainerInterno"}>
                                 <div className={"divExterior"}>
                                     <div className={"divInterior"}>
-                                        <VideogameAsset className={classes.videogameAsset} onClick={this.handleMenu} />
+                                        <VideogameAsset className={classes.videogameAsset} onClick={this.handleMenu} style={{cursor: 'pointer'}}/>
                                     </div>
                                 </div>
                             </div>
@@ -98,6 +98,7 @@ class MenuItemMeusJogos extends Component {
                                             aria-haspopup="true"
                                             onClick={this.handleMenu}
                                             className={classes.label}
+                                            style={{cursor: 'pointer'}}
                                         >
                                             Meus Jogos
                                         </label>
