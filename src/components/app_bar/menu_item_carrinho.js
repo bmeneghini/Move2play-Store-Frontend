@@ -34,7 +34,7 @@ class MenuItemCarrinho extends Component {
                             <div className={"divContainerInterno"}>
                                 <div className={"divExterior"}>
                                     <div className={"divInterior"}>
-                                        <ShoppingCart className={classes.carrinho} onClick={this.handleMenu} />
+                                        <ShoppingCart className={classes.carrinho} onClick={this.handleMenu} style={{cursor: 'pointer'}}/>
                                     </div>
                                 </div>
                             </div>
@@ -44,6 +44,7 @@ class MenuItemCarrinho extends Component {
                                         <label
                                             onClick={this.handleMenu}
                                             className={classes.label}
+                                            style={{cursor: 'pointer'}}
                                         >
                                             Carrinho
                                         </label>
