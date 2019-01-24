@@ -2,9 +2,10 @@ import axios from 'axios';
 
 export const SET_USER_CREDENTIALS = "set_user_credentials";
 export const RESET_USER_CREDENTIALS = "reset_user_credentials";
-export const UPLOAD_FILE_TO_SERVER = "UPLOAD_FILE_TO_SERVER";
+export const UPLOAD_FILE_TO_SERVER = "upload_file_to_server";
 export const UPLOAD_GAME_TO_SERVER = "upload_game_to_server";
 export const SEND_USER_INFORMATION = "send_user_information";
+export const GET_GAMES_LIST = "get_games_list";
 
 const ROOT_URL = process.env.REACT_APP_API_ROOT_URL
 
@@ -57,4 +58,11 @@ export function uploadFileToServer(gameId, file, uploadProgressHandler) {
         type: UPLOAD_FILE_TO_SERVER,
         payload: {}
     }
+}
+
+export function getGamesList(successHandler, errorHandler) {
+    let request = `${ROOT_URL}/api/game`
+    axios.get(request)
+        .then(result => successHandler(result))
+        .catch(error => errorHandler(error));
 }

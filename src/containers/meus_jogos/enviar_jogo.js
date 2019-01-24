@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
-import ButtonAppBar from '../../components/app_bar/button_app_bar'
-import MenuAppBar from '../../components/app_bar/menu_app_bar'
+import React, { Component } from 'react';
+import ButtonAppBar from '../../components/app_bar/button_app_bar';
+import MenuAppBar from '../../components/app_bar/menu_app_bar';
+import CustomLabel from './../../components/shared/custom_label';
 import { connect } from "react-redux";
-import { setUserCredentials } from './../../actions'
-import history from '../../components/config/history'
+import { setUserCredentials } from './../../actions';
+import history from '../../components/config/history';
 import Card from '@material-ui/core/Card';
-import EnviarJogoForm from "../../components/meus_jogos/enviar_jogo/enviar_jogo_form"
+import EnviarJogoForm from "../../components/meus_jogos/enviar_jogo/enviar_jogo_form";
 import "./../../styles/meus_jogos.css";
 import _ from 'lodash';
 

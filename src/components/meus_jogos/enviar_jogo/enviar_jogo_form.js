@@ -22,7 +22,6 @@ class EnviarJogoForm extends Component {
         super(props);
         this.state = {
             nome: "",
-            desenvolvedor: "",
             preco: "",
             genero: "",
             trailer: "",
@@ -100,28 +99,36 @@ class EnviarJogoForm extends Component {
     render() {
         const generos = [
             {
-                value: 'acao',
+                value: 'Action',
                 label: 'Ação',
             },
             {
-                value: 'aventura',
+                value: 'Adventure',
                 label: 'Aventura',
             },
             {
-                value: 'estrategia',
+                value: 'Strategy',
                 label: 'Estratégia',
             },
             {
-                value: 'casual',
+                value: 'Casual',
                 label: 'Casual',
             },
             {
-                value: 'esportes',
+                value: 'Sports',
                 label: 'Esportes',
             },
             {
-                value: 'indie',
+                value: 'Indie',
                 label: 'Indie',
+            },
+            {
+                value: 'RPG',
+                label: 'RPG',
+            },
+            {
+                value: 'Simulation',
+                label: 'Simulation',
             },
         ];
 
@@ -141,14 +148,6 @@ class EnviarJogoForm extends Component {
                                         onChange={this.handleChange('nome')}
                                         margin="normal"
                                     />
-                                    {/* <TextField
-                                        id="desenvolvedor"
-                                        label="Desenvolvedor"
-                                        required
-                                        value={this.state.desenvolvedor}
-                                        onChange={this.handleChange('desenvolvedor')}
-                                        margin="normal"
-                                    /> */}
                                     <TextField
                                         id="preco"
                                         label="Preço"
