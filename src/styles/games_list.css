@@ -1,11 +1,92 @@
-.card-fields{
+.card-fields {
     padding: 15px;
     padding-top: 0px;
     margin: 20px;
     margin-bottom: 5px;
 }
 
-.card-jogos{
+.card-jogos {
     padding: 10px;
     margin: 20px;
+}
+
+.games-list-root {
+    height: 100%;
+}
+
+.games-list-containers{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-container {
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #151d27;
+    width: 193px;
+    height: 203px;
+    position: relative;
+    display: flex;
+    margin: 10px;   
+}
+
+.game-thumbnail {
+    width: 100%;
+    max-height: 50%;
+    cursor: pointer;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.game-name {
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 2;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.3;
+    font-family: "Open Sans", Arial, Helvetica;
+    cursor: pointer;
+    height: 60px;
+    width: 100%;
+    margin-top: 55%;
+    padding: 5px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+}
+
+.game-price-container {
+    width: 100%;
+    padding: 0 6px;
+    box-sizing: border-box;
+    margin: 0;
+    color: inherit;
+    cursor: pointer;
+    position: absolute;
+    bottom: 5px;
+    align-items: center;
+}
+
+.game-price-title {
+    cursor: pointer;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-family: "Open Sans", Arial, Helvetica;
+    min-width: 75px;
+    height: 30px;
+    padding: 0 3px;
+    border: 1px solid #435467;
+    background-color: rgba(95, 115, 138, .3);
+    border-radius: 5px;
+    box-shadow: none;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 700;
 }

@@ -53,7 +53,6 @@ export function uploadFileToServer(gameId, file, uploadProgressHandler) {
             uploadProgressHandler(progressEvent);
         }
     });
-
     return {
         type: UPLOAD_FILE_TO_SERVER,
         payload: {}
