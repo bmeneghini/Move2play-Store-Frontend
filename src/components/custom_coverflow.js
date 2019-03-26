@@ -5,23 +5,22 @@ import { StyleRoot } from 'radium';
 export default class CustomCoverflow extends Component {
     render() {
         return (
-            <StyleRoot style={{ marginTop: -40 }}>
+            <StyleRoot>
                 <Coverflow
                     displayQuantityOfSide={2}
                     navigation
-                    style={{ marginTop: -40 }}
                     infiniteScroll
                     enableHeading
                     media={{
                         '@media (max-width: 900px)': {
                             width: '600px',
                             height: '300px',
-                            backgroundColor: 'white',
+                            backgroundColor: '#12181f',
                         },
                         '@media (min-width: 900px)': {
                             width: '960px',
                             height: '500px',
-                            backgroundColor: 'white',
+                            backgroundColor: '#12181f',
                         }
                     }}
                 >

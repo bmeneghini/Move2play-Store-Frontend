@@ -1,7 +1,8 @@
 .divContainer {
     flex-grow: 1;
     box-shadow: 0 4px 2px -2px #AAA;
-    position: "relative",
+    position: "relative";
+    background-color: #191919 !important;
 }
 
 .logo {
@@ -10,16 +11,15 @@
 }
 
 .app_search_bar {
-    transform: translate(20%,0%);
+    transform: translate(20%, 0%);
 }
 
-.app_search_bar .ui{
+.app_search_bar .ui {
     width: 100%;
 }
 
 .btnLogin {
     color: white !important;
-    height: 18px !important;
     font-family: "Work Sans" !important;
     font-size: 16px !important;
     font-weight: 400 !important;
@@ -35,6 +35,6 @@
     background-color: #191919 !important;
 }
 
-.ui.icon.input{
+.ui.icon.input {
     width: 100%;
 }

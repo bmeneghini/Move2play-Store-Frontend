@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MenuAppBar from './../app_bar/menu_app_bar';
 import ButtonAppBar from './../app_bar/button_app_bar';
+import GamesFilters from './games_filters';
 import GameContainer from './game_container';
 import { connect } from "react-redux";
 import { getGamesList } from './../../actions/index';
@@ -12,11 +13,16 @@ class GamesList extends Component {
         super(props);
         this.state = {
             gamesList: [
-                { gameName: 'God of War - Nordic Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
-                { gameName: 'God of War - Nordic Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
-                { gameName: 'God of War - Nordic Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
-                { gameName: 'God of War - Nordic Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
-                { gameName: 'God of War - Nordic Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' }
+                { gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
+                { gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
+                { gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
+                { gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
+                { gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
+                { gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
+                { gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
+                { gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
+                { gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
+                { gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' }   
             ]
         }
     }
@@ -53,6 +59,8 @@ class GamesList extends Component {
             return (
                 <div className={'games-list-root'}>
                     {isAuthenticated() ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
+                    <h1 className={'games-list-title'}>Catálogo de Jogos</h1 >
+                    <GamesFilters />
                     <div className={'games-list-containers'}>{gamesContainers}</div>
                 </div>
             )

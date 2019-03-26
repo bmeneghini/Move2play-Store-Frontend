@@ -1,0 +1,20 @@
+.games-filters-root>div>label {
+    color: white !important;
+}
+
+.games-filters-root>div>div>fieldset {
+    border-color: white !important;
+}
+
+.games-filters-root>div>div>div>svg {
+    color: white !important;
+}
+
+.games-filters-root>div>div>input {
+    color: white;
+    height: 100%;
+}
+
+.games-filters-root>div>div>div>p {
+    color: white !important;
+}

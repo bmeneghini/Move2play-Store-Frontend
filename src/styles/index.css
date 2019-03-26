@@ -21,10 +21,7 @@
   color: white !important;
 }
 
-.primary-button:hover{
- /* background-color: rgb(233, 16, 76) !important;; */
-}
-
 body {
   min-height: 100%;
+  background-color: #12181f !important;
 }

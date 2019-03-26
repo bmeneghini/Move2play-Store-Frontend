@@ -18,7 +18,7 @@ class ButtonAppBar extends Component {
     return (
       <div>
         <AppBar position="static" className={"divContainer"}>
-          <Toolbar>
+          <Toolbar> 
             <Logo />
             <SearchBar
               className="app_search_bar"

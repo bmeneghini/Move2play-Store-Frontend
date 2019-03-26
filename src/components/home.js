@@ -61,10 +61,10 @@ class Home extends Component {
     return (
       <div>
         {alreadyAuthenticated ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
-        <CustomLabel content={"DESTAQUES E RECOMENDADOS"} font_size={25} text_align={"center"} height={100} />
-        <GameGenderFilterForm />
+        <h1 className={'games-list-title'}>Destaques e Recomendados</h1 >
+        {/* <GameGenderFilterForm /> */}
         <CustomCoverflow />
-      </div>
+      </div>  
     );
   }
 }
