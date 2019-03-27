@@ -7,13 +7,17 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 const styles = theme => ({
     textField: {
         margin: theme.spacing.unit,
-        height: '53.63px'
+        height: '53.63px',
+        display: 'flex',
+        flexDirection: 'row',
+        flexGrow: 1,
+        maxWidth: 200
     },
 });
 
 class GamePriceInput extends React.Component {
     render() {
-        const { classes, handleGamePriceChange, gamePrice } = this.props;
+        const { classes, handleGamePriceChange, gamePrice, enableFullWidth } = this.props;
         return (
             <TextField
                 id="outlined-amount"
@@ -22,6 +26,7 @@ class GamePriceInput extends React.Component {
                 className={classes.textField}
                 margin="normal"
                 variant="outlined"
+                fullWidth={enableFullWidth}
                 value={gamePrice}
                 onChange={handleGamePriceChange}
                 InputProps={{

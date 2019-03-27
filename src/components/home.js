@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import ButtonAppBar from './app_bar/button_app_bar'
 import MenuAppBar from './app_bar/menu_app_bar'
-import GameGenderFilterForm from './game_gender_filter_form'
-import CustomLabel from './shared/custom_label'
 import CustomCoverflow from './custom_coverflow'
 import _ from 'lodash';
 
@@ -42,7 +40,7 @@ class Home extends Component {
   synchroniseUserInformation = () => {
     const { getProfile } = this.props.auth;
     getProfile((err, profile) => {
-      if(!_.isEmpty(profile)){
+      if (!_.isEmpty(profile)) {
         let user = this.buildUserDto(profile);
         this.props.postUserInformation(user);
       }
@@ -62,9 +60,8 @@ class Home extends Component {
       <div>
         {alreadyAuthenticated ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
         <h1 className={'games-list-title'}>Destaques e Recomendados</h1 >
-        {/* <GameGenderFilterForm /> */}
         <CustomCoverflow />
-      </div>  
+      </div>
     );
   }
 }

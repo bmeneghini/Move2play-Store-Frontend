@@ -9,6 +9,17 @@ import MenuItemCarrinho from './menu_item_carrinho';
 import './../../styles/app_bar.css';
 
 class MenuAppBar extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            gameName: ''
+        }
+    }
+
+    handleGameNameChange = (event) => {
+        this.setState({ gameName: event.target.value });
+    }
+
     render() {
         const { auth } = this.props;
         return (
@@ -17,8 +28,12 @@ class MenuAppBar extends Component {
                     <Logo />
                     <GameNameInput
                         shrink={false}
+                        label={''}
+                        placeholder={'Procure um jogo'}
                         displaySearch={true}
                         enableFullWidth={true}
+                        gameName={this.state.gameName}
+                        handleGameNameChange={this.handleGameNameChange}
                     />
                     <div className={'menu-app-bar-menu'}>
                         <MenuItemCarrinho />

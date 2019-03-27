@@ -28,8 +28,9 @@ class GamesList extends Component {
     }
 
     buildGamesContainer = () => {
-        return this.state.gamesList.map(game => {
+        return this.state.gamesList.map( (game, index) => {
             return <GameContainer
+                key={index}
                 gameName={game.gameName}
                 gamePrice={game.gamePrice}
                 gameThumbnail={game.gameThumbnail}

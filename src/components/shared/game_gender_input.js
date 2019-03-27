@@ -14,7 +14,7 @@ const styles = theme => ({
     },
     formControl: {
         margin: theme.spacing.unit,
-        minWidth: 120,
+        minWidth: 200   ,
     },
     selectEmpty: {
         marginTop: theme.spacing.unit * 2,
@@ -49,9 +49,12 @@ class GameGenderInput extends React.Component {
                     <MenuItem value="">
                         <em>Escolha um</em>
                     </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    <MenuItem value={10}>Ação</MenuItem>
+                    <MenuItem value={20}>Aventura</MenuItem>
+                    <MenuItem value={30}>Casual</MenuItem>
+                    <MenuItem value={40}>Esportes</MenuItem>
+                    <MenuItem value={50}>Estratégia</MenuItem>
+                    <MenuItem value={60}>Indie</MenuItem>
                 </Select>
             </FormControl>
         )

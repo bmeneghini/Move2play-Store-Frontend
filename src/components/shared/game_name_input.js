@@ -11,6 +11,9 @@ const styles = theme => ({
     textField: {
         margin: theme.spacing.unit,
         height: '53.63px',
+        display: 'flex',
+        flexDirection: 'row',
+        flexGrow: 4,
     },
     textFieldAppBar: {
         margin: theme.spacing.unit,
@@ -28,7 +31,7 @@ class GameNameInput extends React.Component {
     }
 
     render() {
-        const { classes, handleGameNameChange, gameName, displaySearch, shrink, enableFullWidth } = this.props;
+        const { classes, handleGameNameChange, gameName, displaySearch, shrink, enableFullWidth, label, placeholder } = this.props;
 
         const showAdorment = displaySearch ?
             <InputAdornment position="end">
@@ -45,7 +48,8 @@ class GameNameInput extends React.Component {
         return (
             <TextField
                 id="outlined-search"
-                label="Procurar jogo"
+                label={label}
+                placeholder={placeholder}
                 type="search"
                 className={customStyle}
                 margin="normal"

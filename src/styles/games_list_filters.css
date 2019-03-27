@@ -18,3 +18,8 @@
 .games-filters-root>div>div>div>p {
     color: white !important;
 }
+
+.games-filters-root>div>div>div>div {
+    width: 100%;
+    color: white !important;
+}
