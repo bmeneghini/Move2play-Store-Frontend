@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import MenuAppBar from './../app_bar/menu_app_bar';
-import ButtonAppBar from './../app_bar/button_app_bar';
 import GamesFilters from './games_filters';
 import GameContainer from './game_container';
+import Button from '@material-ui/core/Button';
+import MenuAppBar from './../app_bar/menu_app_bar';
+import ButtonAppBar from './../app_bar/button_app_bar';
 import { connect } from "react-redux";
 import { getGamesList } from './../../actions/index';
 import _ from 'lodash';
@@ -22,13 +23,13 @@ class GamesList extends Component {
                 { gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
                 { gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
                 { gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
-                { gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' }   
+                { gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' }
             ]
         }
     }
 
     buildGamesContainer = () => {
-        return this.state.gamesList.map( (game, index) => {
+        return this.state.gamesList.map((game, index) => {
             return <GameContainer
                 key={index}
                 gameName={game.gameName}
@@ -63,6 +64,10 @@ class GamesList extends Component {
                     <h1 className={'games-list-title'}>Catálogo de Jogos</h1 >
                     <GamesFilters />
                     <div className={'games-list-containers'}>{gamesContainers}</div>
+                    <div className={'ver-mais-root'}>
+                        <Button className={'ver-mais-button'} variant="contained" color="primary">
+                            Ver mais
+                        </Button></div>
                 </div>
             )
         }

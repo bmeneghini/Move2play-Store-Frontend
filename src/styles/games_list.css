@@ -146,10 +146,15 @@
     text-transform: uppercase;
     color: #fff;
     font-weight: 700;
+
+    transition: font-size 0ms;
+    transition: 1s;
+
 }
 
 .game-price-title:hover {
     background: #e23;
+    font-size: 11px;
 }
 
 .filter-button {
@@ -165,4 +170,22 @@
 
 .filter-icon {
     margin: 0px 10px 0px 0px;
+}
+
+.ver-mais-root {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.ver-mais-root>button {
+    color: white !important;
+    padding: 8px 15px;
+    width: 193px;
+    background-color: #0499fe !important;
+}
+
+.ver-mais-root>button:hover {
+    color: white !important;
+    background-color: #123d59 !important;
 }
