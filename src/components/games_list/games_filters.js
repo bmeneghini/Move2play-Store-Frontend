@@ -33,6 +33,7 @@ export default class GamesFilters extends React.Component {
                     handleGameNameChange={this.handleGameNameChange}
                     gameName={this.state.gameName}
                     displaySearch={false}
+                    shrink={true}
                 />
                 <GamePriceInput
                     handleGamePriceChange={this.handleGamePriceChange}

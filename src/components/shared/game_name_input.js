@@ -5,39 +5,56 @@ import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Search';
+import history from '../config/history'
 
 const styles = theme => ({
     textField: {
         margin: theme.spacing.unit,
-        height: '53.63px'
+        height: '53.63px',
     },
+    textFieldAppBar: {
+        margin: theme.spacing.unit,
+        height: '53.63px',
+        display: 'flex',
+        flexGrow: 1,
+        flexDirection: 'row',
+    }
 });
 
 class GameNameInput extends React.Component {
-    render() {
-        const { classes, handleGameNameChange, gameName, displaySearch } = this.props;
 
-        const showAdorment = displaySearch ? 
-        <InputAdornment position="end">
-            <IconButton
-                aria-label="Search icon for game name input"
-            >
-                {<Visibility colorprimary={'white'} />}
-            </IconButton>
-        </InputAdornment> : '';
+    handleButtonClick = () => {
+        history.push("/jogos");
+    }
+
+    render() {
+        const { classes, handleGameNameChange, gameName, displaySearch, shrink, enableFullWidth } = this.props;
+
+        const showAdorment = displaySearch ?
+            <InputAdornment position="end">
+                <IconButton
+                    aria-label="Search icon for game name input"
+                    onClick={this.handleButtonClick}
+                >
+                    {<Visibility colorprimary={'white'} />}
+                </IconButton>
+            </InputAdornment> : '';
+
+        const customStyle = displaySearch ? classes.textFieldAppBar : classes.textField;
 
         return (
             <TextField
                 id="outlined-search"
                 label="Procurar jogo"
                 type="search"
-                className={classes.textField}
+                className={customStyle}
                 margin="normal"
                 variant="outlined"
                 onChange={handleGameNameChange}
                 value={gameName}
+                fullWidth={enableFullWidth}
                 InputLabelProps={{
-                    shrink: true,
+                    shrink: shrink,
                 }}
                 InputProps={{
                     endAdornment: (showAdorment),

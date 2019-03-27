@@ -6,8 +6,7 @@
 }
 
 .logo {
-    margin: 10px;
-    margin-left: 50px;
+    margin: 0 10px;
 }
 
 .app_search_bar {
@@ -20,11 +19,12 @@
 
 .btnLogin {
     color: white !important;
-    font-family: "Work Sans" !important;
+    font-family: Work Sans !important;
     font-size: 16px !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
-    /*border: 1px solid rgba(255, 255, 255, 0.34) !important;*/
+    margin-left: 100px !important;
+    height: 38px;
 }
 
 .btnLogin:hover {
@@ -37,4 +37,66 @@
 
 .ui.icon.input {
     width: 100%;
+}
+
+.menu-app-toolbar>div>label {
+    color: white !important;
+}
+
+.menu-app-toolbar>div>div>fieldset {
+    border-color: white !important;
+}
+
+.menu-app-toolbar>div>div>div>svg {
+    color: white !important;
+}
+
+.menu-app-toolbar>div>div>input {
+    color: white;
+    height: 100%;
+}
+
+.menu-app-toolbar>div>div>div>p {
+    color: white !important;
+}
+
+.menu-app-toolbar>div+div>div>div>button {
+    color: white;
+}
+
+.menu-app-toolbar {
+    display: flex;
+}
+
+.menu-carrinho-root, .menu-meus-jogos-root, .menu-item-usuario-root {
+    position: relative;
+    align-items: center;
+    justify-items: center;
+}
+
+.menu-carrinho-label {
+    height: 16px;
+    color: white;
+    font-family: Work Sans;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    position: absolute;
+    left: 35px;
+    top: -9px;
+}
+
+.menu-carrinho-icon {
+    width: 30px;
+    height: 30px;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    left: 0px;
+    top: -10px;
+}
+
+.menu-app-bar-menu {
+    width: 800px;
+    margin: 0 15px;
 }

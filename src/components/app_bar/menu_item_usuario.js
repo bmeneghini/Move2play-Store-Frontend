@@ -6,33 +6,40 @@ import Settings from '@material-ui/icons/SettingsOutlined';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-
 import history from '../config/history'
-
 import './../../styles/app_bar.css'
 
+const left = 250;
+
 const styles = {
+    userIcon: {
+        width: 30,
+        height: 30,
+        color: "white",
+        cursor: 'pointer',
+        position: 'absolute',
+        left: left + 10,
+        top: -14
+    },
     userLabel: {
         height: 16,
         color: "white",
         fontFamily: "Work Sans",
         fontSize: 14,
         fontWeight: 400,
+        cursor: 'pointer',
+        position: 'absolute',
+        left: left + 45,
+        top: -9
     },
     userArrow: {
         color: "white",
         width: 24,
         height: 24,
-    },
-    userIcon: {
-        width: 30,
-        height: 30,
-        color: "white",
-    },
-    alignRight: {
-        position: "absolute",
-        float: "right",
-        right: 0,
+        cursor: 'pointer',
+        position: 'absolute',
+        left: left + 100,
+        top: -10
     },
     profileMenuIcon: {
         width: 25,
@@ -71,67 +78,42 @@ class MenuItemUsuario extends Component {
         const open = Boolean(anchorEl);
 
         return (
-            <div className={"divContainerInterno"} style={{ /*position: "absolute", right: "2%"*/ }}>
-                <div className={"divExterior"}>
-                    <div className={"divInterior"}>
-                        <div style={{ height: 50 }}>
-                            <div className={"divContainerInterno"}>
-                                <div className={"divExterior"}>
-                                    <div className={"divInterior"}>
-                                        <PermIdentity className={classes.userIcon} onClick={this.handleMenu} style={{cursor: 'pointer'}}/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={"divContainerInterno"}>
-                                <div className={"divExterior"}>
-                                    <div className={"divInterior"}>
-                                        <label
-                                            aria-owns={open ? 'menu-appbar' : null}
-                                            aria-haspopup="true"
-                                            onClick={this.handleMenu}
-                                            className={classes.userLabel}
-                                            style={{cursor: 'pointer'}}
-                                        >
-                                            Usuário
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={"divContainerInterno"}>
-                                <div className={"divExterior"}>
-                                    <div className={"divInterior"}>
-                                        <KeyboardArrowDown className={classes.userArrow} onClick={this.handleMenu} style={{ height: 50 }} />
-                                    </div>
-                                </div>
-                            </div>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorEl}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={open}
-                                onClose={this.handleClose}
-                            >
-                                <MenuItem
-                                    onClick={this.handleProfileClick}>
-                                    <Settings className={classes.profileMenuIcon} />
-                                    Perfil
-                                            </MenuItem>
-                                <MenuItem
-                                    onClick={this.handleLogout}>
-                                    <ExitToApp className={classes.profileMenuIcon} />
-                                    Logout
-                                            </MenuItem>
-                            </Menu>
-                        </div>
-                    </div>
-                </div>
+            <div className={"menu-item-usuario-root"}>
+                <PermIdentity className={classes.userIcon} onClick={this.handleMenu} />
+                <label
+                    aria-owns={open ? 'menu-appbar' : null}
+                    aria-haspopup="true"
+                    onClick={this.handleMenu}
+                    className={classes.userLabel}
+                >
+                    Usuário
+                </label>
+                <KeyboardArrowDown className={classes.userArrow} onClick={this.handleMenu} />
+                <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    open={open}
+                    onClose={this.handleClose}
+                >
+                    <MenuItem
+                        onClick={this.handleProfileClick}>
+                        <Settings className={classes.profileMenuIcon} />
+                        Perfil
+                    </MenuItem>
+                    <MenuItem
+                        onClick={this.handleLogout}>
+                        <ExitToApp className={classes.profileMenuIcon} />
+                        Logout
+                    </MenuItem>
+                </Menu>
             </div>
         );
     }

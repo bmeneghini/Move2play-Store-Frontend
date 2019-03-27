@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import SearchBar from './search_bar'
+import GameNameInput from './../shared/game_name_input';
 import Logo from './logo'
-
 import './../../styles/app_bar.css'
 
 class ButtonAppBar extends Component {
@@ -16,25 +15,17 @@ class ButtonAppBar extends Component {
 
   render() {
     return (
-      <div>
-        <AppBar position="static" className={"divContainer"}>
-          <Toolbar> 
-            <Logo />
-            <SearchBar
-              className="app_search_bar"
-              fluid={true}
-              size={"small"}
-            />
-            <div className={"divContainerInterno"} style={{ position: "absolute", right: "2%" }}>
-              <div className={"divExterior"}>
-                <div className={"divInterior"}>
-                  <Button variant="outlined" color="inherit" onClick={this.login} className={"btnLogin"}>Login</Button>
-                </div>
-              </div>
-            </div>
-          </Toolbar>
-        </AppBar>
-      </div>
+      <AppBar position="static" className={"divContainer"}>
+        <Toolbar className={'menu-app-toolbar'}>
+          <Logo />
+          <GameNameInput
+            shrink={false}
+            displaySearch={true}
+            enableFullWidth={true}
+          />
+          <Button variant="outlined" color="inherit" onClick={this.login} className={"btnLogin"}>Login</Button>
+        </Toolbar>
+      </AppBar>
     );
   }
 }
