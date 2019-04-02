@@ -23,7 +23,7 @@ const styles = theme => ({
 
 class GameGenderInput extends React.Component {
     render() {
-        const { classes, handleGenderChange, gameGender } = this.props;
+        const { classes, handleGenderChange, gameGender, required } = this.props;
         return (
             <FormControl variant="outlined" className={classes.formControl}>
                 <InputLabel
@@ -36,6 +36,7 @@ class GameGenderInput extends React.Component {
                     value={gameGender}
                     onChange={handleGenderChange}
                     classes={{ root: classes.root }}
+                    required={required}
                     style={{ color: 'white !important' }}
                     input={
                         <OutlinedInput

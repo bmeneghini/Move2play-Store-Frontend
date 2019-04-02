@@ -31,7 +31,7 @@ class GameNameInput extends React.Component {
     }
 
     render() {
-        const { classes, handleGameNameChange, gameName, displaySearch, shrink, enableFullWidth, label, placeholder } = this.props;
+        const { classes, handleGameNameChange, gameName, displaySearch, shrink, enableFullWidth, label, placeholder, required } = this.props;
 
         const showAdorment = displaySearch ?
             <InputAdornment position="end">
@@ -57,6 +57,7 @@ class GameNameInput extends React.Component {
                 onChange={handleGameNameChange}
                 value={gameName}
                 fullWidth={enableFullWidth}
+                required={required}
                 InputLabelProps={{
                     shrink: shrink,
                 }}

@@ -84,3 +84,43 @@
 .enviar-jogo-form>div+div+div+div>div {
     color: white !important;
 }
+
+.enviar-jogo-form>div+div+div+div+div>div>div>span {
+    width: 35px;
+    height: 35px;
+}
+
+/* BUTTON IMAGE AND BUTTON GAME FILE*/
+
+div>fieldset+input+div>label {
+    margin-bottom: 0px;
+}
+
+div>fieldset+input+div>label>span {
+    width: 35px !important;
+    height: 35px !important;
+}
+
+/* BUTTON TRAILER */
+
+div>fieldset+input+div>span {
+    width: 35px !important;
+    height: 35px !important;
+}
+
+/* FOOTER */
+
+#footer {
+    z-index: 999;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #191919 !important;
+    margin-top: 20px;
+    text-align: right
+}
+
+#footer>button {
+    margin: 10px;
+    margin-right: calc(5vmax + 10px);
+}

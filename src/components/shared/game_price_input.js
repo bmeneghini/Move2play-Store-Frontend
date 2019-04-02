@@ -17,7 +17,7 @@ const styles = theme => ({
 
 class GamePriceInput extends React.Component {
     render() {
-        const { classes, handleGamePriceChange, gamePrice, enableFullWidth } = this.props;
+        const { classes, handleGamePriceChange, gamePrice, enableFullWidth, required } = this.props;
         return (
             <TextField
                 id="outlined-amount"
@@ -29,6 +29,7 @@ class GamePriceInput extends React.Component {
                 fullWidth={enableFullWidth}
                 value={gamePrice}
                 onChange={handleGamePriceChange}
+                required={required}
                 InputProps={{
                     startAdornment: <InputAdornment position="start">R$</InputAdornment>,
                 }}

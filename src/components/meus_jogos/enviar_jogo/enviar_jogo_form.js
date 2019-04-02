@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import ImageInput from './image_input';
+import TrailerInput from './trailer_input';
+import GameFileUploadInput from './game_file_upload_input';
 import GameNameInput from './../../shared/game_name_input';
 import GamePriceInput from './../../shared/game_price_input';
 import GameGenderInput from './../../shared/game_gender_input';
 import GameDescriptionInput from './../../shared/game_description_input';
 import Send from '@material-ui/icons/Send';
 import Button from '@material-ui/core/Button';
-import Image from '@material-ui/icons/Image';
-import Movie from '@material-ui/icons/Movie';
 import TextField from '@material-ui/core/TextField';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControl from '@material-ui/core/FormControl';
@@ -25,7 +26,7 @@ class EnviarJogoForm extends Component {
             gameName: "",
             gamePrice: "",
             gameGender: "",
-            trailer: "",
+            gameTrailer: "",
             gameDescription: "",
             selectedLogo: null,
             selectedLogoName: "",
@@ -45,7 +46,7 @@ class EnviarJogoForm extends Component {
             price: this.state.gamePrice,
             description: this.state.gameDescription,
             genero: this.state.gameGender,
-            trailerUrl: this.state.trailer,
+            trailerUrl: this.state.gameTrailer,
         }
         return gameUploadDto;
     }
@@ -110,15 +111,18 @@ class EnviarJogoForm extends Component {
                                     label={'Nome do jogo'}
                                     enableFullWidth={false}
                                     gameName={this.state.gameName}
+                                    required={true}
                                     handleGameNameChange={this.handleChange('gameName')}
                                 />
                                 <GamePriceInput
                                     enableFullWidth={true}
                                     gamePrice={this.state.gamePrice}
+                                    required={true}
                                     handleGamePriceChange={this.handleChange('gamePrice')}
                                 />
                                 <GameGenderInput
                                     gameGender={this.state.gameGender}
+                                    required={true}
                                     handleGenderChange={this.handleChange('gameGender')}
                                 />
                                 <GameDescriptionInput
@@ -126,108 +130,47 @@ class EnviarJogoForm extends Component {
                                     label={'Descrição'}
                                     enableFullWidth={true}
                                     gameDescription={this.state.gameDescription}
+                                    required={true}
                                     handleChange={this.handleChange('gameDescription')}
                                 />
+                                <TrailerInput
+                                    shrink={true}
+                                    enableFullWidth={false}
+                                    gameTrailer={this.state.gameTrailer}
+                                    required={true}
+                                    handleChange={this.handleChange('gameTrailer')}
+                                />
+                                <ImageInput
+                                    shrink={true}
+                                    enableFullWidth={false}
+                                    fileChangedHandler={this.fileChangedHandler}
+                                    selectedLogoName={this.state.selectedLogoName}
+                                />
+                                <GameFileUploadInput
+                                    shrink={true}
+                                    enableFullWidth={false}
+                                    gameChangedHandler={this.gameChangedHandler}
+                                    selectedGameName={this.state.selectedGameName}
+                                />
                             </div>
                         </FormControl>
+                        <div style={{ height: 81 }}></div>
+                        <div id={`footer`}>
+                            <ProgressBar progress={this.state.progressFile} />
+                            <Button type='submit' variant="contained" color="secondary">
+                                <Send style={{
+                                    width: 25,
+                                    height: 25,
+                                    color: "white",
+                                    marginRight: 10,
+                                }} />
+                                Submeter
+                            </Button>
+                        </div>
                     </FormGroup>
-                    <FormGroup style={{ height: 290 }}>
-                        <FormControl>
-                            <div>
-                                <input
-                                    accept="*"
-                                    disabled
-                                    id="contained-button-trailer"
-                                    multiple
-                                    type="file"
-                                    style={{ display: 'none', }}
-                                />
-                                <label htmlFor="contained-button-trailer" style={{ padding: 15 }}>
-                                    <Button
-                                        style={{ width: 45, height: 45 }}
-                                        variant="fab"
-                                        color="secondary"
-                                        component="span">
-                                        <Movie />
-                                    </Button>
-                                </label>
-                                <TextField
-                                    id="trailer"
-                                    value={this.state.trailer}
-                                    required
-                                    margin="normal"
-                                    onChange={this.handleChange('trailer')}
-                                    placeholder="Insira a URL do trailer"
-                                    style={{ width: "70%", marginLeft: 10 }}
-                                />
-                            </div>
-                            <div>
-                                <input
-                                    accept="image/*"
-                                    id="contained-button-file"
-                                    multiple
-                                    type="file"
-                                    style={{ display: 'none', }}
-                                    onChange={this.fileChangedHandler}
-                                />
-                                <label htmlFor="contained-button-file" style={{ padding: 15 }}>
-                                    <Button
-                                        style={{ width: 45, height: 45 }}
-                                        variant="fab"
-                                        color="secondary"
-                                        component="span">
-                                        <Image />
-                                    </Button>
-                                </label>
-                                <TextField
-                                    id="logo"
-                                    value={this.state.selectedLogoName}
-                                    required
-                                    margin="normal"
-                                    placeholder="Selecione uma logo"
-                                    style={{ width: "70%", marginLeft: 10 }}
-                                />
-                            </div>
-                            <div>
-                                <input
-                                    accept="*"
-                                    id="contained-button-game-upload"
-                                    multiple
-                                    type="file"
-                                    style={{ display: 'none', }}
-                                    onChange={this.gameChangedHandler}
-                                />
-                                <label htmlFor="contained-button-game-upload" style={{ padding: 15 }}>
-                                    <Button
-                                        style={{ width: 45, height: 45 }}
-                                        variant="fab"
-                                        color="secondary"
-                                        component="span">
-                                        <FolderIcon />
-                                    </Button>
-                                </label>
-                                <TextField
-                                    id="logo"
-                                    value={this.state.selectedGameName}
-                                    required
-                                    margin="normal"
-                                    placeholder="Selecione o arquivo compactado do jogo"
-                                    style={{ width: "70%", marginLeft: 10 }}
-                                />
-                                <ProgressBar progress={this.state.progressFile} />
-                            </div>
-                        </FormControl>
-                    </FormGroup>
-                    <Button type='submit' variant="contained" color="secondary">
-                        <Send style={{
-                            width: 25,
-                            height: 25,
-                            color: "white",
-                            marginRight: 10,
-                        }} />
-                        Submeter
-                    </Button>
+
                 </form>
+
                 <CustomSnackbar
                     setClick={e => this.showSnackbar = e}
                     duration={this.state.duration}

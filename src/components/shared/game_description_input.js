@@ -14,7 +14,7 @@ const styles = theme => ({
 
 class GameDescriptionInput extends React.Component {
     render() {
-        const { classes, handleChange, gameDescription, shrink, enableFullWidth, label, placeholder } = this.props;
+        const { classes, handleChange, gameDescription, shrink, enableFullWidth, label, placeholder, required } = this.props;
         const customStyle = classes.textField;
         return (
             <TextField
@@ -28,6 +28,7 @@ class GameDescriptionInput extends React.Component {
                 variant="outlined"
                 onChange={handleChange}
                 value={gameDescription}
+                required={required}
                 fullWidth={enableFullWidth}
                 InputLabelProps={{
                     shrink: shrink,
