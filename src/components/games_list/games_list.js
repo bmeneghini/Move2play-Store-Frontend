@@ -67,7 +67,8 @@ class GamesList extends Component {
                     <div className={'ver-mais-root'}>
                         <Button className={'ver-mais-button'} variant="contained" color="primary">
                             Ver mais
-                        </Button></div>
+                        </Button>
+                    </div>
                 </div>
             )
         }

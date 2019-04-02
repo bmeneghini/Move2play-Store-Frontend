@@ -8,12 +8,10 @@ import GameGenderInput from './../../shared/game_gender_input';
 import GameDescriptionInput from './../../shared/game_description_input';
 import Send from '@material-ui/icons/Send';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControl from '@material-ui/core/FormControl';
 import ProgressBar from '../../shared/progress_bar';
 import CustomSnackbar from '../../shared/custom_snackbar';
-import FolderIcon from '@material-ui/icons/Folder';
 import { connect } from "react-redux";
 import { uploadFileToServer, uploadGameToServer } from '../../../actions/index';
 import _ from 'lodash';
@@ -166,6 +164,9 @@ class EnviarJogoForm extends Component {
                                 }} />
                                 Submeter
                             </Button>
+                            <Button variant="contained" color="primary">
+                                Cancelar
+                        </Button>
                         </div>
                     </FormGroup>
 

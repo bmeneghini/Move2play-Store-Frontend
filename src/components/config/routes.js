@@ -10,6 +10,7 @@ import UserProfile from './../../containers/user_profile/user_profile';
 import EnviarJogo from './../../containers/meus_jogos/enviar_jogo';
 import Biblioteca from './../../containers/meus_jogos/biblioteca';
 import GamesList from './../games_list/games_list';
+import GameDetail from './../../containers/game_detail/game_detail';
 
 const auth = new Auth();
 
@@ -24,6 +25,7 @@ const Routes = () => (
         <Router history={history} component={Home}>
             <div>
                 <Switch>
+                    <Route path="/jogos/detalhes" render={(props) => <GameDetail auth={auth} {...props} />} />} />
                     <Route path="/jogos" render={(props) => <GamesList auth={auth} {...props} />} />} />
                     <Route path="/meus-jogos/biblioteca" render={(props) => <Biblioteca auth={auth} {...props} />} />} />
                     <Route path="/meus-jogos/enviar-jogo" render={(props) => <EnviarJogo auth={auth} {...props} />} />} />

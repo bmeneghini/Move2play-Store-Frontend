@@ -117,10 +117,23 @@ div>fieldset+input+div>span {
     width: 100%;
     background-color: #191919 !important;
     margin-top: 20px;
-    text-align: right
+    text-align: left
 }
 
 #footer>button {
     margin: 10px;
-    margin-right: calc(5vmax + 10px);
+    margin-left: calc(5vmax + 10px);
+}
+
+#footer>button+button {
+    margin: 10px;
+    color: white !important;
+    height: 37px;
+    width: 130px;
+    background-color: #0499fe !important;
+}
+
+#footer>button+button:hover {
+    color: white !important;
+    background-color: #123d59 !important;
 }
