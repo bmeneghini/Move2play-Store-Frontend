@@ -24,46 +24,34 @@
     text-align: center;
 }
 
+.games-filters-root {
+    display: flex;
+    padding: 10px 15px;
+    border-radius: 3px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
+    background-color: #151d27;
+}
+
 @media screen and (min-width:700px) and (max-width: 1024px) {
     .games-filters-root {
-        display: flex;
-        padding: 10px 15px;
-        border-radius: 3px;
-        box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
-        background-color: #151d27;
         margin: 10px calc(10vmax + 100px);
     }
 }
 
 @media screen and (min-width:1025px) and (max-width: 1440px) {
     .games-filters-root {
-        display: flex;
-        padding: 10px 15px;
-        border-radius: 3px;
-        box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
-        background-color: #151d27;
         margin: 10px calc(10vmax + 55px);
     }
 }
 
 @media screen and (min-width:1441px) and (max-width: 1700px) {
     .games-filters-root {
-        display: flex;
-        padding: 10px 15px;
-        border-radius: 3px;
-        box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
-        background-color: #151d27;
         margin: 10px calc(10vmax + 85px);
     }
 }
 
 @media screen and (min-width:1701px) and (max-width: 2560px) {
     .games-filters-root {
-        display: flex;
-        padding: 10px 15px;
-        border-radius: 3px;
-        box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
-        background-color: #151d27;
         margin: 10px calc(10vmax + 75px);
     }
 }
@@ -146,10 +134,8 @@
     text-transform: uppercase;
     color: #fff;
     font-weight: 700;
-
     transition: font-size 0ms;
     transition: 1s;
-
 }
 
 .game-price-title:hover {

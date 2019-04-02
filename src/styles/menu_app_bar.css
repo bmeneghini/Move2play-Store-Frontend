@@ -1,0 +1,8 @@
+.menu-app-toolbar>div+div {
+    max-width: 695px;
+}
+
+.menu-app-toolbar>button {
+    position: absolute;
+    right: 20px;
+}

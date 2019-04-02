@@ -7,6 +7,7 @@ import MenuItemMeusJogos from './menu_item_meus_jogos';
 import MenuItemUsuario from './menu_item_usuario';
 import MenuItemCarrinho from './menu_item_carrinho';
 import './../../styles/app_bar.css';
+import './../../styles/menu_app_bar.css';
 
 class MenuAppBar extends Component {
     constructor(props) {

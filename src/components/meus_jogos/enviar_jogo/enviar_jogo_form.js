@@ -1,31 +1,32 @@
 import React, { Component } from 'react'
+import GameNameInput from './../../shared/game_name_input';
+import GamePriceInput from './../../shared/game_price_input';
+import GameGenderInput from './../../shared/game_gender_input';
+import GameDescriptionInput from './../../shared/game_description_input';
+import Send from '@material-ui/icons/Send';
+import Button from '@material-ui/core/Button';
+import Image from '@material-ui/icons/Image';
+import Movie from '@material-ui/icons/Movie';
 import TextField from '@material-ui/core/TextField';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControl from '@material-ui/core/FormControl';
-import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
-import Send from '@material-ui/icons/Send';
-import Image from '@material-ui/icons/Image';
-import Movie from '@material-ui/icons/Movie';
-import CustomLabel from '../../shared/custom_label';
 import ProgressBar from '../../shared/progress_bar';
 import CustomSnackbar from '../../shared/custom_snackbar';
 import FolderIcon from '@material-ui/icons/Folder';
-import Card from '@material-ui/core/Card';
 import { connect } from "react-redux";
 import { uploadFileToServer, uploadGameToServer } from '../../../actions/index';
 import _ from 'lodash';
+import "./../../../styles/enviar_jogo.css";
 
 class EnviarJogoForm extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
-            nome: "",
-            preco: "",
-            genero: "",
+            gameName: "",
+            gamePrice: "",
+            gameGender: "",
             trailer: "",
-            descricao: "",
+            gameDescription: "",
             selectedLogo: null,
             selectedLogoName: "",
             selectedGame: null,
@@ -40,15 +41,15 @@ class EnviarJogoForm extends Component {
     buildGameUploadDto = () => {
         let gameUploadDto = {
             developerId: this.props.user.sub,
-            name: this.state.nome,
-            price: this.state.preco,
-            description: this.state.descricao,
-            genero: this.state.genero,
+            name: this.state.gameName,
+            price: this.state.gamePrice,
+            description: this.state.gameDescription,
+            genero: this.state.gameGender,
             trailerUrl: this.state.trailer,
         }
         return gameUploadDto;
     }
-    
+
     handleChange = name => event => {
         this.setState({
             [name]: event.target.value,
@@ -79,7 +80,7 @@ class EnviarJogoForm extends Component {
     }
 
     handleUploadGameToServerSucccess = (result) => {
-        this.props.uploadFileToServer(result.data, this.state.selectedLogo, () => {});
+        this.props.uploadFileToServer(result.data, this.state.selectedLogo, () => { });
         this.props.uploadFileToServer(result.data, this.state.selectedGame, this.uploadProgressFileHandler);
     }
 
@@ -97,188 +98,124 @@ class EnviarJogoForm extends Component {
     }
 
     render() {
-        const generos = [
-            {
-                value: 'Action',
-                label: 'Ação',
-            },
-            {
-                value: 'Adventure',
-                label: 'Aventura',
-            },
-            {
-                value: 'Strategy',
-                label: 'Estratégia',
-            },
-            {
-                value: 'Casual',
-                label: 'Casual',
-            },
-            {
-                value: 'Sports',
-                label: 'Esportes',
-            },
-            {
-                value: 'Indie',
-                label: 'Indie',
-            },
-            {
-                value: 'RPG',
-                label: 'RPG',
-            },
-            {
-                value: 'Simulation',
-                label: 'Simulation',
-            },
-        ];
-
         return (
-            <div className={""}>
-                <CustomLabel content={`Preencha os campos com as devidas informações`} font_size={15} text_align={"left"} height={10} />
-                <form autoComplete="off" onSubmit={this.handleSubmit}>
-                    <Card className={"card-fields"}>
-                        <FormGroup>
-                            <FormControl style={{height: 50}}>
-                                <div className={"form-div"}>
-                                    <TextField
-                                        id="name"
-                                        label="Nome"
-                                        required
-                                        value={this.state.nome}
-                                        onChange={this.handleChange('nome')}
-                                        margin="normal"
-                                    />
-                                    <TextField
-                                        id="preco"
-                                        label="Preço"
-                                        required
-                                        type="number"
-                                        value={this.state.preco}
-                                        style={{ width: "23%", marginRight: "20px" }}
-                                        onChange={this.handleChange('preco')}
-                                        margin="normal"
-                                    />
-                                    <TextField
-                                        id="genero"
-                                        select
-                                        label="Gênero"
-                                        required
-                                        value={this.state.genero}
-                                        style={{ width: "26%"}}
-                                        onChange={this.handleChange('genero')}
-                                        helperText="Selecione um"
-                                        margin="normal"
-                                    >
-                                        {generos.map(option => (
-                                            <MenuItem key={option.value} value={option.value}>
-                                                {option.label}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField>
-                                </div>
-                            </FormControl>
-                        </FormGroup>
-                        <FormGroup>
-                            <FormControl>
-                                <TextField
-                                    id="descricao"
-                                    label="Descrição"
-                                    required
-                                    value={this.state.descricao}
-                                    onChange={this.handleChange('descricao')}
-                                    multiline
-                                    margin="normal"
+            <div className={'enviar-jogo-form-root'}>
+                <form onSubmit={this.handleSubmit}>
+                    <FormGroup>
+                        <FormControl>
+                            <div className={"enviar-jogo-form"}>
+                                <GameNameInput
+                                    shrink={true}
+                                    displaySearch={false}
+                                    label={'Nome do jogo'}
+                                    enableFullWidth={false}
+                                    gameName={this.state.gameName}
+                                    handleGameNameChange={this.handleChange('gameName')}
                                 />
-                            </FormControl>
-                        </FormGroup>
-                    </Card >
+                                <GamePriceInput
+                                    enableFullWidth={true}
+                                    gamePrice={this.state.gamePrice}
+                                    handleGamePriceChange={this.handleChange('gamePrice')}
+                                />
+                                <GameGenderInput
+                                    gameGender={this.state.gameGender}
+                                    handleGenderChange={this.handleChange('gameGender')}
+                                />
+                                <GameDescriptionInput
+                                    shrink={true}
+                                    label={'Descrição'}
+                                    enableFullWidth={true}
+                                    gameDescription={this.state.gameDescription}
+                                    handleChange={this.handleChange('gameDescription')}
+                                />
+                            </div>
+                        </FormControl>
+                    </FormGroup>
                     <FormGroup style={{ height: 290 }}>
                         <FormControl>
-                            <Card className={"card-upload"} style={{ marginTop: 5, marginBottom: 0 }}>
-                                <div>
-                                    <input
-                                        accept="*"
-                                        disabled
-                                        id="contained-button-trailer"
-                                        multiple
-                                        type="file"
-                                        style={{ display: 'none', }}
-                                    />
-                                    <label htmlFor="contained-button-trailer" style={{ padding: 15 }}>
-                                        <Button
-                                            style={{ width: 45, height: 45 }}
-                                            variant="fab"
-                                            color="secondary"
-                                            component="span">
-                                            <Movie />
-                                        </Button>
-                                    </label>
-                                    <TextField
-                                        id="trailer"
-                                        value={this.state.trailer}
-                                        required
-                                        margin="normal"
-                                        onChange={this.handleChange('trailer')}
-                                        placeholder="Insira a URL do trailer"
-                                        style={{ width: "70%", marginLeft: 10 }}
-                                    />
-                                </div>
-                                <div>
-                                    <input
-                                        accept="image/*"
-                                        id="contained-button-file"
-                                        multiple
-                                        type="file"
-                                        style={{ display: 'none', }}
-                                        onChange={this.fileChangedHandler}
-                                    />
-                                    <label htmlFor="contained-button-file" style={{ padding: 15 }}>
-                                        <Button
-                                            style={{ width: 45, height: 45 }}
-                                            variant="fab"
-                                            color="secondary"
-                                            component="span">
-                                            <Image />
-                                        </Button>
-                                    </label>
-                                    <TextField
-                                        id="logo"
-                                        value={this.state.selectedLogoName}
-                                        required
-                                        margin="normal"
-                                        placeholder="Selecione uma logo"
-                                        style={{ width: "70%", marginLeft: 10 }}
-                                    />
-                                </div>
-                                <div>
-                                    <input
-                                        accept="*"
-                                        id="contained-button-game-upload"
-                                        multiple
-                                        type="file"
-                                        style={{ display: 'none', }}
-                                        onChange={this.gameChangedHandler}
-                                    />
-                                    <label htmlFor="contained-button-game-upload" style={{ padding: 15 }}>
-                                        <Button
-                                            style={{ width: 45, height: 45 }}
-                                            variant="fab"
-                                            color="secondary"
-                                            component="span">
-                                            <FolderIcon />
-                                        </Button>
-                                    </label>
-                                    <TextField
-                                        id="logo"
-                                        value={this.state.selectedGameName}
-                                        required
-                                        margin="normal"
-                                        placeholder="Selecione o arquivo compactado do jogo"
-                                        style={{ width: "70%", marginLeft: 10 }}
-                                    />
-                                    <ProgressBar progress={this.state.progressFile} />
-                                </div>
-                            </Card >
+                            <div>
+                                <input
+                                    accept="*"
+                                    disabled
+                                    id="contained-button-trailer"
+                                    multiple
+                                    type="file"
+                                    style={{ display: 'none', }}
+                                />
+                                <label htmlFor="contained-button-trailer" style={{ padding: 15 }}>
+                                    <Button
+                                        style={{ width: 45, height: 45 }}
+                                        variant="fab"
+                                        color="secondary"
+                                        component="span">
+                                        <Movie />
+                                    </Button>
+                                </label>
+                                <TextField
+                                    id="trailer"
+                                    value={this.state.trailer}
+                                    required
+                                    margin="normal"
+                                    onChange={this.handleChange('trailer')}
+                                    placeholder="Insira a URL do trailer"
+                                    style={{ width: "70%", marginLeft: 10 }}
+                                />
+                            </div>
+                            <div>
+                                <input
+                                    accept="image/*"
+                                    id="contained-button-file"
+                                    multiple
+                                    type="file"
+                                    style={{ display: 'none', }}
+                                    onChange={this.fileChangedHandler}
+                                />
+                                <label htmlFor="contained-button-file" style={{ padding: 15 }}>
+                                    <Button
+                                        style={{ width: 45, height: 45 }}
+                                        variant="fab"
+                                        color="secondary"
+                                        component="span">
+                                        <Image />
+                                    </Button>
+                                </label>
+                                <TextField
+                                    id="logo"
+                                    value={this.state.selectedLogoName}
+                                    required
+                                    margin="normal"
+                                    placeholder="Selecione uma logo"
+                                    style={{ width: "70%", marginLeft: 10 }}
+                                />
+                            </div>
+                            <div>
+                                <input
+                                    accept="*"
+                                    id="contained-button-game-upload"
+                                    multiple
+                                    type="file"
+                                    style={{ display: 'none', }}
+                                    onChange={this.gameChangedHandler}
+                                />
+                                <label htmlFor="contained-button-game-upload" style={{ padding: 15 }}>
+                                    <Button
+                                        style={{ width: 45, height: 45 }}
+                                        variant="fab"
+                                        color="secondary"
+                                        component="span">
+                                        <FolderIcon />
+                                    </Button>
+                                </label>
+                                <TextField
+                                    id="logo"
+                                    value={this.state.selectedGameName}
+                                    required
+                                    margin="normal"
+                                    placeholder="Selecione o arquivo compactado do jogo"
+                                    style={{ width: "70%", marginLeft: 10 }}
+                                />
+                                <ProgressBar progress={this.state.progressFile} />
+                            </div>
                         </FormControl>
                     </FormGroup>
                     <Button type='submit' variant="contained" color="secondary">

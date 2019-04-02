@@ -13,7 +13,7 @@ const styles = theme => ({
         height: '53.63px',
         display: 'flex',
         flexDirection: 'row',
-        flexGrow: 4,
+        flexGrow: 1,
     },
     textFieldAppBar: {
         margin: theme.spacing.unit,
