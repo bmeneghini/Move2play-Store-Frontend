@@ -1,0 +1,11 @@
+.users-evaluation-container {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 15px;
+    border-radius: 3px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
+    background-color: #151d27;
+    margin: 20px 20vmax;
+    position: relative;
+    align-items: center;
+}

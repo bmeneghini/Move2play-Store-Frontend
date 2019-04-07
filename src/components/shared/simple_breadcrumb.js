@@ -11,8 +11,8 @@ const styles = theme => ({
         justifyContent: 'center',
         flexWrap: 'wrap',
         margin: '20px 20vmax',
-        width:'fit-content',
-        
+        width: 'fit-content',
+
     },
     paper: {
         padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
@@ -22,17 +22,18 @@ const styles = theme => ({
 
 function SimpleBreadcrumb(props) {
     const { classes } = props;
+    const paperClass = `${classes.paper} game-details-breadcrumb`;
     return (
         <div className={classes.root}>
-            <Paper className={classes.paper}>
+            <Paper className={paperClass}>
                 <Breadcrumbs aria-label="Breadcrumb">
-                    <Link color="secondary" href="/">
+                    <Link color="primary" href="/">
                         Inicio
                     </Link>
-                    <Link color="secondary" href="/jogos">
+                    <Link color="primary" href="/jogos">
                         Catálogo de Jogos
                     </Link>
-                    <Typography color="primary">Detalhes</Typography>
+                    <Typography color="secondary">Detalhes</Typography>
                 </Breadcrumbs>
             </Paper>
         </div>

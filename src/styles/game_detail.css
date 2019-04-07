@@ -89,7 +89,7 @@ break {
     margin: 0px;
 }
 
-.buy-game-price{
+.buy-game-price {
     color: #fff;
     font-size: 12px;
     font-weight: 700;
@@ -105,7 +105,7 @@ break {
     background-color: #151d27;
 }
 
-.buy-game-add-to-cart{
+.buy-game-add-to-cart {
     color: #fff;
     font-size: 12px;
     font-weight: 700;
@@ -127,8 +127,12 @@ break {
     background: #e23;
 }
 
-.buy-game-add-to-cart > svg {
+.buy-game-add-to-cart>svg {
     margin-right: 10px;
     vertical-align: middle;
     height: 20px;
+}
+
+.game-details-breadcrumb>nav>ol>li > a, .game-details-breadcrumb>nav>ol>li+li > a {
+    color: #0499fe !important;
 }

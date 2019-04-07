@@ -1,0 +1,55 @@
+.game-evaluation-container {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 15px;
+    border-radius: 3px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
+    background-color: #151d27;
+    margin: 20px 20vmax;
+    position: relative;
+    align-items: center;
+    height: 80px;
+}
+
+.game-evaluation-title {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.3;
+    font-family: "Open Sans", Arial, Helvetica;
+    text-align: left;
+    margin: 0px;
+}
+
+.game-evaluation-title+div>div>div>div>div, .game-evaluation-title+div>div>div>div>div+div>button {
+    background-color: #ff0047;
+}
+
+.step-slider {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    height: 75px;
+    align-items: center;
+}
+
+.sad-smile, .ok-smile, .happy-smile {
+    color: #ff0047;
+    position: absolute;
+    top: -25px;
+    height: 30px !important;
+    width: 30px !important;
+}
+
+.sad-smile{
+    left: -15px;
+}
+
+.ok-smile {
+    left: 50%;
+    margin-left: -15px;
+}
+
+.happy-smile {
+    right: -15px;
+}
