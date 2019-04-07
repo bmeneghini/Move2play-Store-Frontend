@@ -166,7 +166,7 @@ class EnviarJogoForm extends Component {
                             </Button>
                             <Button variant="contained" color="primary">
                                 Cancelar
-                        </Button>
+                            </Button>
                         </div>
                     </FormGroup>
 

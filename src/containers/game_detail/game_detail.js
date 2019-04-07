@@ -4,9 +4,11 @@ import MenuAppBar from '../../components/app_bar/menu_app_bar';
 import { connect } from "react-redux";
 import { setUserCredentials } from '../../actions';
 import history from '../../components/config/history';
-import EnviarJogoForm from "../../components/meus_jogos/enviar_jogo/enviar_jogo_form";
-import "./../../styles/meus_jogos.css";
 import _ from 'lodash';
+import SimpleBreadcrumb from './../../components/shared/simple_breadcrumb';
+import GameInfoContainer from './../../components/game_detail/game_info_container';
+import BuyContainer from './../../components/game_detail/buy_container';
+import './../../styles/game_detail.css';
 
 class GameDetail extends Component {
 
@@ -40,12 +42,16 @@ class GameDetail extends Component {
     }
 
     render() {
+        const gameId = this.props.location.state.gameId;
+        console.log(gameId)
         const { auth: { isAuthenticated } } = this.props;
         return (
             <div>
                 {isAuthenticated() ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
-                <h1 className={'enviar-jogo-title'}>God of War - Viking Edition</h1>
-                <EnviarJogoForm user={this.props.user} />
+                <SimpleBreadcrumb />
+                <h1 className={'game-detail-title'}>God of War - Viking Edition</h1>
+                <GameInfoContainer />
+                <BuyContainer />>
             </div>
         )
     }
