@@ -98,7 +98,7 @@ break {
     position: absolute;
     height: 40px;
     right: 220px;
-    bottom: -15px;
+    bottom: -5px;
     padding: 13px 15px;
     border-radius: 3px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
@@ -114,7 +114,7 @@ break {
     position: absolute;
     height: 40px;
     right: 10px;
-    bottom: -15px;
+    bottom: -5px;
     padding: 10px 15px;
     border-radius: 3px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
@@ -133,6 +133,6 @@ break {
     height: 20px;
 }
 
-.game-details-breadcrumb>nav>ol>li > a, .game-details-breadcrumb>nav>ol>li+li > a {
+.game-details-breadcrumb>nav>ol>li>a, .game-details-breadcrumb>nav>ol>li+li>a {
     color: #0499fe !important;
 }

@@ -27,7 +27,7 @@ class GameDetail extends Component {
                 <GameInfoContainer />
                 <BuyContainer />
                 <GameEvaluation />
-                <UsersEvaluation />>
+                <UsersEvaluation />
             </div>
         )
     }
