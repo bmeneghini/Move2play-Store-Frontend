@@ -19,10 +19,9 @@
 }
 
 .evaluation-container {
-    background-color: rgba(95, 115, 138, .3);
     margin: 10px;
     border: 1px solid #435467;
-    background-color: rgba(95, 115, 138, .3);
+    background-color: #12181f;
     border-radius: 5px;
     box-shadow: none;
     display: flex;
