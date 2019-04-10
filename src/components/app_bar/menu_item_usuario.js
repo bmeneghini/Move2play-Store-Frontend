@@ -19,7 +19,7 @@ const styles = {
         cursor: 'pointer',
         position: 'absolute',
         left: left + 10,
-        top: -14
+        top: -23
     },
     userLabel: {
         height: 16,
@@ -30,7 +30,7 @@ const styles = {
         cursor: 'pointer',
         position: 'absolute',
         left: left + 45,
-        top: -9
+        top: -18
     },
     userArrow: {
         color: "white",
@@ -39,7 +39,7 @@ const styles = {
         cursor: 'pointer',
         position: 'absolute',
         left: left + 100,
-        top: -10
+        top: -19
     },
     profileMenuIcon: {
         width: 25,

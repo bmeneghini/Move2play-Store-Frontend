@@ -25,7 +25,7 @@ class GameDetail extends Component {
                 <SimpleBreadcrumb />
                 <h1 className={'game-detail-title'}>God of War - Viking Edition</h1>
                 <GameInfoContainer />
-                <BuyContainer />
+                <BuyContainer gameId={gameId} auth={this.props.auth}/>
                 <GameEvaluation />
                 <UsersEvaluation />
             </div>

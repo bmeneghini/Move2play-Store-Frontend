@@ -83,7 +83,6 @@
     cursor: pointer;
     position: absolute;
     left: 35px;
-    top: -9px;
 }
 
 .menu-carrinho-icon {
@@ -93,10 +92,14 @@
     cursor: pointer;
     position: absolute;
     left: 0px;
-    top: -10px;
 }
 
 .menu-app-bar-menu {
     width: 800px;
     margin: 0 15px;
+}
+
+.carrinho-badge {
+    top: -10px;
+    right: -25px;
 }

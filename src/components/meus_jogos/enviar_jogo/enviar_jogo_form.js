@@ -169,9 +169,7 @@ class EnviarJogoForm extends Component {
                             </Button>
                         </div>
                     </FormGroup>
-
                 </form>
-
                 <CustomSnackbar
                     setClick={e => this.showSnackbar = e}
                     duration={this.state.duration}

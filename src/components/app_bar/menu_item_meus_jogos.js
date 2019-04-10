@@ -20,7 +20,7 @@ const styles = {
         cursor: 'pointer',
         position: 'absolute',
         left: left + 10,
-        top: -14
+        top: -23
     },
     label: {
         height: 16,
@@ -32,7 +32,7 @@ const styles = {
         left: left + 50,
         width: '85px',
         cursor: 'pointer',
-        top: -9
+        top: -18
     },
     arrow: {
         color: "white",
@@ -41,7 +41,7 @@ const styles = {
         position: 'absolute',
         cursor: 'pointer',
         left: left + 135,
-        top: -10
+        top: -19
     },
     send: {
         width: 25,

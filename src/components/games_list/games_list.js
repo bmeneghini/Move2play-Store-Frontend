@@ -4,8 +4,10 @@ import GameContainer from './game_container';
 import Button from '@material-ui/core/Button';
 import MenuAppBar from './../app_bar/menu_app_bar';
 import ButtonAppBar from './../app_bar/button_app_bar';
-import { connect } from "react-redux";
-import { getGamesList } from './../../actions/index';
+import CustomSnackbar from './../shared/custom_snackbar';
+import { addGameToCart, getGamesList } from './../../actions/index';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import _ from 'lodash';
 import "./../../styles/games_list.css";
 
@@ -13,6 +15,9 @@ class GamesList extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            variant: 'success',
+            content: '',
+            duration: 4000,
             gamesList: [
                 { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 1 },
                 { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: -1 },
@@ -28,6 +33,29 @@ class GamesList extends Component {
         }
     }
 
+    componentDidMount() {
+        // this.props.getGamesList(this.getGamesListSuccess, this.getGamesListError);
+    }
+
+    verifyIfGameIsAlreadyInCart = (gameId) => {
+        if (this.props.cart.includes(gameId)) {
+            this.setState({ variant: 'error', content: 'Este ítem já está adicionado ao seu carrinho!' }, () => this.showSnackbar());
+        }
+        else {
+            this.props.addGameToCart(gameId);
+            this.setState({ variant: 'success', content: 'Ítem adicionado ao carrinho com sucesso!' }, () => this.showSnackbar())
+        }
+    }
+
+    addGameToCart = (gameId) => {
+        if (this.props.auth.isAuthenticated()) {
+            this.verifyIfGameIsAlreadyInCart(gameId);
+        }
+        else {
+            this.setState({ variant: 'error', content: 'Faça o login para adicionar um ítem ao seu carrinho!' }, () => this.showSnackbar());
+        }
+    }
+
     buildGamesContainer = () => {
         return this.state.gamesList.map((game, index) => {
             return <GameContainer
@@ -37,12 +65,9 @@ class GamesList extends Component {
                 gamePrice={game.gamePrice}
                 gameThumbnail={game.gameThumbnail}
                 evaluation={game.evaluation}
+                addGameToCart={this.addGameToCart}
             />
         })
-    }
-
-    componentDidMount() {
-        // this.props.getGamesList(this.getGamesListSuccess, this.getGamesListError);
     }
 
     getGamesListSuccess = (result) => {
@@ -71,10 +96,26 @@ class GamesList extends Component {
                             Ver mais
                         </Button>
                     </div>
+                    <CustomSnackbar
+                        setClick={e => this.showSnackbar = e}
+                        duration={this.state.duration}
+                        variant={this.state.variant}
+                        content={this.state.content}
+                    />
                 </div>
             )
         }
     }
 }
 
-export default connect(null, { getGamesList })(GamesList);
+function mapStateToProps(state) {
+    return {
+        cart: state.cart
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ addGameToCart, getGamesList }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GamesList);
