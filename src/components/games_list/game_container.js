@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import SentimentVeryDissatisfied from '@material-ui/icons/SentimentVeryDissatisfied';
+import SentimentSatisfied from '@material-ui/icons/SentimentSatisfied';
+import SentimentVerySatisfied from '@material-ui/icons/SentimentVerySatisfied';
 import history from './../config/history';
 
 export default class GameContainer extends Component {
@@ -21,13 +24,20 @@ export default class GameContainer extends Component {
     }
 
     render() {
-        const { gameId, gameName, gamePrice, gameThumbnail } = this.props;
-        const gameLabelPrice = this.state.addToChart ? 'Incluir no carrinho' : `R$ ${gamePrice}`
-
+        const { gameId, gameName, gamePrice, gameThumbnail, evaluation } = this.props;
+        console.log(evaluation)
+        const gameLabelPrice = this.state.addToChart ? 'Incluir no carrinho' : `R$ ${gamePrice}`;
+        const sentiment = evaluation === -1
+            ? <SentimentVeryDissatisfied className={'sad-smile-gl'} />
+            : evaluation === 0 ? <SentimentSatisfied className={'ok-smile-gl'} /> : <SentimentVerySatisfied className={'happy-smile-gl'} />;
         return (
             <div className={'game-container'}>
                 <img className={'game-thumbnail'} src={gameThumbnail} alt='game-thumbnail' onClick={() => this.redirectToGameDetail(gameId)} />
                 <div className={'game-name'} onClick={() => this.redirectToGameDetail(gameId)}>{gameName}</div>
+                <div className={'game-evaluation-gl-container'} onClick={() => this.redirectToGameDetail(gameId)}>
+                    <div className={'game-evalaluation-gl-title'}>Avaliação do jogo: </div>
+                    {sentiment}
+                </div>
                 <div className={'game-price-container'}>
                     <div
                         onMouseEnter={() => this.toggleAddToCartLabel(true)}

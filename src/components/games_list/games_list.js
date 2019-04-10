@@ -14,16 +14,16 @@ class GamesList extends Component {
         super(props);
         this.state = {
             gamesList: [
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg' }
+                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 1 },
+                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: -1 },
+                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: -1 },
+                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 },
+                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 },
+                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 1 },
+                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 },
+                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 },
+                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: -1 },
+                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 }
             ]
         }
     }
@@ -36,6 +36,7 @@ class GamesList extends Component {
                 gameName={game.gameName}
                 gamePrice={game.gamePrice}
                 gameThumbnail={game.gameThumbnail}
+                evaluation={game.evaluation}
             />
         })
     }

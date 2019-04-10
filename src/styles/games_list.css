@@ -45,7 +45,6 @@
     background-color: #151d27;
 }
 
-
 @media screen and (min-width:700px) and (max-width: 1024px) {
     .games-filters-root, .games-list-containers {
         margin: 10px calc(5vmax + 100px);
@@ -101,7 +100,7 @@
     cursor: pointer;
     height: 60px;
     width: 100%;
-    margin-top: 55%;
+    margin-top: 46%;
     padding: 5px;
     align-items: center;
     display: flex;
@@ -179,4 +178,28 @@
 .ver-mais-root>button:hover {
     color: white !important;
     background-color: #123d59 !important;
+}
+
+.sad-smile-gl, .ok-smile-gl, .happy-smile-gl {
+    color: #ff0047;
+    position: absolute;
+    bottom: 40px;
+    height: 30px !important;
+    width: 30px !important;
+    right: 20px;
+}
+
+.game-evaluation-gl-container {
+    cursor: pointer;
+}
+
+.game-evalaluation-gl-title {
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.3;
+    font-family: "Open Sans", Arial, Helvetica;
+    padding: 5px;
+    position: absolute;
+    bottom: 40px;
+    left: 8px;
 }
