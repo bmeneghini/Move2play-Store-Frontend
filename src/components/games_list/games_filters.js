@@ -29,7 +29,6 @@ export default class GamesFilters extends React.Component {
     };
 
     render() {
-        console.log(this.state.gameGender)
         return (
             <div className={'games-filters-root'}>
                 <GameNameInput

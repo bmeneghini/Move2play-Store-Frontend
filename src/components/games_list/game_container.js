@@ -25,7 +25,6 @@ export default class GameContainer extends Component {
 
     render() {
         const { gameId, gameName, gamePrice, gameThumbnail, evaluation, addGameToCart } = this.props;
-        console.log(evaluation)
         const gameLabelPrice = this.state.addToChart ? 'Incluir no carrinho' : `R$ ${gamePrice}`;
         const sentiment = evaluation === -1
             ? <SentimentVeryDissatisfied className={'sad-smile-gl'} />

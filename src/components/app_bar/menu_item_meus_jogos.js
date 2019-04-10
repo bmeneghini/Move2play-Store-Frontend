@@ -6,8 +6,8 @@ import Send from '@material-ui/icons/Send';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import history from '../config/history'
-import './../../styles/app_bar.css'
+import history from '../config/history';
+import './../../styles/app_bar.css';
 
 const left = 100;
 

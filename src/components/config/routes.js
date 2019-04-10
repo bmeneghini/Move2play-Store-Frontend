@@ -11,6 +11,7 @@ import EnviarJogo from './../../containers/meus_jogos/enviar_jogo';
 import Biblioteca from './../../containers/meus_jogos/biblioteca';
 import GamesList from './../games_list/games_list';
 import GameDetail from './../../containers/game_detail/game_detail';
+import UserCart from './../../containers/user_cart/user_cart';
 
 const auth = new Auth();
 
@@ -25,6 +26,7 @@ const Routes = () => (
         <Router history={history} component={Home}>
             <div>
                 <Switch>
+                    <Route path="/carrinho" render={(props) => <UserCart auth={auth} {...props} />} />} />
                     <Route path="/jogos/detalhes" render={(props) => <GameDetail auth={auth} {...props} />} />} />
                     <Route path="/jogos" render={(props) => <GamesList auth={auth} {...props} />} />} />
                     <Route path="/meus-jogos/biblioteca" render={(props) => <Biblioteca auth={auth} {...props} />} />} />

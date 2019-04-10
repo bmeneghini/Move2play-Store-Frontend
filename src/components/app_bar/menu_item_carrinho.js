@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
+import history from './../config/history';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -9,6 +10,10 @@ class MenuItemCarrinho extends Component {
         this.setState({ anchorEl: event.currentTarget });
     };
 
+    handleClick = () => {
+        history.push("/carrinho");
+    }
+
     render() {
         let numberOfItens = (this.props.cart !== null && this.props.cart !== undefined)
                 ? this.props.cart.length !== undefined 
@@ -16,7 +21,7 @@ class MenuItemCarrinho extends Component {
                     : 0
                 : 0;
         return (
-            <div className={'menu-carrinho-root'}>
+            <div className={'menu-carrinho-root'} onClick={this.handleClick}>
                 <Badge className={'carrinho-badge'} badgeContent={numberOfItens} color="secondary"></Badge>
                 <ShoppingCart className={'menu-carrinho-icon'} onClick={this.handleMenu} />
                 <label onClick={this.handleMenu} className={'menu-carrinho-label'}> Carrinho </label>
@@ -26,7 +31,7 @@ class MenuItemCarrinho extends Component {
 }
 
 MenuItemCarrinho.propTypes = {
-    cart: PropTypes.object
+    cart: PropTypes.array
 };
 
 function mapStateToProps(state) {
