@@ -4,24 +4,27 @@ import { withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const styles = () => ({
     root: {
-        width: '90%',
+        display: 'flex',
+        flexDirection: 'row',
+        margin: '20px 20vmax',
+        backgroundColor: '#12181f',
+        marginBottom: 0,
+        padding: 5
     },
-    backButton: {
-        marginRight: theme.spacing.unit,
+    step: {
+        backgroundColor: '#c51162'
     },
-    instructions: {
-        marginTop: theme.spacing.unit,
-        marginBottom: theme.spacing.unit,
-    },
+    label: {
+        color: 'white',
+        backgroundColor: 'white'
+    }
 });
 
 function getSteps() {
-    return ['Carrinho', 'Pagamento', 'Finalização'];
+    return ['Confirmação', 'Pagamento', 'Finalização'];
 }
 
 class PaymentStepper extends React.Component {
@@ -51,31 +54,14 @@ class PaymentStepper extends React.Component {
         const { classes } = this.props;
         const steps = getSteps();
         const { activeStep } = this.state;
-
         return (
-            <div className={classes.root}>
-                <Stepper activeStep={activeStep} alternativeLabel>
-                    {steps.map(label => (
-                        <Step key={label}>
-                            <StepLabel>{label}</StepLabel>
-                        </Step>
-                    ))}
-                </Stepper>
-                <div>
-                    <div>
-                        <Button
-                            disabled={activeStep === 0}
-                            onClick={this.handleBack}
-                            className={classes.backButton}
-                        >
-                            Back
-                                    </Button>
-                        <Button variant="contained" color="primary" onClick={this.handleNext}>
-                            {activeStep === steps.length - 1 ? 'Finish' : 'Ir para pagamento'}
-                        </Button>
-                    </div>
-                </div>
-            </div>
+            <Stepper className={classes.root} alternativeLabel>
+                {steps.map((label, index) => (
+                    <Step key={label} className={activeStep === index ? 'activeStep' : 'step'}>
+                        <StepLabel>{label}</StepLabel>
+                    </Step>
+                ))}
+            </Stepper>
         );
     }
 }

@@ -7,6 +7,8 @@ export const UPLOAD_GAME_TO_SERVER = 'upload_game_to_server';
 export const SEND_USER_INFORMATION = 'send_user_information';
 export const GET_GAMES_LIST = 'get_games_list';
 export const ADD_GAME_TO_CART = 'add_game_to_cart';
+export const REMOVE_GAME_FROM_CART = 'remove_game_from_cart';
+export const REMOVE_ALL_GAMES_FROM_CART = 'remove_all_games_from_cart';
 
 const ROOT_URL = process.env.REACT_APP_API_ROOT_URL
 
@@ -67,9 +69,23 @@ export function getGamesList(successHandler, errorHandler) {
         .catch(error => errorHandler(error));
 }
 
-export function addGameToCart(game) {
+export function addGameToCart(gameId) {
     return {
         type: ADD_GAME_TO_CART,
-        payload: game
+        payload: gameId
+    }
+}
+
+export function removeGameFromCart(gameId) {
+    return {
+        type: REMOVE_GAME_FROM_CART,
+        payload: gameId
+    }
+}
+
+export function removeAllGamesFromCart() {
+    return {
+        type: REMOVE_ALL_GAMES_FROM_CART,
+        payload: []
     }
 }
