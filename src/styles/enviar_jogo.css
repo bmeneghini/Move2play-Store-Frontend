@@ -8,8 +8,8 @@
     font-weight: 700;
     line-height: 1.3;
     font-family: "Open Sans", Arial, Helvetica;
-    margin: 20px 10vmax;
-    text-align: center;
+    margin: 20px 20vmax;
+    text-align: left;
 }
 
 .enviar-jogo-form {
@@ -23,25 +23,29 @@
 
 @media screen and (min-width:700px) and (max-width: 1024px) {
     .enviar-jogo-form {
-        margin: 10px calc(10vmax + 100px);
+        /* margin: 10px calc(10vmax + 100px); */
+        margin: 0px 20vmax;
     }
 }
 
 @media screen and (min-width:1025px) and (max-width: 1440px) {
     .enviar-jogo-form {
-        margin: 10px calc(10vmax + 55px);
+        /* margin: 10px calc(10vmax + 55px); */
+        margin: 0px 20vmax;
     }
 }
 
 @media screen and (min-width:1441px) and (max-width: 1700px) {
     .enviar-jogo-form {
-        margin: 10px calc(10vmax + 85px);
+        /* margin: 10px calc(10vmax + 85px); */
+        margin: 0px 20vmax;
     }
 }
 
 @media screen and (min-width:1701px) and (max-width: 2560px) {
     .enviar-jogo-form {
-        margin: 10px calc(10vmax + 75px);
+        /* margin: 10px calc(10vmax + 75px); */
+        margin: 0px 20vmax;
     }
 }
 
@@ -111,31 +115,30 @@ div>fieldset+input+div>span {
 /* FOOTER */
 
 #footer {
-    z-index: 999;
+    z-index: 10;
     position: fixed;
     bottom: 0;
     width: 100%;
+    height: 57px;
     background-color: #191919 !important;
-    margin-top: 20px;
+    box-shadow: 0 -2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 }
 
-#footer>div+button {
+#footer>button {
     margin: 10px;
-    margin-right: calc(5vmax + 10px);
-    position: absolute;
-    right: 0px;
-}
-
-#footer>div+button+button {
-    margin: 10px;
-    margin-left: calc(5vmax + 10px);
-    color: white !important;
+    float: right;
     height: 37px;
-    width: 130px;
+    margin-right: calc(20vmax + 0px);
+}
+
+#footer>button+button {
+    margin: 10px;
+    float: right;
+    height: 37px;
     background-color: #0499fe !important;
+    transition: 0.8s;
 }
 
 #footer>button+button:hover {
-    color: white !important;
     background-color: #123d59 !important;
 }

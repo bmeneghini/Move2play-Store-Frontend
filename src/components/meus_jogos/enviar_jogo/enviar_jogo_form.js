@@ -7,6 +7,7 @@ import GamePriceInput from './../../shared/game_price_input';
 import GameGenderInput from './../../shared/game_gender_input';
 import GameDescriptionInput from './../../shared/game_description_input';
 import Send from '@material-ui/icons/Send';
+import Cancel from '@material-ui/icons/Cancel';
 import Button from '@material-ui/core/Button';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControl from '@material-ui/core/FormControl';
@@ -14,6 +15,7 @@ import ProgressBar from '../../shared/progress_bar';
 import CustomSnackbar from '../../shared/custom_snackbar';
 import { connect } from "react-redux";
 import { uploadFileToServer, uploadGameToServer } from '../../../actions/index';
+import history from './../../config/history';
 import _ from 'lodash';
 import "./../../../styles/enviar_jogo.css";
 
@@ -97,6 +99,10 @@ class EnviarJogoForm extends Component {
     }
 
     render() {
+        const showProgress = this.state.progressFile !== 0
+            ? <ProgressBar progress={this.state.progressFile} />
+            : null;
+
         return (
             <div className={'enviar-jogo-form-root'}>
                 <form onSubmit={this.handleSubmit}>
@@ -154,7 +160,7 @@ class EnviarJogoForm extends Component {
                         </FormControl>
                         <div style={{ height: 81 }}></div>
                         <div id={`footer`}>
-                            <ProgressBar progress={this.state.progressFile} />
+                            {showProgress}
                             <Button type='submit' variant="contained" color="secondary">
                                 <Send style={{
                                     width: 25,
@@ -164,7 +170,13 @@ class EnviarJogoForm extends Component {
                                 }} />
                                 Submeter
                             </Button>
-                            <Button variant="contained" color="primary">
+                            <Button variant="contained" color="primary" onClick={() => { history.push('/') }}>
+                                <Cancel style={{
+                                    width: 25,
+                                    height: 25,
+                                    color: "white",
+                                    marginRight: 10,
+                                }} />
                                 Cancelar
                             </Button>
                         </div>

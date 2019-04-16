@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import ButtonAppBar from '../../components/app_bar/button_app_bar';
 import MenuAppBar from '../../components/app_bar/menu_app_bar';
+import EnviarJogoBreadcrumb from "../../components/meus_jogos/enviar_jogo/enviar_jogo_breadcrumb";
+import EnviarJogoForm from "../../components/meus_jogos/enviar_jogo/enviar_jogo_form";
 import { connect } from "react-redux";
 import { setUserCredentials } from './../../actions';
 import history from '../../components/config/history';
-import EnviarJogoForm from "../../components/meus_jogos/enviar_jogo/enviar_jogo_form";
 import "./../../styles/meus_jogos.css";
 import _ from 'lodash';
 
@@ -44,6 +45,7 @@ class EnviarJogo extends Component {
         return (
             <div>
                 {isAuthenticated() ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
+                <EnviarJogoBreadcrumb />
                 <h1 className={'enviar-jogo-title'}>Enviar Jogo</h1>
                 <EnviarJogoForm user={this.props.user} />
             </div>
