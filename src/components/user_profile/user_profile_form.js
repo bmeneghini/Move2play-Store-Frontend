@@ -1,7 +1,5 @@
-import React, { Component } from 'react'
-import FormControl from '@material-ui/core/FormControl';
+import React, { Component } from 'react';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
 import Checkbox from '@material-ui/core/Checkbox';
 import UserAvatarField from './user_avatar_field';
 import SimpleInput from './../shared/simple_input';

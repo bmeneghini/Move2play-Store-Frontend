@@ -39,6 +39,7 @@ class UserCart extends Component {
         this.setState({
             gameId
             , content: 'Ítem removido do carrinho com sucesso!'
+            , variant: 'success'
             , alertTitle: 'Remover ítem do carrinho'
             , alertContent: 'Tem certeza que deseja remover o ítem do carrinho?'
             , alertConfirmationHandler: this.removeGame
@@ -52,12 +53,21 @@ class UserCart extends Component {
     }
 
     handleRemoveAllClick = () => {
-        this.setState({
-            content: 'Ítens removidos do carrinho com sucesso!'
-            , alertTitle: 'Remover ítens do carrinho'
-            , alertContent: 'Tem certeza que deseja remover todos os ítens do carrinho?'
-            , alertConfirmationHandler: this.removeAllGames
-        }, () => this.openDialog());
+        if (this.props.cart.length > 0) {
+            this.setState({
+                content: 'Ítens removidos do carrinho com sucesso!'
+                , variant: 'success'
+                , alertTitle: 'Remover ítens do carrinho'
+                , alertContent: 'Tem certeza que deseja remover todos os ítens do carrinho?'
+                , alertConfirmationHandler: this.removeAllGames
+            }, () => this.openDialog());
+        }
+        else {
+            this.setState({
+                content: 'Seu carrinho já está vazio!',
+                variant: 'warning'
+            }, () => this.showSnackbar());
+        }
     }
 
     removeAllGames = () => {

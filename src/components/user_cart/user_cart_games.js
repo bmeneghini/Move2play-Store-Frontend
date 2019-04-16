@@ -51,13 +51,18 @@ export default class UserCartGames extends Component {
 
     render() {
         const { games } = this.state;
-        const content = games.length > 0 ? this.renderCartGames(games) : '';
+        const content = games.length > 0
+            ? this.renderCartGames(games)
+            : <div className={'zero-itens'}>Não há nenhum ítem no seu carrinho :(</div>;
+        const totalSum = games.length > 0
+            ? <div className={'total-sum-container'}>
+                <div className={'total-sum'}>{`Soma total: R$ ${this.checkSum()}`}</div>
+            </div>
+            : null;
         return (
             <div className={'user-cart-container'}>
                 {content}
-                <div className={'total-sum-container'}>
-                    <div  className={'total-sum'}>{`Soma total: R$ ${this.checkSum()}`}</div>
-                </div>
+                {totalSum}
             </div>
         )
     }

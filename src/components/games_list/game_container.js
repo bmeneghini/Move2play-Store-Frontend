@@ -24,11 +24,29 @@ export default class GameContainer extends Component {
     }
 
     render() {
-        const { gameId, gameName, gamePrice, gameThumbnail, evaluation, addGameToCart } = this.props;
+        const { gameId, gameName, gamePrice, gameThumbnail, evaluation, addGameToCart, cart } = this.props;
+
         const gameLabelPrice = this.state.addToChart ? 'Incluir no carrinho' : `R$ ${gamePrice}`;
+
         const sentiment = evaluation === -1
             ? <SentimentVeryDissatisfied className={'sad-smile-gl'} />
-            : evaluation === 0 ? <SentimentSatisfied className={'ok-smile-gl'} /> : <SentimentVerySatisfied className={'happy-smile-gl'} />;
+            : evaluation === 0
+                ? <SentimentSatisfied className={'ok-smile-gl'} />
+                : <SentimentVerySatisfied className={'happy-smile-gl'} />;
+
+        const priceContent = cart.includes(gameId) ?
+            <div
+                className={'game-added-in-chart'}>
+                Adicionado
+            </div>
+            :
+            <div
+                onMouseEnter={() => this.toggleAddToCartLabel(true)}
+                onMouseLeave={() => this.toggleAddToCartLabel(false)}
+                className={'game-price-title'}>
+                {gameLabelPrice}
+            </div>
+
         return (
             <div className={'game-container'}>
                 <img className={'game-thumbnail'} src={gameThumbnail} alt='game-thumbnail' onClick={() => this.redirectToGameDetail(gameId)} />
@@ -38,12 +56,7 @@ export default class GameContainer extends Component {
                     {sentiment}
                 </div>
                 <div className={'game-price-container'} onClick={() => addGameToCart(gameId)}>
-                    <div
-                        onMouseEnter={() => this.toggleAddToCartLabel(true)}
-                        onMouseLeave={() => this.toggleAddToCartLabel(false)}
-                        className={'game-price-title'}>
-                        {gameLabelPrice}
-                    </div>
+                    {priceContent}
                 </div>
             </div>
         )

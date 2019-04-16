@@ -67,6 +67,7 @@ class GamesList extends Component {
                 gameThumbnail={game.gameThumbnail}
                 evaluation={game.evaluation}
                 addGameToCart={this.addGameToCart}
+                cart={this.props.cart}
             />
         })
     }
