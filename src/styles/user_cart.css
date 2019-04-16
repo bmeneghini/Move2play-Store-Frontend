@@ -144,7 +144,7 @@
     margin: 10px;
     float: right;
     height: 37px;
-    margin-right: calc(5vmax + 10px);
+    margin-right: calc(20vmax + 0px);
 }
 
 #cart-footer>button+button {
