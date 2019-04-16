@@ -9,7 +9,7 @@ import CustomSnackbar from './../../components/shared/custom_snackbar';
 import Payment from '@material-ui/icons/Payment';
 import ClearAll from '@material-ui/icons/ClearAll';
 import Button from '@material-ui/core/Button';
-import { removeGameFromCart, removeAllGamesFromCart } from './../../actions/index';
+import { removeGameFromCart, removeAllGamesFromCart, postCheckout } from './../../actions/index';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import './../../styles/user_cart.css';
@@ -76,6 +76,10 @@ class UserCart extends Component {
         this.showSnackbar();
     }
 
+    handlePayment = () => {
+        this.props.postCheckout();
+    }
+
     render() {
         return (
             <div>
@@ -85,7 +89,7 @@ class UserCart extends Component {
                 <PaymentStepper />
                 <UserCartGames cart={this.props.cart} removeGameFromCart={this.removeGameFromCart} />
                 <div id={'cart-footer'}>
-                    <Button variant="contained" color="secondary">
+                    <Button variant="contained" color="secondary" onClick={this.handlePayment}>
                         <Payment style={{
                             width: 25,
                             height: 25,
@@ -130,7 +134,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ removeGameFromCart, removeAllGamesFromCart }, dispatch)
+    return bindActionCreators({ removeGameFromCart, removeAllGamesFromCart, postCheckout }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserCart);

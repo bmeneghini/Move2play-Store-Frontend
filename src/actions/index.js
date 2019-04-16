@@ -9,8 +9,12 @@ export const GET_GAMES_LIST = 'get_games_list';
 export const ADD_GAME_TO_CART = 'add_game_to_cart';
 export const REMOVE_GAME_FROM_CART = 'remove_game_from_cart';
 export const REMOVE_ALL_GAMES_FROM_CART = 'remove_all_games_from_cart';
+export const POST_CHECKOUT = 'post_checkout';
 
-const ROOT_URL = process.env.REACT_APP_API_ROOT_URL
+const ROOT_URL = process.env.REACT_APP_API_ROOT_URL;
+const PAGSEGURO_CHECKOUT = process.env.REACT_APP_PAGSEGURO_CHECKOUT;
+const PAGSEGURO_EMAIL = process.env.REACT_APP_PAGSEGURO_EMAIL;
+const PAGSEGURO_TOKEN = process.env.REACT_APP_PAGSEGURO_TOKEN
 
 export function setUserCredentials(params) {
     return {
@@ -87,5 +91,38 @@ export function removeAllGamesFromCart() {
     return {
         type: REMOVE_ALL_GAMES_FROM_CART,
         payload: []
+    }
+}
+
+export function postCheckout2() {
+    let params = `email=${PAGSEGURO_EMAIL}&token=${PAGSEGURO_TOKEN}&currency=BRL&itemId1=0001&itemDescription1=Produto PagSeguroI&itemAmount1=99999.99&itemQuantity1=1&itemWeight1=1000&shippingAddressRequired=false`;
+    let request = `${PAGSEGURO_CHECKOUT}${params}`;
+    axios.post(request, params, { headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=ISO-8859-1', "Access-Control-Allow-Origin": "https://sandbox.pagseguro.uol.com.br" } })
+        .then(result => console.log(result))
+        .catch(error => console.log(error))
+    return {
+        type: POST_CHECKOUT,
+        payload: {}
+    }
+}
+
+export function postCheckout() {
+    let params = new URLSearchParams();
+    params.append('email', PAGSEGURO_EMAIL);
+    params.append('token', PAGSEGURO_TOKEN);
+    params.append('currency', 'BRL');
+    params.append('itemId1', '0001');
+    params.append('itemDescription1', 'Produto PagSeguro1');
+    params.append('itemAmount1', '10.99');
+    params.append('itemQuantity1', '1');
+    params.append('itemWeight1', '1');
+    params.append('shippingAddressRequired', 'false');
+    let request = `${PAGSEGURO_CHECKOUT}email=${PAGSEGURO_EMAIL}&token=${PAGSEGURO_TOKEN}`;
+    axios.post(request, params, { headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=ISO-8859-1', "Access-Control-Allow-Origin": "https://sandbox.pagseguro.uol.com.br" } })
+        .then(result => console.log(result))
+        .catch(error => console.log(error))
+    return {
+        type: POST_CHECKOUT,
+        payload: {}
     }
 }
