@@ -2,7 +2,7 @@
     height: 100%;
 }
 
-.game-detail-title {
+.game-detail-title, .home-title {
     color: #fff;
     font-size: 30px;
     font-weight: 700;
@@ -10,6 +10,10 @@
     font-family: "Open Sans", Arial, Helvetica;
     margin: 20px 20vmax;
     text-align: left;
+}
+
+.home-title {
+    text-align: center;
 }
 
 .game-detail-container {
@@ -46,6 +50,9 @@ ol>li {
     width: 100%;
     max-height: 200px;
     max-width: 350px;
+    border: 1px solid #435467;
+    background-color: #12181f;
+    border-radius: 5px;
 }
 
 .game-description {

@@ -58,7 +58,7 @@ class Home extends Component {
     return (
       <div>
         {alreadyAuthenticated ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
-        <h1 className={'games-list-title'}>Destaques e Recomendados</h1 >
+        <h1 className={'home-title'}>Destaques e Recomendados</h1 >
       </div>
     );
   }
