@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import MenuAppBar from './../app_bar/menu_app_bar';
 import ButtonAppBar from './../app_bar/button_app_bar';
 import CustomSnackbar from './../shared/custom_snackbar';
+import GamesListBreadcrumb from './games_list_breadcrumb';
 import { addGameToCart, getGamesList } from './../../actions/index';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -88,6 +89,7 @@ class GamesList extends Component {
             return (
                 <div className={'games-list-root'}>
                     {isAuthenticated() ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
+                    <GamesListBreadcrumb />
                     <h1 className={'games-list-title'}>Catálogo de Jogos</h1 >
                     <GamesFilters />
                     <div className={'games-list-containers'}>{gamesContainers}</div>
