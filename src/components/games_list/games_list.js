@@ -20,15 +20,15 @@ class GamesList extends Component {
             duration: 4000,
             gamesList: [
                 { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 1 },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: -1 },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: -1 },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 1 },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: -1 },
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 }
+                { gameId: 2, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: -1 },
+                { gameId: 3, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: -1 },
+                { gameId: 4, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 },
+                { gameId: 5, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 },
+                { gameId: 6, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 1 },
+                { gameId: 7, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 },
+                { gameId: 8, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 },
+                { gameId: 9, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: -1 },
+                { gameId: 10, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 }
             ]
         }
     }

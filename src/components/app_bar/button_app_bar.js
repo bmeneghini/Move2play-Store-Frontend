@@ -16,6 +16,7 @@ class ButtonAppBar extends Component {
   render() {
     return (
       <AppBar position="static" className={"divContainer"}>
+        <div style={{ height: 70 }} />
         <Toolbar className={'menu-app-toolbar'}>
           <Logo />
           <GameNameInput

@@ -25,6 +25,7 @@ class MenuAppBar extends Component {
         const { auth } = this.props;
         return (
             <AppBar position="static" className={"divContainer"}>
+                <div style={{ height: 70 }} />
                 <Toolbar className={'menu-app-toolbar'}>
                     <Logo />
                     <GameNameInput

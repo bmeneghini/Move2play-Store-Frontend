@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import ButtonAppBar from './app_bar/button_app_bar'
-import MenuAppBar from './app_bar/menu_app_bar'
-import CustomCoverflow from './custom_coverflow'
+import ButtonAppBar from './app_bar/button_app_bar';
+import MenuAppBar from './app_bar/menu_app_bar';
 import _ from 'lodash';
 
 import { setUserCredentials, postUserInformation } from './../actions'
@@ -60,7 +59,6 @@ class Home extends Component {
       <div>
         {alreadyAuthenticated ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
         <h1 className={'games-list-title'}>Destaques e Recomendados</h1 >
-        <CustomCoverflow />
       </div>
     );
   }
