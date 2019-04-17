@@ -37,7 +37,6 @@ export default class UserProfileForm extends Component {
         })
     }
     render() {
-        console.log(this.props.user)
         if (this.props.user === undefined || this.props.user.given_name === undefined) {
             return null;
         }

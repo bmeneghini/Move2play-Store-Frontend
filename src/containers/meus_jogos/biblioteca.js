@@ -45,8 +45,7 @@ class Biblioteca extends Component {
             <div>
                 {isAuthenticated() ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
                 <CustomLabel content={`Biblioteca de Jogos`} font_size={25} text_align={"center"} height={100} />
-                <Card className="user-profile-form">
-                </Card >
+                <Card className="user-profile-form"></Card >
             </div>
         )
     }

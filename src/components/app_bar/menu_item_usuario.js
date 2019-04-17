@@ -69,7 +69,8 @@ class MenuItemUsuario extends Component {
     handleLogout = (event) => {
         event.preventDefault();
         this.props.auth.logout();
-        history.push("/")
+        localStorage.setItem('gameName', '');
+        history.push("/");
     }
 
     render() {

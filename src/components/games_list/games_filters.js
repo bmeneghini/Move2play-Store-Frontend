@@ -32,7 +32,6 @@ class GamesFilters extends React.Component {
     };
 
     buildFilterDto = () => {
-        console.log(this.state.gameGender)
         let name = this.state.gameName.length > 0 ? this.state.gameName : '';
         let price = this.state.gamePrice.length > 0 ? this.state.gamePrice : 0.00;
         let genre = this.state.gameGender > 0 ? this.state.gameGender : '';

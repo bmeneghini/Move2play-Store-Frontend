@@ -6,14 +6,14 @@ export default class Logo extends Component {
         return (
             <div className={"divContainerInterno"}>
                 <div className={"divExterior"}>
-                    <div className={"divInterior"}>
+                    <div className={"divInterior"} onClick={() => localStorage.setItem('gameName', '')}>
                         <Link to="/">
-                        <img
-                            src="../images/move2play-logo-tennis.png"
-                            alt="logo move2play"
-                            className={"logo"}
-                            height="60"
-                        />
+                            <img
+                                src="../images/move2play-logo-tennis.png"
+                                alt="logo move2play"
+                                className={"logo"}
+                                height="60"
+                            />
                         </Link>
                     </div>
                 </div>

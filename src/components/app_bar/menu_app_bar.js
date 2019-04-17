@@ -21,12 +21,6 @@ class MenuAppBar extends Component {
         this.setupStorage();
     }
 
-    componentDidUpdate() {
-        if(this.state.gameName.length <= 0){
-            this.setupStorage();
-        }
-    }
-
     setupStorage = () => {
         let key = 'gameName';
         if (localStorage.hasOwnProperty(key)) {

@@ -17,9 +17,9 @@ class UserProfile extends Component {
   }
 
   componentWillUpdate() {
-    const { getProfile, getAccessToken } = this.props.auth;
-    const token = getAccessToken();
-    this.fetchUserProfile(getProfile, token);
+      const { getProfile, getAccessToken } = this.props.auth;
+      const token = getAccessToken();
+      this.fetchUserProfile(getProfile, token);
   }
 
   componentWillMount() {

@@ -22,7 +22,7 @@ class MenuItemCarrinho extends Component {
                 : 0;
         return (
             <div className={'menu-carrinho-root'} onClick={this.handleClick}>
-                <Badge className={'carrinho-badge'} badgeContent={numberOfItens} color="secondary"></Badge>
+                <Badge className={'carrinho-badge'} badgeContent={numberOfItens} color="secondary"><p></p></Badge>
                 <ShoppingCart className={'menu-carrinho-icon'} onClick={this.handleMenu} />
                 <label onClick={this.handleMenu} className={'menu-carrinho-label'}> Carrinho </label>
             </div>
