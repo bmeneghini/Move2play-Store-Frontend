@@ -20,14 +20,14 @@ const styles = theme => ({
         height: '53.63px',
         display: 'flex',
         flexGrow: 1,
-        flexDirection: 'row',
+        flexDirection: 'row'
     }
 });
 
 class GameNameInput extends React.Component {
 
     handleButtonClick = () => {
-        history.push("/jogos");
+        history.push({ pathname: '/jogos', state: { gameName: this.props.gameName } });
     }
 
     render() {

@@ -10,6 +10,7 @@ export const ADD_GAME_TO_CART = 'add_game_to_cart';
 export const REMOVE_GAME_FROM_CART = 'remove_game_from_cart';
 export const REMOVE_ALL_GAMES_FROM_CART = 'remove_all_games_from_cart';
 export const POST_CHECKOUT = 'post_checkout';
+export const GET_GAMES_WITH_FILTER = 'get_games_with_filter';
 
 const ROOT_URL = process.env.REACT_APP_API_ROOT_URL;
 const PAGSEGURO_CHECKOUT = process.env.REACT_APP_PAGSEGURO_CHECKOUT;
@@ -95,6 +96,16 @@ export function removeAllGamesFromCart() {
     return {
         type: REMOVE_ALL_GAMES_FROM_CART,
         payload: []
+    }
+}
+
+export function getGamesWithFilter(filterDto, successHandler) {
+    let request = `${ROOT_URL}/api/Games/Filters`
+    axios.post(request, filterDto)
+        .then(result => successHandler(result.data));
+    return {
+        type: GET_GAMES_LIST,
+        payload: {}
     }
 }
 

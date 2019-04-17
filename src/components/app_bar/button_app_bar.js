@@ -3,8 +3,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import GameNameInput from './../shared/game_name_input';
-import Logo from './logo'
-import './../../styles/app_bar.css'
+import Logo from './logo';
+import './../../styles/app_bar.css';
+import './../../styles/menu_app_bar.css';
 
 class ButtonAppBar extends Component {
 
@@ -17,7 +18,7 @@ class ButtonAppBar extends Component {
     return (
       <AppBar position="static" className={"divContainer"}>
         <div style={{ height: 70 }} />
-        <Toolbar className={'menu-app-toolbar'}>
+        <Toolbar className={'button-app-toolbar'}>
           <Logo />
           <GameNameInput
             shrink={false}

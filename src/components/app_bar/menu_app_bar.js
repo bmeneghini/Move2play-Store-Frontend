@@ -17,8 +17,27 @@ class MenuAppBar extends Component {
         }
     }
 
+    componentDidMount() {
+        this.setupStorage();
+    }
+
+    componentDidUpdate() {
+        if(this.state.gameName.length <= 0){
+            this.setupStorage();
+        }
+    }
+
+    setupStorage = () => {
+        let key = 'gameName';
+        if (localStorage.hasOwnProperty(key)) {
+            let value = localStorage.getItem(key);
+            this.setState({ gameName: value });
+        }
+    }
+
     handleGameNameChange = (event) => {
         this.setState({ gameName: event.target.value });
+        localStorage.setItem('gameName', event.target.value);
     }
 
     render() {

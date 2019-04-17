@@ -77,6 +77,10 @@ class GamesList extends Component {
         this.setState({ showloader: false, gamesList })
     }
 
+    setGamesListState = (gamesList) => {
+        this.setState({ gamesList });
+    }
+
     handleError = (error) => {
         if (!_.isUndefined(error) && !_.isNull(error) && error.toString() === 'Error: Network Error')
             this.setState({ showLoader: false, content: 'Network Error', variant: 'error' }, this.showSnackbar());
@@ -87,32 +91,31 @@ class GamesList extends Component {
 
     render() {
         const { auth: { isAuthenticated } } = this.props;
-        if (_.isEmpty(this.state.gamesList)) {
-            return null;
-        }
-        else {
-            let gamesContainers = this.buildGamesContainer();
-            return (
-                <div className={'games-list-root'}>
-                    {isAuthenticated() ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
-                    <GamesListBreadcrumb />
-                    <h1 className={'games-list-title'}>Catálogo de Jogos</h1 >
-                    <GamesFilters />
-                    <div className={'games-list-containers'}>{gamesContainers}</div>
-                    <div className={'ver-mais-root'}>
-                        <Button className={'ver-mais-button'} variant="contained" color="primary">
-                            Ver mais
+        let gameName = this.props.location.state.gameName;
+        let gamesContainers = this.buildGamesContainer();
+        return (
+            <div className={'games-list-root'}>
+                {isAuthenticated() ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
+                <GamesListBreadcrumb />
+                <h1 className={'games-list-title'}>Catálogo de Jogos</h1 >
+                <GamesFilters
+                    gameName={gameName}
+                    setGamesListState={this.setGamesListState}
+                />
+                <div className={'games-list-containers'}>{gamesContainers}</div>
+                <div className={'ver-mais-root'}>
+                    <Button className={'ver-mais-button'} variant="contained" color="primary">
+                        Ver mais
                         </Button>
-                    </div>
-                    <CustomSnackbar
-                        setClick={e => this.showSnackbar = e}
-                        duration={this.state.duration}
-                        variant={this.state.variant}
-                        content={this.state.content}
-                    />
                 </div>
-            )
-        }
+                <CustomSnackbar
+                    setClick={e => this.showSnackbar = e}
+                    duration={this.state.duration}
+                    variant={this.state.variant}
+                    content={this.state.content}
+                />
+            </div>
+        )
     }
 }
 

@@ -1,8 +1,41 @@
-.menu-app-toolbar>div+div {
-    max-width: 695px;
+.button-app-toolbar>div+div {
+    margin-right: 250px;
 }
 
-.menu-app-toolbar>button {
+.button-app-toolbar>button {
     position: absolute;
     right: 20px;
+}
+
+.button-app-toolbar>div>label {
+    color: white !important;
+}
+
+.button-app-toolbar>div>div>fieldset {
+    border-color: white !important;
+}
+
+.button-app-toolbar>div>div>div>svg {
+    color: white !important;
+}
+
+.button-app-toolbar>div>div>input {
+    color: white;
+    height: 100%;
+}
+
+.button-app-toolbar>div>div>div>p {
+    color: white !important;
+}
+
+.button-app-toolbar>div+div>div>div>button {
+    color: white;
+}
+
+.button-app-toolbar {
+    position: fixed !important;
+    width: 100%;
+    background-color: #191919 !important;
+    box-shadow: 0 4px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+    z-index: 999;
 }

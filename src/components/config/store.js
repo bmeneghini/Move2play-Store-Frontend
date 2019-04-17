@@ -4,11 +4,11 @@ import { routerMiddleware } from "react-router-redux";
 import rootReducer from "./../../reducers";
 
 const loggerMiddleware = store => next => action => {
-  console.log("Action type:", action.type);
-  console.log("Action payload:", action.payload);
-  console.log("State before:", store.getState());
-  next(action);
-  console.log("State after:", store.getState());
+  // console.log("Action type:", action.type);
+  // console.log("Action payload:", action.payload);
+  // console.log("State before:", store.getState());
+  // next(action);
+  // console.log("State after:", store.getState());
 };
 
 const initialState = {};
