@@ -35,11 +35,11 @@ class BuyContainer extends Component {
     }
 
     render() {
-        const { gameId } = this.props;
+        const { gameId, gameName, gamePrice } = this.props;
         return (
             <div className={'buy-game-container'}>
-                <h2 className={'buy-game-title'}>Comprar God of War</h2>
-                <div className={'buy-game-price'}>Preço: R$99,00</div>
+                <h2 className={'buy-game-title'}>Comprar {gameName}</h2>
+                <div className={'buy-game-price'}>Preço: R${gamePrice}</div>
                 <div className={'buy-game-add-to-cart'} onClick={() => this.handleClick(gameId)}>
                     <AddShoppingCart color={'white'} />
                     Adicionar ao carrinho

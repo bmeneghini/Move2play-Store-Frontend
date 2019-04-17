@@ -67,10 +67,14 @@ export function uploadFileToServer(gameId, file, uploadProgressHandler) {
 }
 
 export function getGamesList(successHandler, errorHandler) {
-    let request = `${ROOT_URL}/api/game`
+    let request = `${ROOT_URL}/api/Games`
     axios.get(request)
-        .then(result => successHandler(result))
+        .then(result => successHandler(result.data))
         .catch(error => errorHandler(error));
+    return {
+        type: GET_GAMES_LIST,
+        payload: {}
+    }
 }
 
 export function addGameToCart(gameId) {

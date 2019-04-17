@@ -10,24 +10,29 @@ import UsersEvaluation from './../../components/game_detail/users_evaluation';
 import './../../styles/game_detail.css';
 
 class GameDetail extends Component {
-
-    constructor(props) {
-        super(props)
-        this.isFetchingProfile = false;
-    }
-
     render() {
-        const gameId = this.props.location.state.gameId;
-        const { auth: { isAuthenticated } } = this.props;
+        const { auth: { isAuthenticated }, location: { state: { gameId, gameName, gamePrice, gameThumbnail, gameGenre, evaluation, comments, developerName, video, description, releaseDate } } } = this.props;
         return (
             <div>
                 {isAuthenticated() ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
                 <SimpleBreadcrumb />
-                <h1 className={'game-detail-title'}>God of War - Viking Edition</h1>
-                <GameInfoContainer />
-                <BuyContainer gameId={gameId} auth={this.props.auth}/>
-                <GameEvaluation />
-                <UsersEvaluation />
+                <h1 className={'game-detail-title'}>{gameName}</h1>
+                <GameInfoContainer
+                    description={description}
+                    gameThumbnail={gameThumbnail}
+                    gameGenre={gameGenre}
+                    developerName={developerName}
+                    video={video}
+                    releaseDate={releaseDate}
+                />
+                <BuyContainer
+                    gameId={gameId}
+                    gameName={gameName}
+                    gamePrice={gamePrice}
+                    auth={this.props.auth}
+                />
+                <GameEvaluation evaluation={evaluation} />
+                <UsersEvaluation comments={comments} />
             </div>
         )
     }

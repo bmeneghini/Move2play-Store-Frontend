@@ -24,6 +24,7 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
     background-color: #151d27;
     margin: 20px 20vmax;
+    height: 365px;
 }
 
 .youtube-trailer-root {
@@ -63,12 +64,11 @@ ol>li {
     font-family: "Open Sans", Arial, Helvetica;
     text-align: justify;
     max-height: 350px;
-    height: -webkit-fill-available;
-    height: 175px;
+    width:100%;
     margin-top: 10px;
 }
 
-break {
+.div-break {
     flex-basis: 100%;
     width: 0px;
     height: 0px;

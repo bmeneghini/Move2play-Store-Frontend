@@ -45,7 +45,7 @@ class EnviarJogoForm extends Component {
             name: this.state.gameName,
             price: this.state.gamePrice,
             description: this.state.gameDescription,
-            genero: this.state.gameGender,
+            gender: this.state.gameGender,
             trailerUrl: this.state.gameTrailer,
         }
         return gameUploadDto;

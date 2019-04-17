@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import "./../../styles/games_list.css";
 
+
 class GamesList extends Component {
     constructor(props) {
         super(props);
@@ -19,23 +20,14 @@ class GamesList extends Component {
             variant: 'success',
             content: '',
             duration: 4000,
-            gamesList: [
-                { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 1 },
-                { gameId: 2, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: -1 },
-                { gameId: 3, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: -1 },
-                { gameId: 4, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 },
-                { gameId: 5, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 },
-                { gameId: 6, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 1 },
-                { gameId: 7, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 },
-                { gameId: 8, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 },
-                { gameId: 9, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: -1 },
-                { gameId: 10, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 0 }
-            ]
+            gamesList: [],
+            showLoader: false
         }
     }
 
     componentDidMount() {
-        // this.props.getGamesList(this.getGamesListSuccess, this.getGamesListError);
+        this.setState({ showLoader: true });
+        this.props.getGamesList(this.getGamesListSuccess, this.handleError);
     }
 
     verifyIfGameIsAlreadyInCart = (gameId) => {
@@ -59,25 +51,38 @@ class GamesList extends Component {
 
     buildGamesContainer = () => {
         return this.state.gamesList.map((game, index) => {
+            let price = game.price.toFixed(2);
+            let image = game.image[0] !== null && game.image[0] !== undefined ? game.image[0].path : null;
+            let video = game.video[0] !== null && game.video[0] !== undefined ? game.video[0].path : null;
             return <GameContainer
                 key={index}
-                gameId={game.gameId}
-                gameName={game.gameName}
-                gamePrice={game.gamePrice}
-                gameThumbnail={game.gameThumbnail}
-                evaluation={game.evaluation}
+                gameId={game.id}
+                gameName={game.name}
+                gamePrice={price}
+                gameThumbnail={image}
+                gameGenre={game.genre}
+                evaluation={game.rating}
+                comments={game.comment}
+                developerName={game.developerName}
+                video={video}
+                releaseDate={game.releaseDate}
+                description={game.description}
                 addGameToCart={this.addGameToCart}
                 cart={this.props.cart}
             />
         })
     }
 
-    getGamesListSuccess = (result) => {
-        console.log(result)
+    getGamesListSuccess = (gamesList) => {
+        this.setState({ showloader: false, gamesList })
     }
 
-    getGamesListError = (error) => {
-        console.log(error)
+    handleError = (error) => {
+        if (!_.isUndefined(error) && !_.isNull(error) && error.toString() === 'Error: Network Error')
+            this.setState({ showLoader: false, content: 'Network Error', variant: 'error' }, this.showSnackbar());
+        if (!_.isUndefined(error) && !_.isNull(error) && !_.isUndefined(error.response) && !_.isNull(error.response) && !_.isUndefined(error.response.data) && !_.isNull(error.response.data)) {
+            this.setState({ showLoader: false, content: error.response.data, variant: 'error' }, this.showSnackbar());
+        }
     }
 
     render() {

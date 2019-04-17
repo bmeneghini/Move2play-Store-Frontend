@@ -16,10 +16,23 @@ export default class GameContainer extends Component {
         this.setState({ addToChart: bool })
     }
 
-    redirectToGameDetail = (id) => {
+    redirectToGameDetail = () => {
+        const { gameId, gameName, gamePrice, gameThumbnail, gameGenre, evaluation, comments, developerName, video, releaseDate, description } = this.props;
         history.push({
             pathname: '/jogos/detalhes',
-            state: { gameId: id }
+            state: { 
+                gameId,
+                gameName,
+                gamePrice,
+                gameThumbnail,
+                gameGenre,
+                evaluation,
+                comments,
+                developerName,
+                video,
+                releaseDate,
+                description
+            }
         });
     }
 
@@ -46,12 +59,11 @@ export default class GameContainer extends Component {
                 className={'game-price-title'}>
                 {gameLabelPrice}
             </div>
-
         return (
             <div className={'game-container'}>
-                <img className={'game-thumbnail'} src={gameThumbnail} alt='game-thumbnail' onClick={() => this.redirectToGameDetail(gameId)} />
-                <div className={'game-name'} onClick={() => this.redirectToGameDetail(gameId)}>{gameName}</div>
-                <div className={'game-evaluation-gl-container'} onClick={() => this.redirectToGameDetail(gameId)}>
+                <img className={'game-thumbnail'} src={gameThumbnail} alt='game-thumbnail' onClick={this.redirectToGameDetail} />
+                <div className={'game-name'} onClick={this.redirectToGameDetail}>{gameName}</div>
+                <div className={'game-evaluation-gl-container'} onClick={this.redirectToGameDetail}>
                     <div className={'game-evalaluation-gl-title'}>Avaliação do jogo: </div>
                     {sentiment}
                 </div>
