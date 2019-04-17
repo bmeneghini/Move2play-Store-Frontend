@@ -93,8 +93,6 @@ class GamesList extends Component {
     }
 
     handleVerMais = () => {
-        console.log(this.state.gamesList.length)
-        console.log(this.state.maxNumber)
         if (this.state.gamesList.length - 1 <= this.state.maxNumber) {
             this.setState({ content: 'Não existem novos jogos a serem exibidos!', variant: 'warning' }, this.showSnackbar());
         }
@@ -105,7 +103,8 @@ class GamesList extends Component {
 
     render() {
         const { auth: { isAuthenticated } } = this.props;
-        let gameName = this.props.location.state.gameName;
+
+        let gameName = this.props.location.state ? this.props.location.state.gameName : '';
         let gamesContainers = this.buildGamesContainer();
         return (
             <div className={'games-list-root'}>

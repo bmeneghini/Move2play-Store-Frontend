@@ -20,7 +20,7 @@ export default class GameContainer extends Component {
         const { gameId, gameName, gamePrice, gameThumbnail, gameGenre, evaluation, comments, developerName, video, releaseDate, description } = this.props;
         history.push({
             pathname: '/jogos/detalhes',
-            state: { 
+            state: {
                 gameId,
                 gameName,
                 gamePrice,

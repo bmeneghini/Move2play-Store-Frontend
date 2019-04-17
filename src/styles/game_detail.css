@@ -112,7 +112,7 @@ ol>li {
     background-color: #151d27;
 }
 
-.buy-game-add-to-cart {
+.buy-game-add-to-cart, .added-in-cart {
     color: #fff;
     font-size: 12px;
     font-weight: 700;
@@ -134,7 +134,11 @@ ol>li {
     background: #e23;
 }
 
-.buy-game-add-to-cart>svg {
+.added-in-cart{
+    background-color: #393;
+}
+
+.buy-game-add-to-cart>svg, .added-in-cart>svg {
     margin-right: 10px;
     vertical-align: middle;
     height: 20px;
