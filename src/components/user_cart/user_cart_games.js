@@ -1,36 +1,45 @@
 import React, { Component } from 'react';
 import CartGame from './cart_game';
+import { getGame } from './../../actions/index';
+import { bindActionCreators } from 'redux';
+import { connect } from "react-redux";
 
-const games = [
-    { gameId: 1, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: 1 },
-    { gameId: 2, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: -1 },
-    { gameId: 3, gameName: 'God of War - Viking Edition', gamePrice: '19.20', gameThumbnail: 'images/GOW-OG-image.jpg', evaluation: -1 }
-]
-
-export default class UserCartGames extends Component {
+class UserCartGames extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            games: games
+            games: []
         }
     }
 
-    componenteDidMount() {
-        // TODO: Buscar por jogos baseado no ID
+    componentDidMount() {
+        this.sendGetRequest(this.props.cart);
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.cart !== this.props.cart) {
-            // chamar função para pegar nova lista
-            this.setState({ games })
+            this.setState({ games: [] });
+            this.sendGetRequest(nextProps.cart);
         }
+    }
+
+    sendGetRequest = (cart) => {
+        cart.forEach((id) => {
+            this.props.getGame(id, this.successHandler)
+        });
+    }
+
+    successHandler = (result) => {
+        let games = [...this.state.games];
+        games.push(result);
+        this.setState({ games });
     }
 
     checkSum = () => {
         let sum = 0.00;
         this.state.games.forEach(game => {
-            sum = parseFloat(sum) + parseFloat(game.gamePrice);
+            sum = parseFloat(sum) + parseFloat(game.price);
         });
         return sum.toFixed(2);
     }
@@ -67,3 +76,10 @@ export default class UserCartGames extends Component {
         )
     }
 }
+
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ getGame }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(UserCartGames);

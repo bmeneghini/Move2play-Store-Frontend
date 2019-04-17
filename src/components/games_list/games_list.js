@@ -21,7 +21,8 @@ class GamesList extends Component {
             content: '',
             duration: 4000,
             gamesList: [],
-            showLoader: false
+            showLoader: false,
+            maxNumber: 3
         }
     }
 
@@ -51,25 +52,27 @@ class GamesList extends Component {
 
     buildGamesContainer = () => {
         return this.state.gamesList.map((game, index) => {
-            let price = game.price.toFixed(2);
-            let image = game.image[0] !== null && game.image[0] !== undefined ? game.image[0].path : null;
-            let video = game.video[0] !== null && game.video[0] !== undefined ? game.video[0].path : null;
-            return <GameContainer
-                key={index}
-                gameId={game.id}
-                gameName={game.name}
-                gamePrice={price}
-                gameThumbnail={image}
-                gameGenre={game.genre}
-                evaluation={game.rating}
-                comments={game.comment}
-                developerName={game.developerName}
-                video={video}
-                releaseDate={game.releaseDate}
-                description={game.description}
-                addGameToCart={this.addGameToCart}
-                cart={this.props.cart}
-            />
+            if (index <= this.state.maxNumber) {
+                let price = game.price.toFixed(2);
+                let image = game.image[0] !== null && game.image[0] !== undefined ? game.image[0].path : null;
+                let video = game.video[0] !== null && game.video[0] !== undefined ? game.video[0].path : null;
+                return <GameContainer
+                    key={index}
+                    gameId={game.id}
+                    gameName={game.name}
+                    gamePrice={price}
+                    gameThumbnail={image}
+                    gameGenre={game.genre}
+                    evaluation={game.rating}
+                    comments={game.comment}
+                    developerName={game.developerName}
+                    video={video}
+                    releaseDate={game.releaseDate}
+                    description={game.description}
+                    addGameToCart={this.addGameToCart}
+                    cart={this.props.cart}
+                />
+            }
         })
     }
 
@@ -89,6 +92,17 @@ class GamesList extends Component {
         }
     }
 
+    handleVerMais = () => {
+        console.log(this.state.gamesList.length)
+        console.log(this.state.maxNumber)
+        if (this.state.gamesList.length - 1 <= this.state.maxNumber) {
+            this.setState({ content: 'Não existem novos jogos a serem exibidos!', variant: 'warning' }, this.showSnackbar());
+        }
+        else {
+            this.setState({ maxNumber: this.state.maxNumber + 4 });
+        }
+    }
+
     render() {
         const { auth: { isAuthenticated } } = this.props;
         let gameName = this.props.location.state.gameName;
@@ -104,9 +118,9 @@ class GamesList extends Component {
                 />
                 <div className={'games-list-containers'}>{gamesContainers}</div>
                 <div className={'ver-mais-root'}>
-                    <Button className={'ver-mais-button'} variant="contained" color="primary">
+                    <Button onClick={this.handleVerMais} className={'ver-mais-button'} variant="contained" color="primary">
                         Ver mais
-                        </Button>
+                    </Button>
                 </div>
                 <CustomSnackbar
                     setClick={e => this.showSnackbar = e}

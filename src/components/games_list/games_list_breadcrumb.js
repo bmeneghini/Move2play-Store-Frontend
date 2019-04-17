@@ -10,7 +10,7 @@ const styles = theme => ({
     root: {
         justifyContent: 'center',
         flexWrap: 'wrap',
-        margin: '20px 20vmax',
+        margin: '20px 15vmax',
         width: 'fit-content',
 
     },

@@ -61,7 +61,7 @@ export default class GameContainer extends Component {
             </div>
         return (
             <div className={'game-container'}>
-                <img className={'game-thumbnail'} src={gameThumbnail} alt='game-thumbnail' onClick={this.redirectToGameDetail} />
+                <img className={'game-thumbnail'} src={'/images/GOW-OG-image.jpg'} alt='game-thumbnail' onClick={this.redirectToGameDetail} />
                 <div className={'game-name'} onClick={this.redirectToGameDetail}>{gameName}</div>
                 <div className={'game-evaluation-gl-container'} onClick={this.redirectToGameDetail}>
                     <div className={'game-evalaluation-gl-title'}>Avaliação do jogo: </div>

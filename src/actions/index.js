@@ -5,6 +5,7 @@ export const RESET_USER_CREDENTIALS = 'reset_user_credentials';
 export const UPLOAD_FILE_TO_SERVER = 'upload_file_to_server';
 export const UPLOAD_GAME_TO_SERVER = 'upload_game_to_server';
 export const SEND_USER_INFORMATION = 'send_user_information';
+export const GET_GAME = 'get_game';
 export const GET_GAMES_LIST = 'get_games_list';
 export const ADD_GAME_TO_CART = 'add_game_to_cart';
 export const REMOVE_GAME_FROM_CART = 'remove_game_from_cart';
@@ -63,6 +64,16 @@ export function uploadFileToServer(gameId, file, uploadProgressHandler) {
     });
     return {
         type: UPLOAD_FILE_TO_SERVER,
+        payload: {}
+    }
+}
+
+export function getGame(id, successHandler) {
+    let request = `${ROOT_URL}/api/Games/${id}`
+    axios.get(request)
+        .then(result => successHandler(result.data[0]));
+    return {
+        type: GET_GAME,
         payload: {}
     }
 }
