@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import RatingDialog from './rating_dialog';
+import CommentDialog from './comment_dialog';
 import CustomSnackbar from './../../shared/custom_snackbar';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { postRating } from './../../../actions/index';
+import { postRating, postComment } from './../../../actions/index';
 
 class UserGameContainer extends Component {
     constructor(props) {
@@ -25,6 +26,10 @@ class UserGameContainer extends Component {
         this.rdOpen(evaluation);
     }
 
+    openCommentDialog = () => {
+        this.cdOpen();
+    }
+
     postRating = (evaluation) => {
         let ratingDto = {
             userId: this.props.user.sub,
@@ -34,8 +39,20 @@ class UserGameContainer extends Component {
         this.props.postRating(ratingDto, this.successHandler);
     }
 
+    postComment = (description, recomendation) => {
+        console.log(description)
+        let commentDto = {
+            userId: this.props.user.sub,
+            userName: this.props.user.name,
+            gameId: this.props.id,
+            description,
+            recomendation: recomendation? 1 : 0
+        }
+        this.props.postComment(commentDto, this.successHandler);
+    }
+
     successHandler = () => {
-        this.setState({ content: 'Avaliação realizada com sucesso!' }, () => this.showSnackbar())
+        this.setState({ content: 'Operação realizada com sucesso!' }, () => this.showSnackbar())
     }
 
     render() {
@@ -49,10 +66,14 @@ class UserGameContainer extends Component {
                     </div>
                 </div>
                 <div className={'comment-container'}>
-                    <div className={'game-price-title'}>
+                    <div className={'game-price-title'} onClick={this.openCommentDialog}>
                         Comentário
                     </div>
                 </div>
+                <CommentDialog
+                    openDialog={e => this.cdOpen = e}
+                    postComment={this.postComment}
+                />
                 <RatingDialog
                     openDialog={e => this.rdOpen = e}
                     postRating={this.postRating}
@@ -69,7 +90,7 @@ class UserGameContainer extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ postRating }, dispatch)
+    return bindActionCreators({ postRating, postComment }, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(UserGameContainer);

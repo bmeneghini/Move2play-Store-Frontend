@@ -43,7 +43,7 @@ class RatingDialog extends React.Component {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">Avaliação</DialogTitle>
+                <DialogTitle id="alert-dialog-title">Enviar/Editar Avaliação</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                         Por favor, avalie o jogo de acordo com sua experiência:

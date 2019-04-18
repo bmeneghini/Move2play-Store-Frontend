@@ -14,6 +14,7 @@ export const POST_CHECKOUT = 'post_checkout';
 export const GET_GAMES_WITH_FILTER = 'get_games_with_filter';
 export const GET_USER_GAMES = 'get_user_games';
 export const POST_RATING = 'post_rating';
+export const POST_COMMENT = 'post_comment';
 
 const ROOT_URL = process.env.REACT_APP_API_ROOT_URL;
 const PAGSEGURO_CHECKOUT = process.env.REACT_APP_PAGSEGURO_CHECKOUT;
@@ -138,6 +139,16 @@ export function postRating(ratingDto, successHandler){
         .then(result => successHandler(result.data));
     return {
         type: POST_RATING,
+        payload: {}
+    }
+}
+
+export function postComment(commentDto, successHandler){
+    let request = `${ROOT_URL}/api/Comments`
+    axios.post(request, commentDto)
+        .then(result => successHandler(result.data));
+    return {
+        type: POST_COMMENT,
         payload: {}
     }
 }
