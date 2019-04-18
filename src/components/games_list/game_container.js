@@ -59,6 +59,7 @@ export default class GameContainer extends Component {
                 className={'game-price-title'}>
                 {gameLabelPrice}
             </div>
+            
         return (
             <div className={'game-container'}>
                 <img className={'game-thumbnail'} src={'/images/GOW-OG-image.jpg'} alt='game-thumbnail' onClick={this.redirectToGameDetail} />

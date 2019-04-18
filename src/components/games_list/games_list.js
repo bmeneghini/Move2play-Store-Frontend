@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import "./../../styles/games_list.css";
 
+const MAX_NUMBER_OF_GAMES = 20;
 
 class GamesList extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class GamesList extends Component {
             duration: 4000,
             gamesList: [],
             showLoader: false,
-            maxNumber: 3
+            maxNumber: MAX_NUMBER_OF_GAMES - 1
         }
     }
 
@@ -97,7 +98,7 @@ class GamesList extends Component {
             this.setState({ content: 'Não existem novos jogos a serem exibidos!', variant: 'warning' }, this.showSnackbar());
         }
         else {
-            this.setState({ maxNumber: this.state.maxNumber + 4 });
+            this.setState({ maxNumber: this.state.maxNumber + MAX_NUMBER_OF_GAMES });
         }
     }
 

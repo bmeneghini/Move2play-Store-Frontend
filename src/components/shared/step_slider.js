@@ -25,6 +25,9 @@ class StepSlider extends React.Component {
 
   handleChange = (event, value) => {
     this.setState({ value });
+    if (this.props.setEvaluationState) {
+      this.props.setEvaluationState(value);
+    }
   };
 
   render() {
@@ -33,9 +36,9 @@ class StepSlider extends React.Component {
 
     return (
       <div className={classes.root}>
-        <SentimentVeryDissatisfied className={'sad-smile'}/>
-        <SentimentSatisfied className={'ok-smile'}/>
-        <SentimentVerySatisfied className={'happy-smile'}/>
+        <SentimentVeryDissatisfied className={'sad-smile'} />
+        <SentimentSatisfied className={'ok-smile'} />
+        <SentimentVerySatisfied className={'happy-smile'} />
         <Slider
           disabled={disabled}
           classes={{ container: classes.slider }}
