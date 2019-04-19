@@ -38,7 +38,8 @@ export default class GameContainer extends Component {
 
     render() {
         const { gameId, gameName, gamePrice, gameThumbnail, evaluation, addGameToCart, cart } = this.props;
-
+        var splitedPath = gameThumbnail.split('\\');
+        const imageSource = `${process.env.REACT_APP_API_ROOT_URL}/Files/Games/${splitedPath[0]}/${splitedPath[1]}/${splitedPath[2]}`;
         const gameLabelPrice = this.state.addToChart ? 'Incluir no carrinho' : `R$ ${gamePrice}`;
 
         const sentiment = evaluation === -1
@@ -62,7 +63,7 @@ export default class GameContainer extends Component {
             
         return (
             <div className={'game-container'}>
-                <img className={'game-thumbnail'} src={'/images/GOW-OG-image.jpg'} alt='game-thumbnail' onClick={this.redirectToGameDetail} />
+                <img className={'game-thumbnail'} src={imageSource} alt='game-thumbnail' onClick={this.redirectToGameDetail} />
                 <div className={'game-name'} onClick={this.redirectToGameDetail}>{gameName}</div>
                 <div className={'game-evaluation-gl-container'} onClick={this.redirectToGameDetail}>
                     <div className={'game-evalaluation-gl-title'}>Avaliação do jogo: </div>

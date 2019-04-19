@@ -22,6 +22,7 @@ export default class OwnedGames extends Component {
                 comments={game.comment}
                 rating={game.rating}
                 user={this.props.user}
+                gameThumbnail={game.image[0].path}
                 serverPath={game.serverPath}
             />
         })

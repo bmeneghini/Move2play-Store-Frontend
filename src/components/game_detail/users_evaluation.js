@@ -12,7 +12,7 @@ export default class UsersEvaluation extends Component {
             return this.props.comments.map((evaluation, index) => {
                 return <Evaluation
                     key={index}
-                    userName={evaluation.userId}
+                    userName={evaluation.userName}
                     totalOfEvaluations={evaluation.totalOfEvaluations}
                     evaluationResult={evaluation.recomendation}
                     commentary={evaluation.description}

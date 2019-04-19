@@ -74,6 +74,9 @@ class GamesList extends Component {
                     cart={this.props.cart}
                 />
             }
+            else{
+                return null;
+            }
         })
     }
 

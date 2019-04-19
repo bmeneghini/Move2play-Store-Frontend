@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 export default class GameInfoContainer extends Component {
   render() {
     const { gameThumbnail, gameGenre, developerName, video, releaseDate, description } = this.props;
+    var splitedPath = gameThumbnail.split('\\');
+    const imageSource = `${process.env.REACT_APP_API_ROOT_URL}/Files/Games/${splitedPath[0]}/${splitedPath[1]}/${splitedPath[2]}`;
     const rd = new Date(releaseDate);
     const parsedDate = `${rd.getDay().toString().padStart(2, "0")}/${rd.getMonth().toString().padStart(2, "0")}/${rd.getFullYear()}`;
     return (
@@ -18,7 +20,7 @@ export default class GameInfoContainer extends Component {
           />
         </div>
         <div className={'game-image-root'}>
-          <img src={gameThumbnail} alt='game thumbnail' className={'game-image'} />
+          <img src={imageSource} alt='game thumbnail' className={'game-image'} />
           <div className={'game-description'}>
             <p>Descrição: {description}</p>
             <p>Gênero: {gameGenre}</p>

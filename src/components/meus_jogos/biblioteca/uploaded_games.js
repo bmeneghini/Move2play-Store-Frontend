@@ -18,6 +18,7 @@ export default class UploadedGames extends Component {
             return <UploadedGameContainer
                 key={index}
                 name={game.name}
+                gameThumbnail={game.image[0].path}
                 releaseDate={game.releaseDate}
             />
         })

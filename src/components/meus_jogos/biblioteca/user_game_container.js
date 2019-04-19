@@ -86,9 +86,11 @@ class UserGameContainer extends Component {
     }
 
     render() {
+        var splitedPath = this.props.gameThumbnail.split('\\');
+        const imageSource = `${process.env.REACT_APP_API_ROOT_URL}/Files/Games/${splitedPath[0]}/${splitedPath[1]}/${splitedPath[2]}`;
         return (
             <div className={'game-container'}>
-                <img className={'game-thumbnail'} src={'/images/GOW-OG-image.jpg'} alt='game-thumbnail' onClick={this.handleDownloadClick} />
+                <img className={'game-thumbnail'} src={imageSource} alt='game-thumbnail' onClick={this.handleDownloadClick} />
                 <div className={'game-name'} onClick={this.handleDownloadClick}>{this.props.name}</div>
                 <div className={'owned-evaluation-container'}>
                     <div className={'game-price-title'} onClick={this.openRatingDialog}>
