@@ -133,8 +133,7 @@ class Home extends Component {
       }
     });
   }
-
-
+  
   render() {
     const { isAuthenticated } = this.props.auth;
     const { classes, theme } = this.props;

@@ -2,9 +2,94 @@ import React, { Component } from 'react';
 import RatingDialog from './rating_dialog';
 import CommentDialog from './comment_dialog';
 import CustomSnackbar from './../../shared/custom_snackbar';
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
+import { withStyles } from '@material-ui/core/styles';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { postRating, postComment, downloadFileFromServer } from './../../../actions/index';
+import { postRating, postComment } from './../../../actions/index';
+
+function arrowGenerator(color) {
+    return {
+        '&[x-placement*="bottom"] $arrow': {
+            top: 0,
+            left: 0,
+            marginTop: '-0.95em',
+            width: '3em',
+            height: '1em',
+            '&::before': {
+                borderWidth: '0 1em 1em 1em',
+                borderColor: `transparent transparent ${color} transparent`,
+            },
+        },
+        '&[x-placement*="top"] $arrow': {
+            bottom: 0,
+            left: 0,
+            marginBottom: '-0.95em',
+            width: '3em',
+            height: '1em',
+            '&::before': {
+                borderWidth: '1em 1em 0 1em',
+                borderColor: `${color} transparent transparent transparent`,
+            },
+        },
+        '&[x-placement*="right"] $arrow': {
+            left: 0,
+            marginLeft: '-0.95em',
+            height: '3em',
+            width: '1em',
+            '&::before': {
+                borderWidth: '1em 1em 1em 0',
+                borderColor: `transparent ${color} transparent transparent`,
+            },
+        },
+        '&[x-placement*="left"] $arrow': {
+            right: 0,
+            marginRight: '-0.95em',
+            height: '3em',
+            width: '1em',
+            '&::before': {
+                borderWidth: '1em 0 1em 1em',
+                borderColor: `transparent transparent transparent ${color}`,
+            },
+        },
+    };
+}
+
+const styles = theme => ({
+    arrowPopper: arrowGenerator(theme.palette.grey[700]),
+    arrow: {
+        position: 'absolute',
+        fontSize: 6,
+        width: '3em',
+        height: '3em',
+        '&::before': {
+            content: '""',
+            margin: 'auto',
+            display: 'block',
+            width: 0,
+            height: 0,
+            borderStyle: 'solid',
+        },
+    },
+    bootstrapPopper: arrowGenerator(theme.palette.common.black),
+    bootstrapTooltip: {
+        backgroundColor: theme.palette.common.black,
+    },
+    bootstrapPlacementLeft: {
+        margin: '0 8px',
+    },
+    bootstrapPlacementRight: {
+        margin: '0 8px',
+    },
+    bootstrapPlacementTop: {
+        margin: '8px 0',
+    },
+    bootstrapPlacementBottom: {
+        margin: '8px 0',
+    }
+})
 
 class UserGameContainer extends Component {
     constructor(props) {
@@ -17,24 +102,9 @@ class UserGameContainer extends Component {
     }
 
     handleDownloadClick = () => {
-        let fileDto = {
-            serverPath: this.props.serverPath.replace(/%5C/g, "%5C%5C")
-        }
-        this.props.downloadFileFromServer(fileDto, this.downloadFile);
-    }
-
-    downloadFile = (result) => {
-        var data = result.data;
-        var a = document.createElement("a");
-        document.body.appendChild(a);
-        a.style = "display: none";
-        var json = JSON.stringify(data),
-            blob = new Blob([json], { type: "octet/stream" }),
-            url = window.URL.createObjectURL(blob);
-        a.href = url;
-        a.download = data.filename;
-        a.click();
-        window.URL.revokeObjectURL(url);
+        var splitedPath = this.props.serverPath.split('\\');
+        const filePath = `${process.env.REACT_APP_API_ROOT_URL}/Files/Games/${splitedPath[0]}/${splitedPath[1]}/${splitedPath[2]}`;
+        window.open(filePath, '_blank');
     }
 
     openRatingDialog = (event) => {
@@ -86,12 +156,40 @@ class UserGameContainer extends Component {
     }
 
     render() {
+        const { classes } = this.props;
         var splitedPath = this.props.gameThumbnail.split('\\');
         const imageSource = `${process.env.REACT_APP_API_ROOT_URL}/Files/Games/${splitedPath[0]}/${splitedPath[1]}/${splitedPath[2]}`;
         return (
             <div className={'game-container'}>
                 <img className={'game-thumbnail'} src={imageSource} alt='game-thumbnail' onClick={this.handleDownloadClick} />
-                <div className={'game-name'} onClick={this.handleDownloadClick}>{this.props.name}</div>
+                <Tooltip
+                    title={
+                        <React.Fragment>
+                            Clique para fazer download do jogo!
+                            {/* <span className={classes.arrow} ref={this.handleArrowRef} /> */}
+                        </React.Fragment>
+                    }
+                    classes={{
+                        tooltip: classes.bootstrapTooltip,
+                        popper: classes.bootstrapPopper,
+                        tooltipPlacementLeft: classes.bootstrapPlacementLeft,
+                        tooltipPlacementRight: classes.bootstrapPlacementRight,
+                        tooltipPlacementTop: classes.bootstrapPlacementTop,
+                        tooltipPlacementBottom: classes.bootstrapPlacementBottom,
+                    }}
+                    PopperProps={{
+                        popperOptions: {
+                            modifiers: {
+                                arrow: {
+                                    enabled: Boolean(this.state.arrowRef),
+                                    element: this.state.arrowRef,
+                                },
+                            },
+                        },
+                    }}
+                >
+                    <div className={'game-name'} onClick={this.handleDownloadClick}>{this.props.name}</div>
+                </Tooltip>
                 <div className={'owned-evaluation-container'}>
                     <div className={'game-price-title'} onClick={this.openRatingDialog}>
                         Avaliação
@@ -121,8 +219,12 @@ class UserGameContainer extends Component {
     }
 }
 
+UserGameContainer.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ postRating, postComment, downloadFileFromServer }, dispatch)
+    return bindActionCreators({ postRating, postComment }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(UserGameContainer);
+export default withStyles(styles)(connect(null, mapDispatchToProps)(UserGameContainer));
