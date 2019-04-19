@@ -21,11 +21,11 @@ export default class CommentDialog extends React.Component {
         this.props.openDialog(this.handleClickOpen);
     }
 
-    handleClickOpen = () => {
-        this.setState({ open: true });
+    handleClickOpen = (comment, recomendation) => {
+        this.setState({ comment, recomendation, open: true });
     };
 
-    handleClose = () => {
+    handleClose = (event) => {
         this.setState({ open: false });
     };
 
@@ -37,7 +37,7 @@ export default class CommentDialog extends React.Component {
         this.setState({ comment: event.target.value })
     }
 
-    handleConfirm = () => {
+    handleConfirm = (event) => {
         this.props.postComment(this.state.comment, this.state.recomendation);
         this.handleClose();
     }

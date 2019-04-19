@@ -4,7 +4,7 @@ import CommentDialog from './comment_dialog';
 import CustomSnackbar from './../../shared/custom_snackbar';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { postRating, postComment } from './../../../actions/index';
+import { postRating, postComment, downloadFileFromServer } from './../../../actions/index';
 
 class UserGameContainer extends Component {
     constructor(props) {
@@ -15,10 +15,32 @@ class UserGameContainer extends Component {
             duration: 4000,
         }
     }
-    openRatingDialog = () => {
+
+    handleDownloadClick = () => {
+        let fileDto = {
+            serverPath: this.props.serverPath.replace(/%5C/g, "%5C%5C")
+        }
+        this.props.downloadFileFromServer(fileDto, this.downloadFile);
+    }
+
+    downloadFile = (result) => {
+        var data = result.data;
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+        var json = JSON.stringify(data),
+            blob = new Blob([json], { type: "octet/stream" }),
+            url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = data.filename;
+        a.click();
+        window.URL.revokeObjectURL(url);
+    }
+
+    openRatingDialog = (event) => {
+        event.stopPropagation();
         let evaluation = 1;
         this.props.rating.forEach(rating => {
-            console.log(rating)
             if (rating.userId === this.props.user.sub) {
                 evaluation = Number(rating.evaluation) + 1;
             }
@@ -26,8 +48,17 @@ class UserGameContainer extends Component {
         this.rdOpen(evaluation);
     }
 
-    openCommentDialog = () => {
-        this.cdOpen();
+    openCommentDialog = (event) => {
+        event.stopPropagation();
+        let description = '';
+        let recomendation = true;
+        this.props.comments.forEach(comment => {
+            if (comment.userId === this.props.user.sub) {
+                description = comment.description;
+                recomendation = comment.recomendation;
+            }
+        });
+        this.cdOpen(description, recomendation);
     }
 
     postRating = (evaluation) => {
@@ -40,13 +71,12 @@ class UserGameContainer extends Component {
     }
 
     postComment = (description, recomendation) => {
-        console.log(description)
         let commentDto = {
             userId: this.props.user.sub,
             userName: this.props.user.name,
             gameId: this.props.id,
             description,
-            recomendation: recomendation? 1 : 0
+            recomendation: recomendation ? 1 : 0
         }
         this.props.postComment(commentDto, this.successHandler);
     }
@@ -58,8 +88,8 @@ class UserGameContainer extends Component {
     render() {
         return (
             <div className={'game-container'}>
-                <img className={'game-thumbnail'} src={'/images/GOW-OG-image.jpg'} alt='game-thumbnail' />
-                <div className={'game-name'}>{this.props.name}</div>
+                <img className={'game-thumbnail'} src={'/images/GOW-OG-image.jpg'} alt='game-thumbnail' onClick={this.handleDownloadClick} />
+                <div className={'game-name'} onClick={this.handleDownloadClick}>{this.props.name}</div>
                 <div className={'owned-evaluation-container'}>
                     <div className={'game-price-title'} onClick={this.openRatingDialog}>
                         Avaliação
@@ -90,7 +120,7 @@ class UserGameContainer extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ postRating, postComment }, dispatch)
+    return bindActionCreators({ postRating, postComment, downloadFileFromServer }, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(UserGameContainer);

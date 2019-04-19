@@ -3,6 +3,7 @@ import axios from 'axios';
 export const SET_USER_CREDENTIALS = 'set_user_credentials';
 export const RESET_USER_CREDENTIALS = 'reset_user_credentials';
 export const UPLOAD_FILE_TO_SERVER = 'upload_file_to_server';
+export const DOWNLOAD_FILE_FROM_SERVER = 'download_file_from_server';
 export const UPLOAD_GAME_TO_SERVER = 'upload_game_to_server';
 export const SEND_USER_INFORMATION = 'send_user_information';
 export const GET_GAME = 'get_game';
@@ -12,6 +13,7 @@ export const REMOVE_GAME_FROM_CART = 'remove_game_from_cart';
 export const REMOVE_ALL_GAMES_FROM_CART = 'remove_all_games_from_cart';
 export const POST_CHECKOUT = 'post_checkout';
 export const GET_GAMES_WITH_FILTER = 'get_games_with_filter';
+export const GET_USER_UPLOADED_GAMES = 'get_user_uploaded_games';
 export const GET_USER_GAMES = 'get_user_games';
 export const POST_RATING = 'post_rating';
 export const POST_COMMENT = 'post_comment';
@@ -71,6 +73,16 @@ export function uploadFileToServer(gameId, file, uploadProgressHandler) {
     }
 }
 
+export function downloadFileFromServer(fileDto, successHandler) {
+    let request = `${ROOT_URL}/api/File`
+    axios.post(request, fileDto)
+        .then(result => successHandler(result));
+    return {
+        type: DOWNLOAD_FILE_FROM_SERVER,
+        payload: null
+    }
+}
+
 export function getGame(id, successHandler) {
     let request = `${ROOT_URL}/api/Games/${id}`
     axios.get(request)
@@ -98,6 +110,16 @@ export function getUserGames(userId, successHandler) {
         .then(result => successHandler(result.data));
     return {
         type: GET_USER_GAMES,
+        payload: {}
+    }
+}
+
+export function getUserUploadedGames(userId, successHandler) {
+    let request = `${ROOT_URL}/api/Games/User/Uploaded`;
+    axios.post(request, { userId })
+        .then(result => successHandler(result.data));
+    return {
+        type: GET_USER_UPLOADED_GAMES,
         payload: {}
     }
 }
@@ -133,7 +155,7 @@ export function getGamesWithFilter(filterDto, successHandler) {
     }
 }
 
-export function postRating(ratingDto, successHandler){
+export function postRating(ratingDto, successHandler) {
     let request = `${ROOT_URL}/api/Ratings`
     axios.post(request, ratingDto)
         .then(result => successHandler(result.data));
@@ -143,7 +165,7 @@ export function postRating(ratingDto, successHandler){
     }
 }
 
-export function postComment(commentDto, successHandler){
+export function postComment(commentDto, successHandler) {
     let request = `${ROOT_URL}/api/Comments`
     axios.post(request, commentDto)
         .then(result => successHandler(result.data));
