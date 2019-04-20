@@ -3,7 +3,6 @@ import RatingDialog from './rating_dialog';
 import CommentDialog from './comment_dialog';
 import CustomSnackbar from './../../shared/custom_snackbar';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import { withStyles } from '@material-ui/core/styles';
 import { bindActionCreators } from 'redux';

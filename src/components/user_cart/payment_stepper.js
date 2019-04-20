@@ -32,6 +32,14 @@ class PaymentStepper extends React.Component {
         activeStep: 0,
     };
 
+    componentDidMount() {
+        this.props.setStep(this.setStep);
+    }
+
+    setStep = (index) => {
+        this.setState({ activeStep: index })
+    }
+
     handleNext = () => {
         this.setState(state => ({
             activeStep: state.activeStep + 1,

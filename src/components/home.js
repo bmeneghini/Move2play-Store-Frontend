@@ -140,7 +140,7 @@ class Home extends Component {
     const { activeStep } = this.state;
     const maxSteps = this.state.spotlights.length;
     let alreadyAuthenticated = isAuthenticated();
-
+    
     if (alreadyAuthenticated && !this.hasSynchronized) {
       this.hasSynchronized = true;
       this.synchroniseUserInformation();

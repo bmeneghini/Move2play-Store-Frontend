@@ -77,7 +77,31 @@ class UserCart extends Component {
     }
 
     handlePayment = () => {
-        this.props.postCheckout();
+        this.setStep(2);
+        this.setState({
+            alertTitle: 'Alterta de redirecionamento'
+            , alertContent: 'Você será redirecionado para a página de pagamento. Deseja continuar?'
+            , alertConfirmationLabel: 'Sim'
+            , alertConfirmationHandler: this.sendCheckoutRequest
+        }, () => this.openDialog());
+    }
+
+    sendCheckoutRequest = () => {
+        let cartGames = this.getGamesInfo();
+        let transactionDto = {
+            userId: this.props.user.sub,
+            itens: cartGames.map(game => ({
+                gameId: game.id,
+                itemDescription: game.name,
+                itemAmount: game.price,
+                itemQuantity: 1
+            }))
+        }
+        this.props.postCheckout(transactionDto, this.redirectToPayment);
+    }
+
+    redirectToPayment = (response) => {
+        window.open(response);
     }
 
     render() {
@@ -86,8 +110,14 @@ class UserCart extends Component {
                 <MenuAppBar auth={this.props.auth} />
                 <CarrinhoBreadcrumb />
                 <h1 className={'user-cart-title'}>Meu carrinho de compras</h1>
-                <PaymentStepper />
-                <UserCartGames cart={this.props.cart} removeGameFromCart={this.removeGameFromCart} />
+                <PaymentStepper 
+                    setStep={e => this.setStep = e}
+                />
+                <UserCartGames
+                    cart={this.props.cart}
+                    removeGameFromCart={this.removeGameFromCart}
+                    getGamesInfo={e => this.getGamesInfo = e}
+                />
                 <div id={'cart-footer'}>
                     <Button variant="contained" color="secondary" onClick={this.handlePayment}>
                         <Payment style={{
@@ -129,6 +159,7 @@ class UserCart extends Component {
 
 function mapStateToProps(state) {
     return {
+        user: state.user,
         cart: state.cart
     }
 }

@@ -15,6 +15,7 @@ class UserCartGames extends Component {
 
     componentDidMount() {
         this.sendGetRequest(this.props.cart);
+        this.props.getGamesInfo(this.getGamesInfo);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -56,6 +57,10 @@ class UserCartGames extends Component {
                 removeGameFromCart={this.removeGameFromCart}
             />
         });
+    }
+
+    getGamesInfo = () => {
+        return this.state.games;
     }
 
     render() {

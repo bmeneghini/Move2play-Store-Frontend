@@ -119,6 +119,7 @@ class EnviarJogoForm extends Component {
                                     handleGameNameChange={this.handleChange('gameName')}
                                 />
                                 <GamePriceInput
+                                    label={'Preço'}
                                     enableFullWidth={true}
                                     gamePrice={this.state.gamePrice}
                                     required={true}

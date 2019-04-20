@@ -17,12 +17,12 @@ const styles = theme => ({
 
 class GamePriceInput extends React.Component {
     render() {
-        const { classes, handleGamePriceChange, gamePrice, enableFullWidth, required } = this.props;
+        const { classes, handleGamePriceChange, gamePrice, enableFullWidth, required, label } = this.props;
         return (
             <TextField
                 id="outlined-amount"
-                label="Preço"
-                type="number"
+                label={label}
+                type={"number"}
                 className={classes.textField}
                 margin="normal"
                 variant="outlined"

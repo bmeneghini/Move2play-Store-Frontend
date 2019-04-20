@@ -60,6 +60,7 @@ class GamesFilters extends React.Component {
                     handleGameNameChange={this.handleGameNameChange}
                 />
                 <GamePriceInput
+                    label={'Preço máximo'}
                     enableFullWidth={true}
                     gamePrice={this.state.gamePrice}
                     handleGamePriceChange={this.handleGamePriceChange}
