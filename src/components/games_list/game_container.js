@@ -42,9 +42,14 @@ export default class GameContainer extends Component {
         const imageSource = `${process.env.REACT_APP_API_ROOT_URL}/Files/Games/${splitedPath[0]}/${splitedPath[1]}/${splitedPath[2]}`;
         const gameLabelPrice = this.state.addToChart ? 'Incluir no carrinho' : `R$ ${gamePrice}`;
 
-        const sentiment = evaluation === -1
+        let totalEvaluation = 0;
+        evaluation.forEach(element => {
+            totalEvaluation += element.evaluation
+        });
+
+        const sentiment = totalEvaluation < 0
             ? <SentimentVeryDissatisfied className={'sad-smile-gl'} />
-            : evaluation === 0
+            : totalEvaluation === 0
                 ? <SentimentSatisfied className={'ok-smile-gl'} />
                 : <SentimentVerySatisfied className={'happy-smile-gl'} />;
 

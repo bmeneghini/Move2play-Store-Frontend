@@ -4,8 +4,13 @@ import './../../styles/game_evaluation.css';
 
 export default class GameEvaluation extends Component {
     render() {
-        const sentiment = this.props.evaluation === -1
-            ? 0 : this.props.evaluation === 0 
+        const { evaluation } = this.props;
+        let totalEvaluation = 0;
+        evaluation.forEach(element => {
+            totalEvaluation += element.evaluation
+        });
+        const sentiment = totalEvaluation < 0
+            ? 0 : totalEvaluation === 0
                 ? 1 : 2
         return (
             <div className='game-evaluation-container'>

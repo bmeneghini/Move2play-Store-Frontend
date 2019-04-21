@@ -9,9 +9,10 @@ import CustomSnackbar from './../../components/shared/custom_snackbar';
 import Payment from '@material-ui/icons/Payment';
 import ClearAll from '@material-ui/icons/ClearAll';
 import Button from '@material-ui/core/Button';
-import { removeGameFromCart, removeAllGamesFromCart, postCheckout } from './../../actions/index';
+import { setUserCredentials, removeGameFromCart, removeAllGamesFromCart, postCheckout, postPurchase } from './../../actions/index';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
+import _ from 'lodash';
 import './../../styles/user_cart.css';
 
 class UserCart extends Component {
@@ -26,7 +27,8 @@ class UserCart extends Component {
             alertContent: '',
             alertConfirmationHandler: this.handleRemoval,
             alertConfirmationLabel: 'Remover'
-        }
+        };
+        this.isFetchingProfile = false;
     }
 
     componentWillMount() {
@@ -34,6 +36,19 @@ class UserCart extends Component {
         const token = getAccessToken();
         if (!token) history.push("/");
     }
+
+    componentDidUpdate() {
+        const { getProfile, getAccessToken } = this.props.auth;
+        const token = getAccessToken();
+        if (!this.isFetchingProfile && token) {
+          this.isFetchingProfile = true;
+          getProfile((err, profile) => {
+            if (!_.isEmpty(profile)) {
+              this.props.setUserCredentials(profile);
+            }
+          });
+        }
+      }
 
     removeGameFromCart = (gameId) => {
         this.setState({
@@ -77,13 +92,59 @@ class UserCart extends Component {
     }
 
     handlePayment = () => {
+        let cartGames = this.getGamesInfo();
+        if (cartGames.length <= 0) {
+            this.setState({
+                content: 'Adicione um jogo antes de proceder para o pagamento!',
+                variant: 'warning'
+            }, () => this.showSnackbar());
+        }
+        else {
+            this.setStep(1);
+            let totalPrice = this.checkSum();
+            if (totalPrice == 0.00) {
+                this.setState({
+                    alertTitle: 'Alterta'
+                    , alertContent: 'Deseja adicionar os jogos gratuitos diretamente à sua lista de jogos?'
+                    , alertConfirmationLabel: 'Sim'
+                    , alertConfirmationHandler: this.addFreeGamesToUser
+                }, () => this.openDialog());
+            }
+            else {
+                this.setState({
+                    alertTitle: 'Alterta de redirecionamento'
+                    , alertContent: 'Você será redirecionado para a página de pagamento. Deseja continuar?'
+                    , alertConfirmationLabel: 'Sim'
+                    , alertConfirmationHandler: this.sendCheckoutRequest
+                }, () => this.openDialog());
+            }
+        }
+    }
+
+    addFreeGamesToUser = () => {
+        let cartGames = this.getGamesInfo();
+        let purchaseDto = {
+            userId: this.props.user.sub,
+            paymentMethod: 1,
+            paymentStatus: 1,
+            paymentStatusMessage: 'PAID',
+            paymentToken: 'FREEPURCHASE',
+            purchaseItens: cartGames.map(game => ({
+                gameId: game.id,
+                price: game.price
+            }))
+        };
+        this.props.postPurchase(purchaseDto, this.successPostPurchase);
+    }
+
+    successPostPurchase = () => {
         this.setStep(2);
+        this.props.removeAllGamesFromCart();
+        this.closeDialog();
         this.setState({
-            alertTitle: 'Alterta de redirecionamento'
-            , alertContent: 'Você será redirecionado para a página de pagamento. Deseja continuar?'
-            , alertConfirmationLabel: 'Sim'
-            , alertConfirmationHandler: this.sendCheckoutRequest
-        }, () => this.openDialog());
+            content: 'Jogos adicionados com sucesso! Visite sua biblioteca de jogos!',
+            variant: 'success'
+        }, () => this.showSnackbar());
     }
 
     sendCheckoutRequest = () => {
@@ -101,7 +162,7 @@ class UserCart extends Component {
     }
 
     redirectToPayment = (response) => {
-        window.open(response);
+        window.location.replace(response);
     }
 
     render() {
@@ -110,12 +171,13 @@ class UserCart extends Component {
                 <MenuAppBar auth={this.props.auth} />
                 <CarrinhoBreadcrumb />
                 <h1 className={'user-cart-title'}>Meu carrinho de compras</h1>
-                <PaymentStepper 
+                <PaymentStepper
                     setStep={e => this.setStep = e}
                 />
                 <UserCartGames
                     cart={this.props.cart}
                     removeGameFromCart={this.removeGameFromCart}
+                    checkSum={e => this.checkSum = e}
                     getGamesInfo={e => this.getGamesInfo = e}
                 />
                 <div id={'cart-footer'}>
@@ -126,7 +188,7 @@ class UserCart extends Component {
                             color: "white",
                             marginRight: 10,
                         }} />
-                        Proceder para o pagamento
+                        PROCEDER PARA O PAGAMENTO
                     </Button>
                     <Button variant="contained" color="primary" onClick={this.handleRemoveAllClick}>
                         <ClearAll style={{
@@ -165,7 +227,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ removeGameFromCart, removeAllGamesFromCart, postCheckout }, dispatch)
+    return bindActionCreators({ setUserCredentials, removeGameFromCart, removeAllGamesFromCart, postCheckout, postPurchase }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserCart);

@@ -133,14 +133,14 @@ class Home extends Component {
       }
     });
   }
-  
+
   render() {
     const { isAuthenticated } = this.props.auth;
     const { classes, theme } = this.props;
     const { activeStep } = this.state;
     const maxSteps = this.state.spotlights.length;
     let alreadyAuthenticated = isAuthenticated();
-    
+
     if (alreadyAuthenticated && !this.hasSynchronized) {
       this.hasSynchronized = true;
       this.synchroniseUserInformation();

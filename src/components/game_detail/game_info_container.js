@@ -6,7 +6,7 @@ export default class GameInfoContainer extends Component {
     var splitedPath = gameThumbnail.split('\\');
     const imageSource = `${process.env.REACT_APP_API_ROOT_URL}/Files/Games/${splitedPath[0]}/${splitedPath[1]}/${splitedPath[2]}`;
     const rd = new Date(releaseDate);
-    const parsedDate = `${rd.getDay().toString().padStart(2, "0")}/${rd.getMonth().toString().padStart(2, "0")}/${rd.getFullYear()}`;
+    const parsedDate = `${rd.getDay().toString().padStart(2, "0")}/${(rd.getMonth() + 1).toString().padStart(2, "0")}/${rd.getFullYear()}`;
     return (
       <div className={'game-detail-container'}>
         <div className={'youtube-trailer-root'}>

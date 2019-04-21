@@ -18,6 +18,7 @@ export const GET_USER_UPLOADED_GAMES = 'get_user_uploaded_games';
 export const GET_USER_GAMES = 'get_user_games';
 export const POST_RATING = 'post_rating';
 export const POST_COMMENT = 'post_comment';
+export const POST_PURCHASE = 'post_purchase';
 
 const ROOT_URL = process.env.REACT_APP_API_ROOT_URL;
 
@@ -189,6 +190,16 @@ export function postCheckout(transactionDto, successHandler) {
         .then(result => successHandler(result.data));
     return {
         type: POST_CHECKOUT,
+        payload: {}
+    }
+}
+
+export function postPurchase(transactionDto, successHandler) {
+    let request = `${ROOT_URL}/api/Purchases`
+    axios.post(request, transactionDto)
+        .then(result => successHandler(result.data));
+    return {
+        type: POST_PURCHASE,
         payload: {}
     }
 }

@@ -15,6 +15,7 @@ class UserCartGames extends Component {
 
     componentDidMount() {
         this.sendGetRequest(this.props.cart);
+        this.props.checkSum(this.checkSum);
         this.props.getGamesInfo(this.getGamesInfo);
     }
 
