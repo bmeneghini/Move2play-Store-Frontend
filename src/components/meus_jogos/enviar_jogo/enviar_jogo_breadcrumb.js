@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
 import Link from '@material-ui/core/Link';
+import history from './../../config/history';
 
 const styles = theme => ({
     root: {
@@ -27,10 +28,10 @@ function EnviarJogoBreadcrumb(props) {
         <div className={classes.root}>
             <Paper className={paperClass}>
                 <Breadcrumbs aria-label="Breadcrumb">
-                    <Link color="primary" href="/">
+                    <Link color="primary" onClick={() => history.push('/')}>
                         Inicio
                     </Link>
-                    <Link color="primary" href="/">
+                    <Link color="primary" onClick={() => history.push('/')}>
                         Meus jogos
                     </Link>
                     <Typography color="secondary">Enviar jogo</Typography>

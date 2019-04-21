@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
 import Link from '@material-ui/core/Link';
+import history from './../config/history';
 
 const styles = theme => ({
     root: {
@@ -20,17 +21,17 @@ const styles = theme => ({
     },
 });
 
-function SimpleBreadcrumb(props) {
+function GameDetailBreadcrumb(props) {
     const { classes } = props;
     const paperClass = `${classes.paper} game-details-breadcrumb`;
     return (
         <div className={classes.root}>
             <Paper className={paperClass}>
                 <Breadcrumbs aria-label="Breadcrumb">
-                    <Link color="primary" href="/">
+                    <Link color="primary" onClick={() => history.push('/')}>
                         Inicio
                     </Link>
-                    <Link color="primary" href="/jogos">
+                    <Link color="primary" onClick={() => history.push('/jogos')}>
                         Catálogo de Jogos
                     </Link>
                     <Typography color="secondary">Detalhes</Typography>
@@ -40,8 +41,8 @@ function SimpleBreadcrumb(props) {
     );
 }
 
-SimpleBreadcrumb.propTypes = {
+GameDetailBreadcrumb.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleBreadcrumb);
+export default withStyles(styles)(GameDetailBreadcrumb);

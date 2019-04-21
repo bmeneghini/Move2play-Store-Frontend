@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ButtonAppBar from '../../components/app_bar/button_app_bar';
 import MenuAppBar from '../../components/app_bar/menu_app_bar';
 import { connect } from "react-redux";
-import SimpleBreadcrumb from './../../components/shared/simple_breadcrumb';
+import GameDetailBreadcrumb from '../../components/game_detail/game_detail_breadcrumb';
 import GameInfoContainer from './../../components/game_detail/game_info_container';
 import BuyContainer from './../../components/game_detail/buy_container';
 import GameEvaluation from './../../components/game_detail/game_evaluation';
@@ -15,7 +15,7 @@ class GameDetail extends Component {
         return (
             <div>
                 {isAuthenticated() ? <MenuAppBar auth={this.props.auth} /> : <ButtonAppBar auth={this.props.auth} />}
-                <SimpleBreadcrumb />
+                <GameDetailBreadcrumb />
                 <h1 className={'game-detail-title'}>{gameName}</h1>
                 <GameInfoContainer
                     description={description}
