@@ -151,7 +151,8 @@ class UserGameContainer extends Component {
     }
 
     successHandler = () => {
-        this.setState({ content: 'Operação realizada com sucesso!' }, () => this.showSnackbar())
+        this.props.fetchUserOwnedGames();
+        this.setState({ content: 'Ação realizada com sucesso!' }, () => this.showSnackbar())
     }
 
     render() {

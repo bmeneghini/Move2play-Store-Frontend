@@ -24,6 +24,7 @@ export default class OwnedGames extends Component {
                 user={this.props.user}
                 gameThumbnail={game.image[0].path}
                 serverPath={game.serverPath}
+                fetchUserOwnedGames={this.props.fetchUserOwnedGames}
             />
         })
     }

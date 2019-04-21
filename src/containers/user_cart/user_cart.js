@@ -9,7 +9,7 @@ import CustomSnackbar from './../../components/shared/custom_snackbar';
 import Payment from '@material-ui/icons/Payment';
 import ClearAll from '@material-ui/icons/ClearAll';
 import Button from '@material-ui/core/Button';
-import { setUserCredentials, removeGameFromCart, removeAllGamesFromCart, postCheckout, postPurchase } from './../../actions/index';
+import { setUserCredentials, removeGameFromCart, removeAllGamesFromCart, postCheckout, postPurchase, getUserGames } from './../../actions/index';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import _ from 'lodash';
@@ -26,9 +26,14 @@ class UserCart extends Component {
             alertTitle: '',
             alertContent: '',
             alertConfirmationHandler: this.handleRemoval,
-            alertConfirmationLabel: 'Remover'
+            alertConfirmationLabel: 'Remover',
+            userOwnedGames: []
         };
         this.isFetchingProfile = false;
+    }
+
+    componentDidMount() {
+        this.props.getUserGames(this.props.user.sub, this.successGetUserOwnedGames);
     }
 
     componentWillMount() {
@@ -41,14 +46,14 @@ class UserCart extends Component {
         const { getProfile, getAccessToken } = this.props.auth;
         const token = getAccessToken();
         if (!this.isFetchingProfile && token) {
-          this.isFetchingProfile = true;
-          getProfile((err, profile) => {
-            if (!_.isEmpty(profile)) {
-              this.props.setUserCredentials(profile);
-            }
-          });
+            this.isFetchingProfile = true;
+            getProfile((err, profile) => {
+                if (!_.isEmpty(profile)) {
+                    this.props.setUserCredentials(profile);
+                }
+            });
         }
-      }
+    }
 
     removeGameFromCart = (gameId) => {
         this.setState({
@@ -100,23 +105,40 @@ class UserCart extends Component {
             }, () => this.showSnackbar());
         }
         else {
-            this.setStep(1);
-            let totalPrice = this.checkSum();
-            if (totalPrice == 0.00) {
+            let userOwnedGamesAlreadyAddedToCart = [];
+            cartGames.forEach(game => {
+                this.state.userOwnedGames.forEach(ownedGame => {
+                    if (game.id === ownedGame.id) {
+                        userOwnedGamesAlreadyAddedToCart.push(game)
+                    }
+                });
+            });
+            if (userOwnedGamesAlreadyAddedToCart.length > 0) {
+                let gameListNames = userOwnedGamesAlreadyAddedToCart.map(game => { return `"${game.name}"` })
                 this.setState({
-                    alertTitle: 'Alterta'
-                    , alertContent: 'Deseja adicionar os jogos gratuitos diretamente à sua lista de jogos?'
-                    , alertConfirmationLabel: 'Sim'
-                    , alertConfirmationHandler: this.addFreeGamesToUser
-                }, () => this.openDialog());
+                    content: `Você já possui o(s) jogo(s) ${gameListNames}. Por favor, remova-os do carrinho antes de prosseguir.`,
+                    variant: 'warning'
+                }, () => this.showSnackbar());
             }
             else {
-                this.setState({
-                    alertTitle: 'Alterta de redirecionamento'
-                    , alertContent: 'Você será redirecionado para a página de pagamento. Deseja continuar?'
-                    , alertConfirmationLabel: 'Sim'
-                    , alertConfirmationHandler: this.sendCheckoutRequest
-                }, () => this.openDialog());
+                this.setStep(1);
+                let totalPrice = this.checkSum();
+                if (totalPrice == 0.00) {
+                    this.setState({
+                        alertTitle: 'Alterta'
+                        , alertContent: 'Deseja adicionar os jogos gratuitos diretamente à sua lista de jogos?'
+                        , alertConfirmationLabel: 'Sim'
+                        , alertConfirmationHandler: this.addFreeGamesToUser
+                    }, () => this.openDialog());
+                }
+                else {
+                    this.setState({
+                        alertTitle: 'Alterta de redirecionamento'
+                        , alertContent: 'Você será redirecionado para a página de pagamento. Deseja continuar?'
+                        , alertConfirmationLabel: 'Sim'
+                        , alertConfirmationHandler: this.sendCheckoutRequest
+                    }, () => this.openDialog());
+                }
             }
         }
     }
@@ -159,6 +181,10 @@ class UserCart extends Component {
             }))
         }
         this.props.postCheckout(transactionDto, this.redirectToPayment);
+    }
+
+    successGetUserOwnedGames = (result) => {
+        this.setState({ userOwnedGames: result })
     }
 
     redirectToPayment = (response) => {
@@ -227,7 +253,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setUserCredentials, removeGameFromCart, removeAllGamesFromCart, postCheckout, postPurchase }, dispatch)
+    return bindActionCreators({ setUserCredentials, removeGameFromCart, removeAllGamesFromCart, postCheckout, postPurchase, getUserGames }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserCart);

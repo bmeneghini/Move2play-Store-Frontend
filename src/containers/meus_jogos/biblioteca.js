@@ -58,6 +58,10 @@ class Biblioteca extends Component {
         }
     }
 
+    fetchUserOwnedGames = () =>{
+        this.props.getUserGames(this.props.user.sub, this.successGetUserGames);
+    }
+
     successGetUserGames = (result) => {
         this.setState({ ownedGames: result })
     }
@@ -80,6 +84,7 @@ class Biblioteca extends Component {
                 <OwnedGames
                     user={this.props.user}
                     ownedGames={this.state.ownedGames}
+                    fetchUserOwnedGames={this.fetchUserOwnedGames}
                 />
                 {uploadedGamesContainer}
             </div>
