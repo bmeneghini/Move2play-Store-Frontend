@@ -31,34 +31,32 @@
     align-items: center;
     margin: 20px 15vmax;
     border-radius: 3px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
-    background-color: #151d27;
+    background-color: #12181f;
 }
 
 .games-filters-root {
     display: flex;
-    padding: 10px 15px;
     border-radius: 3px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
     background-color: #151d27;
+    width: -webkit-fill-available;
 }
 
 @media screen and (min-width:700px) and (max-width: 1024px) {
-    .games-filters-root, .games-list-containers, .games-list-title {
+    .games-list-containers, .games-list-title {
         /* margin: 10px calc(5vmax + 100px); */
         margin: 20px 15vmax;
     }
 }
 
 @media screen and (min-width:1025px) and (max-width: 1440px) {
-    .games-filters-root, .games-list-containers, .games-list-title {
+    .games-list-containers, .games-list-title {
         /* margin: 10px calc(5vmax + 55px); */
         margin: 20px 15vmax;
     }
 }
 
 @media screen and (min-width:1441px) and (max-width: 1700px) {
-    .games-filters-root, .games-list-containers, .games-list-title {
+    .games-list-containers, .games-list-title {
         /* margin: 10px calc(5vmax + 85px); */
         margin: 20px 15vmax;
     }
