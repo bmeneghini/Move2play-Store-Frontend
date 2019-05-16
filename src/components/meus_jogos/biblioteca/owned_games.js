@@ -31,7 +31,7 @@ export default class OwnedGames extends Component {
     render() {
         const renderGames = this.props.ownedGames.length > 0
             ? this.buildGamesContent()
-            : <div className={'zero-owned-games'}><span className={'span'}>Você não possui nenhum jogo. Que tal tentar os nossos jogos gratuitos? :D</span></div>;
+            : <div className={'zero-owned-games'}><span className={'span'}>Você não possui jogos. Experimente nossos jogos gratuitos! :D</span></div>;
         return (
             <div className={'owned-games-container'}>
                 <ExpansionPanel className={'expansion-panel'} expanded={this.state.expanded}>
